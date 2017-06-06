@@ -1,0 +1,4 @@
+// Em calculate function
+@function em($pixels, $context: $font-size-base) {
+	@return #{ceil($pixels / $context * 100) / 100}em
+}

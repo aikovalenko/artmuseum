@@ -1,0 +1,38 @@
+{
+  "name": "artmuseum",
+  "version": "1.0.0",
+  "description": "",
+  "main": "gulpfile.js",
+  "dependencies": {
+    "browser-sync": "^2.18.8",
+    "gulp-bump": "^2.7.0",
+    "gulp-cache": "^0.4.6",
+    "gulp-clean-css": "^3.0.4",
+    "gulp-csscomb": "^3.0.8",
+    "gulp-file-include": "^1.0.0",
+    "gulp-imagemin": "^3.1.1",
+    "gulp-plumber": "^1.1.0",
+    "gulp-rigger": "^0.5.8",
+    "gulp-sourcemaps": "^2.4.1",
+    "gulp-uglify": "^2.1.2",
+    "imagemin-pngquant": "^5.0.0",
+    "mediaelement": "^4.0.6",
+    "uglify": "^0.1.5"
+  },
+  "devDependencies": {
+    "gulp-uglify": "^2.1.2"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aikovalenko/artmuseum.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/aikovalenko/artmuseum/issues"
+  },
+  "homepage": "https://github.com/aikovalenko/artmuseum#readme"
+}

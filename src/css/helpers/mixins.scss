@@ -1,0 +1,44 @@
+@mixin aspect-ratio($width, $height) {
+    position: relative;
+    &:before {
+        display: block;
+        content: "";
+        width: 100%;
+        padding-top: ($height / $width) * 100%;
+    }
+    > .aspect-ratio {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+    }
+}
+
+@mixin posa($left, $top, $right, $bottom) {
+	position: absolute;
+	left: $left;
+	top: $top;
+	right: $right;
+	bottom: $bottom;
+}
+
+@mixin col($float, $width, $padding) {
+	float: $float;
+	width: $width;
+	padding: 0 $padding;
+    box-sizing: border-box;
+}
+
+@mixin fontFace($family,$src,$weight,$style: normal) {
+  @font-face {
+    font-family: $family;
+    font-style: $style;
+    font-weight: $weight;
+    src: url('#{$src}.eot'); // IE9 compat
+    src: url('#{$src}.eot?#iefix') format('embedded-opentype'), // IE8 and below
+    url('#{$src}.woff') format('woff'), // standards
+    url('#{$src}.ttf') format('truetype'), // Safari, Android, iOS
+    url('#{$src}.svg##{$family}') format('svg'); // legacy iOS
+  }
+}

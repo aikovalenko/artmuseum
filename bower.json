@@ -1,0 +1,24 @@
+{
+  "name": "artmuseum",
+  "description": "",
+  "main": "index.js",
+  "authors": [
+    "aikovalenko <kovalenko.ai@yandex.ru>"
+  ],
+  "license": "ISC",
+  "homepage": "https://github.com/aikovalenko/artmuseum",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "normalize-css": "^7.0.0",
+    "jquery": "^3.2.1",
+    "modernizer": "^2.8.2",
+    "fastclick": "^1.0.6",
+    "platform.js": "platform#^1.3.4"
+  }
+}
