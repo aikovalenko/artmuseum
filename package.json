@@ -15,12 +15,13 @@
     "gulp-rigger": "^0.5.8",
     "gulp-sourcemaps": "^2.4.1",
     "gulp-uglify": "^2.1.2",
+    "imagemin-gifsicle": "^5.1.0",
+    "imagemin-jpegtran": "^5.0.2",
+    "imagemin-optipng": "^5.2.1",
     "imagemin-pngquant": "^5.0.0",
+    "imagemin-svgo": "^5.2.2",
     "mediaelement": "^4.0.6",
     "uglify": "^0.1.5"
-  },
-  "devDependencies": {
-    "gulp-uglify": "^2.1.2"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"

@@ -125,28 +125,28 @@ gulp.task('style:dist', function () {
 });
 
 gulp.task('image:build', function () {
-	return gulp.src(path.src.img)
-		.pipe(cache(imagemin({
-			progressive: true,
-			svgoPlugins: [{}],
-			use: [pngquant()],
-			interlaced: true
-		})))
-		.pipe(gulp.dest(path.build.img))
-    .on('end', function () {
-      browserSync.reload();
-    });
+    return gulp.src(path.src.img)
+        .pipe(imagemin([
+            imagemin.gifsicle({interlaced: true}),
+            imagemin.jpegtran({progressive: true}),
+            imagemin.optipng({optimizationLevel: 5}),
+            imagemin.svgo({plugins: [{removeViewBox: true}]})
+        ]))
+        .pipe(gulp.dest(path.build.img))
+        .on('end', function () {
+            browserSync.reload();
+        });
 });
 
 gulp.task('image:dist', function () {
-	return gulp.src(path.src.img)
-		.pipe(cache(imagemin({
-			progressive: true,
-			svgoPlugins: [{}],
-			use: [pngquant()],
-			interlaced: true
-		})))
-		.pipe(gulp.dest(path.dist.img));
+    return gulp.src(path.src.img)
+        .pipe(imagemin([
+            imagemin.gifsicle({interlaced: true}),
+            imagemin.jpegtran({progressive: true}),
+            imagemin.optipng({optimizationLevel: 5}),
+            imagemin.svgo({plugins: [{removeViewBox: true}]})
+        ]))
+        .pipe(gulp.dest(path.dist.img));
 });
 
 gulp.task('fonts:build', function () {
