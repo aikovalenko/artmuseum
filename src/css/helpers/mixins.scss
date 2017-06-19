@@ -22,14 +22,29 @@
 	right: $right;
 	bottom: $bottom;
 }
-
+@mixin clearfix {
+  &:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+}
 @mixin col($float, $width, $padding) {
 	float: $float;
 	width: $width;
 	padding: 0 $padding;
     box-sizing: border-box;
 }
-
+@mixin fontSize($size) {
+  font-size: $size; //Fallback in px
+  font-size: calculateRem($size);
+}
+@mixin push--auto {
+  margin: {
+    left: auto;
+    right: auto;
+  }
+}
 @mixin fontFace($family,$src,$weight,$style: normal) {
   @font-face {
     font-family: $family;

@@ -1,0 +1,80 @@
+[class^="icon-"], [class*=" icon-"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'icomoon' !important;
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-search:before {
+  content: "\e908";
+}
+.icon-share:before {
+  content: "\e909";
+}
+.icon-arrow-left:before {
+  content: "\e90a";
+  color: #f9f9fb;
+}
+.icon-arrow-right:before {
+  content: "\e90b";
+  color: #f9f9fb;
+}
+.icon-arrow-down:before {
+  content: "\e90c";
+}
+.icon-thumbup:before {
+  content: "\e92a";
+  color: #676767;
+}
+.icon-thumbdown:before {
+  content: "\e92b";
+  color: #676767;
+}
+.icon-ta:before {
+  content: "\e92c";
+  color: #676767;
+}
+.icon-ok:before {
+  content: "\e92d";
+  color: #676767;
+}
+.icon-vk:before {
+  content: "\e92e";
+  color: #676767;
+}
+.icon-tg:before {
+  content: "\e92f";
+  color: #676767;
+}
+.icon-inst:before {
+  content: "\e930";
+  color: #676767;
+}
+.icon-yb:before {
+  content: "\e931";
+  color: #676767;
+}
+.icon-tw:before {
+  content: "\e932";
+  color: #676767;
+}
+.icon-fb:before {
+  content: "\e933";
+  color: #676767;
+}
+.icon-play:before {
+  content: "\e934";
+  color: #f9f9fb;
+}
+.icon-wr:before {
+  content: "\e935";
+  color: #f9f9fb;
+}
