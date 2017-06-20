@@ -1,11 +1,14 @@
 $(document).ready(function() {
     $('html').addClass(platform.name.toLowerCase()).addClass(platform.os.family.toLowerCase());
 
-    $('.js-call-search').on('click', function (e) {
-        e.stopPropagation();
+    $('.js-call-search').on('click', function () {
         $('.search-block').addClass('opened');
+        $(this).toggleClass('active');
     });
-    $(document).on('click', function (e) {
-        // Do whatever you want; the event that'd fire if the "special" element has been clicked on has been cancelled.
+    $('.js-call-notifications').on('click', function () {
+        $('.notifications-block').toggleClass('opened');
+        $(this).toggleClass('active');
     });
+
+
 });

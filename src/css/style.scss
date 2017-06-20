@@ -84,6 +84,9 @@ button {
 .bg-pale-grey {
   background-color: $pale-grey;
 }
+.bg-white {
+  background-color: #fff;
+}
 
 //$black: #262626;
 //$warm-grey-two: #929292;
@@ -171,7 +174,7 @@ ul {
     line-height: calculateRem(32px);
 
     .icon {
-      @include fontSize(14px);
+      @include fontSize(12px);
       opacity: .6;
     }
     .icon-search {
@@ -180,10 +183,17 @@ ul {
     .icon-arrow-down {
       margin-left: calculateRem(8px);
     }
+
+    &.active {
+      .button-text,
+      .icon {
+        opacity: 1;
+      }
+    }
   }
   &-section {
     display: flex;
-    margin-right: 23px;
+    margin-right: calculateRem(23px);
 
     &:last-child {
       margin-right: 0;
@@ -214,7 +224,7 @@ ul {
   opacity: 0;
   transition: all .2s;
   &.opened {
-    z-index: 1;
+    z-index: 3;
     opacity: 1;
     left: -42px;
     transition: all .2s;
@@ -224,7 +234,6 @@ ul {
       transition: all .2s;
     }
   }
-
   input {
     width: 0;
     height: 32px;
@@ -247,6 +256,52 @@ ul {
       right: 15.5px;
       top: 50%;
       margin-top: calculateRem(-9px);
+    }
+  }
+}
+.notifications-wrap {
+  button {
+    z-index: 2;
+  }
+}
+.notifications-block {
+  position: absolute;
+  right: 0;
+  width: calculateRem(285px);
+  box-sizing: border-box;
+  padding-left: calculateRem(14px);
+  padding-right: calculateRem(14px);
+  padding-top: calculateRem(45px);
+  padding-bottom: calculateRem(30px);
+  border-radius: 2px;
+  border: 1px solid $warm-grey-two;
+
+  font-size: calculateRem(16px);
+  font-weight: 500;
+  line-height: 131%;
+
+  opacity: 0;
+  z-index: -1;
+
+  &.opened {
+    opacity: 1;
+    z-index: 1;
+  }
+  ul {
+    li {
+      margin-bottom: calculateRem(19px);
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+  }
+  &__link {
+    span {
+      display: block;
+      color: $warm-grey-two;
+      &:first-child{
+        color: $greyish-brown-two;
+      }
     }
   }
 }
