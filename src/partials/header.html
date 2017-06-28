@@ -2,35 +2,40 @@
     <div class="header__notifications bg-violet-blue">
         <div class="wrapper">
             <div class="header__notifications__inner">
-                <ul>
-                    <li><a class="color-pale-grey" href="" title="ОТМЕНА ЛЕКЦИИ КАПРИЧОС">ОТМЕНА ЛЕКЦИИ КАПРИЧОС.</a></li>
-                    <li><a class="color-pale-grey" href="" title="ГОЙЯ И ДАЛИ 26 ЯНВАРЯ">ГОЙЯ И ДАЛИ 26 ЯНВАРЯ.</a></li>
-                    <li><a class="color-pale-grey" href="" title="ГАЛЕРЕЯ СТАРЫХ МАСТЕРОВ">ГАЛЕРЕЯ СТАРЫХ МАСТЕРОВ.</a></li>
-                    <li><a class="color-pale-grey" href="" title="ЗАЛ 298">ЗАЛ 298.</a></li>
+                <ul class="color-pale-grey">
+                    <li><a class="" href="" title="ОТМЕНА ЛЕКЦИИ КАПРИЧОС">ОТМЕНА ЛЕКЦИИ КАПРИЧОС.</a></li>
+                    <li><a class="" href="" title="ГОЙЯ И ДАЛИ 26 ЯНВАРЯ">ГОЙЯ И ДАЛИ 26 ЯНВАРЯ.</a></li>
+                    <li><a class="" href="" title="ГАЛЕРЕЯ СТАРЫХ МАСТЕРОВ">ГАЛЕРЕЯ СТАРЫХ МАСТЕРОВ.</a></li>
+                    <li><a class="" href="" title="ЗАЛ 298">ЗАЛ 298.</a></li>
                 </ul>
-                <span class="header__notifications-close bg-pale-grey close js-notifs-close"></span>
+                <div class="header__notifications-close-wrap">
+                    <span class="header__notifications-close close js-notifs-close"></span>
+                </div>
             </div>
         </div>
     </div>
     <div class="wrapper">
         <div class="header__controls">
             <div class="main-logo">
-                <a class="" href="" title="Государственный музей изобразительных искусств имени А. С. Пушкина"><img class="" width="312" height="66" src="/images/svg/logo_gmii.svg" alt="Государственный музей изобразительных искусств имени А. С. Пушкина"></a>
+                <a class="" href="" title="Государственный музей изобразительных искусств имени А. С. Пушкина">
+                    <img class="main-logo__desktop" width="312" height="66" src="/images/svg/logo_gmii.svg" alt="Государственный музей изобразительных искусств имени А. С. Пушкина">
+                    <img class="main-logo__mobile" width="162" height="122" src="/images/svg/logo_gmii_mobile.svg" alt="Государственный музей изобразительных искусств имени А. С. Пушкина">
+                </a>
             </div>
             <div class="main-controls">
                 <div class="main-controls-section search-wrap">
-                    <button class="color-black js-call-search" title="Поиск">
+                    <button class="main-controls__button color-black js-call-control js-call-search" title="Поиск">
                         <span class="icon icon-search"><span>поиск</span></span>
                     </button>
                     <div class="main-controls-section-block search-block bg-pale-grey">
-                        <form class="">
+                        <form class="form-search">
                             <input type="text">
                             <button type="submit"><span class="icon icon-search"><span>найти</span></span></button>
                         </form>
                     </div>
                 </div>
                 <div class="main-controls-section notifications-wrap">
-                    <button class="color-black js-call-notifications" title="Уведомления">
+                    <button class="main-controls__button color-black js-call-control" title="Уведомления">
                         <span class="button-text">Внимание</span>
                         <span class="notifications-badge bg-violet-blue color-pale-grey">1</span>
                     </button>
@@ -57,21 +62,111 @@
                     </div>
                 </div>
                 <div class="main-controls-section settings-wrap">
-                    <button class="color-black" title="Настройки отображения сайта">
+                    <button class="main-controls__button color-black js-call-control" title="Настройки отображения сайта">
                         <span class="button-text">Aa</span>
                     </button>
+                    <div class="main-controls-section-block settings-block bg-white">
+                        <div class="settings-block__head color-black">Версии сайта</div>
+                        <button>Обычная версия</button>
+                        <button>Контрастная</button>
+                    </div>
                 </div>
                 <div class="main-controls-section language-wrap">
-                    <button class="color-black" title="Выбор языка">
+                    <button class="main-controls__button color-black js-call-control" title="Выбор языка">
                         <span class="button-text">ENG</span>
                         <span class="icon icon-arrow-down"><span>список</span></span>
                     </button>
+                    <div class="main-controls-section-block language-block bg-white">
+                        <ul class="color-warm-grey-two">
+                            <li>
+                                <a class="" href="" title="English language">
+                                    <span>Eng</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a class="" href="" title="Русския язык">
+                                    <span>Рус</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a class="" href="" title="Langue française">
+                                    <span>Fra</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a class="" href="" title="Deutsche Sprache">
+                                    <span>Ger</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a class="" href="" title="日本語">
+                                    <span>Jap</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
                 <div class="main-controls-section share-wrap">
-                    <button class="color-black" title="Поделиться в соц сетях">
+                    <button class="main-controls__button color-black js-call-control" title="Поделиться в соц сетях">
                         <span class="icon icon-share"><span>поделиться</span></span>
                     </button>
+                    <div class="main-controls-section-block share-block bg-white">
+                        <div class="settings-block__head color-black">Поделиться</div>
+                        <ul class="color-warm-grey-two">
+                            <li>
+                                <a class="" href="" title="">Поделиться в Facebook</a>
+                            </li>
+                            <li>
+                                <a class="" href="" title="">Поделиться в Vk.com</a>
+                            </li>
+                            <li>
+                                <a class="" href="" title="">Твитнуть в Twitter</a>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
+                <div class="main-menu-burger js-burger">
+                    <span class="burger"></span>
+                    <span class="notifications-badge bg-violet-blue color-pale-grey">1</span>
+                </div>
+            </div>
+        </div>
+        <div class="menu-mobile container">
+            <div class="menu-mobile__inner stickem-container">
+                <ul class="menu-mobile__list color-greyish-brown-two">
+                    <li><a class="" href="" title="ВНИМАНИЕ">ВНИМАНИЕ <span class="color-violet-blue">1</span></a></li>
+                    <li><a class="" href="" title="Музей">Музей</a></li>
+                    <li><a class="" href="" title="Афиша">Афиша</a></li>
+                    <li><a class="" href="" title="Коллекции">Коллекции</a></li>
+                    <li><a class="" href="" title="Медиа">Медиа</a></li>
+                    <li><a class="" href="" title="Образование">Образование</a></li>
+                    <li><a class="" href="" title="Магазин">Магазин</a></li>
+                </ul>
+                <div class="menu-mobile__copyright color-greyish-brown-two">© 2009–2017<br>ГМИИ им. А. С. Пушкина</div>
+
+                <div class="main-controls main-controls--mobile">
+                    <div class="main-controls-section search-wrap">
+                        <button class="main-controls__button color-black" title="Поиск">
+                            <span class="icon icon-search"><span>поиск</span></span>
+                        </button>
+                    </div>
+                    <div class="main-controls-section settings-wrap">
+                        <button class="main-controls__button color-black" title="Настройки отображения сайта">
+                            <span class="button-text">Aa</span>
+                        </button>
+                    </div>
+                    <div class="main-controls-section language-wrap">
+                        <button class="main-controls__button color-black" title="Выбор языка">
+                            <span class="button-text">EN</span>
+                        </button>
+                    </div>
+                    <div class="main-controls-section share-wrap">
+                        <button class="main-controls__button color-black" title="Поделиться в соц сетях">
+                            <span class="icon icon-share"><span>поделиться</span></span>
+                        </button>
+                    </div>
+                </div>
+
             </div>
         </div>
         <div class="header__menu">
