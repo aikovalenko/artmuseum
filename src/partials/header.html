@@ -152,11 +152,57 @@
                 </ul>
                 <div class="menu-mobile__panels hide">
                     <div class="menu-mobile__panels__inner">
-                        <div class="menu-mobile__panels__search">
+                        <div class="menu-mobile__panels__block mobile-search">
                             <form>
-                                <input class="mobile-search" type="text" placeholder="введите запрос">
+                                <input class="form--mobile-search" type="text" placeholder="введите запрос">
                                 <span class="close close--black js-clear-search"></span>
                             </form>
+                        </div>
+                        <div class="menu-mobile__panels__block mobile-settings">
+                            <button>Обычная версия</button>
+                            <button>Контрастная</button>
+                        </div>
+                        <div class="menu-mobile__panels__block mobile-language">
+                            <ul class="color-greyish-brown-two">
+                                <li>
+                                    <a class="" href="" title="English language">
+                                        <span>English</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="active" href="" title="Русский язык">
+                                        <span>Русский</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="" href="" title="Langue française">
+                                        <span>française</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="" href="" title="Deutsche Sprache">
+                                        <span>Deutsch</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="" href="" title="日本の">
+                                        <span>日本の</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="menu-mobile__panels__block mobile-share">
+                            <ul class="color-greyish-brown-two">
+                                <li>
+                                    <a class="" href="" title="">Поделиться в Facebook</a>
+                                </li>
+                                <li>
+                                    <a class="" href="" title="">Поделиться в Vk.com</a>
+                                </li>
+                                <li>
+                                    <a class="" href="" title="">Твитнуть в Twitter</a>
+                                </li>
+                            </ul>
                         </div>
                     </div>
 
@@ -165,22 +211,22 @@
 
                 <div class="main-controls main-controls--mobile">
                     <div class="main-controls-section search-wrap">
-                        <button class="main-controls__button color-black js-mobile-menu" title="Поиск">
+                        <button class="main-controls__button color-black js-mobile-menu" data-name="mobile-search" title="Поиск">
                             <span class="icon icon-search"><span>поиск</span></span>
                         </button>
                     </div>
                     <div class="main-controls-section settings-wrap">
-                        <button class="main-controls__button color-black js-mobile-menu" title="Настройки отображения сайта">
+                        <button class="main-controls__button color-black js-mobile-menu" data-name="mobile-settings" title="Настройки отображения сайта">
                             <span class="button-text">Aa</span>
                         </button>
                     </div>
                     <div class="main-controls-section language-wrap">
-                        <button class="main-controls__button color-black js-mobile-menu" title="Выбор языка">
+                        <button class="main-controls__button color-black js-mobile-menu" data-name="mobile-language" title="Выбор языка">
                             <span class="button-text">EN</span>
                         </button>
                     </div>
                     <div class="main-controls-section share-wrap">
-                        <button class="main-controls__button color-black js-mobile-menu" title="Поделиться в соц сетях">
+                        <button class="main-controls__button color-black js-mobile-menu" data-name="mobile-share" title="Поделиться в соц сетях">
                             <span class="icon icon-share"><span>поделиться</span></span>
                         </button>
                     </div>

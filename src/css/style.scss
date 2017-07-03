@@ -419,8 +419,15 @@ ul {
   &__inner {
     //margin-top: 18px;
   }
+  &__block {
+    display: none;
+
+    &.active {
+      display: block;
+    }
+  }
 }
-.menu-mobile__panels__search {
+.mobile-search {
   input {
     width: 100%;
     margin: 0;
@@ -464,6 +471,19 @@ ul {
       transition: $transition;
     }
   }
+}
+.mobile-language {
+  @include fontSize(19px);
+  line-height: 253%;
+  text-transform: uppercase;
+  a.active {
+    color: $violet-blue;
+  }
+}
+.mobile-share {
+  @include fontSize(19px);
+  line-height: 253%;
+  text-transform: uppercase;
 }
 .hide {
   display: none;
