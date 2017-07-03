@@ -25,12 +25,11 @@ function menuMobileSets() {
         $('.menu-mobile').css('height', menuMobileHeight);
     } else {
         $('.menu-mobile').css('height', 0);
-
     }
 
     if ($(window).height() < totalHeight) {
         $('.main-controls--mobile').addClass('stickem');
-        console.log("true");
+        // console.log("true");
         $('.container').stickem({
             start: stickemStart
         });
@@ -38,6 +37,7 @@ function menuMobileSets() {
         $('.main-controls--mobile').removeClass('stickem');
         console.log("false");
     }
+
 }
 
 $(document).ready(function() {
@@ -79,15 +79,107 @@ $(document).ready(function() {
 
         menuMobileSets();
 
+        // $('.menu-mobile__list').removeClass('hide');
+        // $('.menu-mobile__panels').addClass('hide');
+        // $('.js-mobile-menu').removeClass("active");
+
     });
+
+    $('.js-mobile-menu').click(function() {
+
+        var headerHeight = $('.header').height();
+        var headerNotificationsHeight = $('.header__notifications').height();
+        var headerCopyrightHeight = $('.menu-mobile__copyright').innerHeight();
+        var headerControlsHeight = $('.header__controls').outerHeight(true);
+        var headerMenuListHeight = $('.menu-mobile__list').outerHeight(true);
+
+        var windowHeight = $(window).height();
+
+        $(this).toggleClass("active");
+        $('.js-mobile-menu').not(this).each(function () {
+            $(this).removeClass('active');
+        });
+
+
+
+        if ($('.js-mobile-menu').hasClass('active')) {
+            //просто ужасно, из-за отрицательного отступа -18 у menu-mobile
+            if (headerHeight > windowHeight) {
+                $('.menu-mobile__panels').css('height', windowHeight - headerNotificationsHeight - headerControlsHeight - headerCopyrightHeight + 18);
+
+
+                $('.container').stickem().destroy();
+                menuMobileSets();
+
+
+            }  else {
+                $('.menu-mobile__panels').css('height', headerMenuListHeight);
+                $('.container').stickem().destroy();
+                menuMobileSets();
+
+            }
+
+            $('.menu-mobile__list').addClass('hide');
+            $('.menu-mobile__panels').removeClass('hide');
+        } else {
+            $('.menu-mobile__panels').css('height', 'auto');
+            $('.menu-mobile__list').removeClass('hide');
+            $('.menu-mobile__panels').addClass('hide');
+        }
+
+
+        $('.container').stickem().destroy();
+        menuMobileSets();
+
+
+
+
+    });
+
+
+
+    $('.js-call-notifs').click(function(e) {
+        e.preventDefault();
+        var notifs = $('.mobile-notifs'),
+            notifsList = $('.mobile-notifs-list'),
+            notifsListHeight = notifsList.innerHeight();
+
+        $(this).toggleClass('active');
+        notifs.toggleClass('opened');
+
+        if (notifs.hasClass('opened')) {
+            notifs.css('height', notifsListHeight);
+        } else {
+            notifs.css('height', 0);
+        }
+
+        $('.container').stickem().destroy();
+        menuMobileSets();
+    });
+
+
+
+    $('.mobile-search').on("input", function() {
+        if( $(this).val().length > 0 ) {
+            $('.js-clear-search').addClass('show');
+        } else $('.js-clear-search').removeClass('show');
+
+    });
+
+    $('.js-clear-search').click(function() {
+        $('.mobile-search').val('');
+        $(this).removeClass('show');
+
+    });
+
+
 
 
     var resizeFn = debounce(function() {
         $('.container').stickem().destroy();
         menuMobileSets();
     }, 100);
-// 100 это собственно таймер дебаунса, то есть функция будет срабатывать только тогда, когда после последнего её вызова прошло минимум 100ms
-// прикрепляем функцию к обработчику события
+
     $(window).on("resize", resizeFn);
 
 });

@@ -9,7 +9,7 @@
                     <li><a class="" href="" title="ЗАЛ 298">ЗАЛ 298.</a></li>
                 </ul>
                 <div class="header__notifications-close-wrap">
-                    <span class="header__notifications-close close js-notifs-close"></span>
+                    <span class="header__notifications-close close close--white js-notifs-close"></span>
                 </div>
             </div>
         </div>
@@ -134,7 +134,15 @@
         <div class="menu-mobile container">
             <div class="menu-mobile__inner stickem-container">
                 <ul class="menu-mobile__list color-greyish-brown-two">
-                    <li><a class="" href="" title="ВНИМАНИЕ">ВНИМАНИЕ <span class="color-violet-blue">1</span></a></li>
+                    <li>
+                        <a class="notifs-show js-call-notifs" href="" title="ВНИМАНИЕ">ВНИМАНИЕ <span class="color-violet-blue">1</span></a>
+                        <div class="mobile-notifs">
+                            <ul class="mobile-notifs-list">
+                                <li><a href="" title="">Отменена Лекция «Кандинский и абстракционизм»</a></li>
+                                <li><a href="" title="">Василий Кандинский и абстракционизм перенесен.</a> <span class="color-warm-grey-two">Начало в 19:00. Вход по абонементам и разовым билетам</span></li>
+                            </ul>
+                        </div>
+                    </li>
                     <li><a class="" href="" title="Музей">Музей</a></li>
                     <li><a class="" href="" title="Афиша">Афиша</a></li>
                     <li><a class="" href="" title="Коллекции">Коллекции</a></li>
@@ -142,26 +150,37 @@
                     <li><a class="" href="" title="Образование">Образование</a></li>
                     <li><a class="" href="" title="Магазин">Магазин</a></li>
                 </ul>
+                <div class="menu-mobile__panels hide">
+                    <div class="menu-mobile__panels__inner">
+                        <div class="menu-mobile__panels__search">
+                            <form>
+                                <input class="mobile-search" type="text" placeholder="введите запрос">
+                                <span class="close close--black js-clear-search"></span>
+                            </form>
+                        </div>
+                    </div>
+
+                </div>
                 <div class="menu-mobile__copyright color-greyish-brown-two">© 2009–2017<br>ГМИИ им. А. С. Пушкина</div>
 
                 <div class="main-controls main-controls--mobile">
                     <div class="main-controls-section search-wrap">
-                        <button class="main-controls__button color-black" title="Поиск">
+                        <button class="main-controls__button color-black js-mobile-menu" title="Поиск">
                             <span class="icon icon-search"><span>поиск</span></span>
                         </button>
                     </div>
                     <div class="main-controls-section settings-wrap">
-                        <button class="main-controls__button color-black" title="Настройки отображения сайта">
+                        <button class="main-controls__button color-black js-mobile-menu" title="Настройки отображения сайта">
                             <span class="button-text">Aa</span>
                         </button>
                     </div>
                     <div class="main-controls-section language-wrap">
-                        <button class="main-controls__button color-black" title="Выбор языка">
+                        <button class="main-controls__button color-black js-mobile-menu" title="Выбор языка">
                             <span class="button-text">EN</span>
                         </button>
                     </div>
                     <div class="main-controls-section share-wrap">
-                        <button class="main-controls__button color-black" title="Поделиться в соц сетях">
+                        <button class="main-controls__button color-black js-mobile-menu" title="Поделиться в соц сетях">
                             <span class="icon icon-share"><span>поделиться</span></span>
                         </button>
                     </div>
