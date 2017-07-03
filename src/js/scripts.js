@@ -15,10 +15,7 @@ function debounce(func, wait, immediate) {
 
 
 
-function resetStikemSets() {
-    $('.container').stickem().destroy();
-    menuMobileSets();
-}
+
 
 $(document).ready(function() {
 
@@ -57,26 +54,21 @@ $(document).ready(function() {
         $(this).toggleClass("active");
         $('.menu-mobile').toggleClass("opened");
 
-        menuMobileSets();
+        $('html').toggleClass('overflowHidden');
 
-        // $('.menu-mobile__list').removeClass('hide');
-        // $('.menu-mobile__panels').addClass('hide');
-        // $('.js-mobile-menu').removeClass("active");
+        $('.header__notifications__inner').toggleClass('hidden');
 
+
+
+    });
+
+    $('.js-notifs-close').click(function() {
+        $('.header__notifications__inner').addClass('closed');
     });
 
     $('.js-mobile-menu').click(function() {
 
-        var headerHeight = $('.header').height();
-        var headerNotificationsHeight = $('.header__notifications').height();
-        var headerCopyrightHeight = $('.menu-mobile__copyright').innerHeight();
-        var headerControlsHeight = $('.header__controls').outerHeight(true);
-        var headerMenuListHeight = $('.menu-mobile__list').outerHeight(true);
 
-        var windowHeight = $(window).height();
-
-        //просто ужасно, из-за отрицательного отступа 18px у menu-mobile
-        var h = windowHeight - headerNotificationsHeight - headerControlsHeight - headerCopyrightHeight + 18;
 
         var block = $('.menu-mobile__panels');
 
@@ -94,43 +86,18 @@ $(document).ready(function() {
 
         });
 
-        console.log(headerHeight, windowHeight);
-
-
 
         if ($('.js-mobile-menu').hasClass('active')) {
 
-            if (headerHeight >= windowHeight) {
-
-
-                block.css('height', h);
-
-
-                resetStikemSets();
-
-
-
-            } else {
-                block.css('height', headerMenuListHeight);
-                // console.log(block.css('height', headerMenuListHeight));
-
-            }
-
-            // if (1 < (windowHeight/headerHeight) < 2) {
-            //     block.css('height', 300);
-            // }
 
             $('.menu-mobile__list').addClass('hide');
             block.removeClass('hide');
+            $('.menu-mobile__copyright').addClass("absolute");
 
         } else {
             $('.menu-mobile__list').removeClass('hide');
             block.addClass('hide');
-            resetStikemSets();
-        }
-
-        if (headerHeight >= windowHeight) {
-            resetStikemSets();
+            $('.menu-mobile__copyright').removeClass("absolute");
         }
 
 
@@ -149,20 +116,10 @@ $(document).ready(function() {
 
         if (notifs.hasClass('opened')) {
             notifs.css('height', notifsListHeight);
-            // $('.container').stickem().destroy();
-            // menuMobileSets();
-            $('.menu-mobile').css('height', 'auto');
 
         } else {
             notifs.css('height', 0);
         }
-
-        resetStikemSets();
-        //
-        // $('.container').stickem().destroy();
-        // // menuMobileSets();
-
-
 
     });
 
@@ -185,8 +142,7 @@ $(document).ready(function() {
 
 
     var resizeFn = debounce(function() {
-        $('.container').stickem().destroy();
-        menuMobileSets();
+
     }, 100);
 
     $(window).on("resize", resizeFn);

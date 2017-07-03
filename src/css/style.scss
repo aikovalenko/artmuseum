@@ -120,10 +120,13 @@ button {
   }
 }
 .main-menu-burger {
-  position: relative;
+  position: absolute;
+  top: 0;
+  right: 0;
   display: none;
   padding-top: 8px;
   cursor: pointer;
+  z-index: 15;
 
   .notifications-badge {
     position: absolute;
@@ -238,11 +241,18 @@ ul {
     @include fontSize(18px);
     font-weight: 300;
 
+
     &__inner {
       position: relative;
       height: calculateRem(32px);
       line-height: calculateRem(32px);
       overflow: hidden;
+      transition: $transition;
+
+      &.closed, &.hidden {
+        height: 0;
+        transition: $transition;
+      }
     }
     ul {
       position: absolute;
@@ -263,6 +273,8 @@ ul {
       top: 4px;
       margin-left: 39px;
     }
+
+
   }
   &__controls {
     display: flex;
@@ -340,9 +352,9 @@ ul {
   }
 
   &--mobile {
-    position: absolute;
+    position: fixed;
     bottom: 19px;
-    right: 0;
+    right: 24px;
     flex-direction: column;
     height: auto;
 
@@ -638,20 +650,39 @@ ul {
 }
 
 .menu-mobile {
+  position: fixed;
+  top: 0;
+  left: 0;
   //position: absolute;
-  height: 0;
-  //width: 100%;
-  margin-top: -18px;
-  padding-right: 24px;
-  padding-left: 24px;
-  //margin-bottom: 27px;
+  height: 100%;
+  width: 100%;
+
   overflow: hidden;
   transition: all .4s ease-out;
+  opacity: 0;
+
+  z-index: -1;
+  visibility: hidden;
+  box-sizing: border-box;
 
   &__inner {
     position: relative;
-  }
+    height: 100%;
+    width: calc(100% + 15px);
+    box-sizing: border-box;
+    padding-top: 32px;
+    padding-right: 39px;
+    padding-left: 24px;
 
+    overflow: scroll;
+  }
+  .logo {
+    margin-bottom: 30px;
+
+    a {
+      display: table;
+    }
+  }
   &__list {
     margin-bottom: 26px;
     @include fontSize(19px);
@@ -663,36 +694,30 @@ ul {
     @include fontSize(12px);
     font-weight: 500;
     line-height: 167%;
+
+    &.absolute {
+      position: absolute;
+      bottom: 0;
+    }
   }
 
   &.opened {
-    .stickem {
-      opacity: 1;
-    }
+    visibility: visible;
+    z-index: 9;
+    transition: all .4s ease-in;
+    opacity: 1;
   }
 
   &__controls {
 
   }
-}
 
-.stickem {
-  position: fixed;
-  right: 24px;
-  bottom: 19px;
+  .scrollable {
 
-  opacity: 0;
+  }
 }
-.stickit {
-  position: absolute;
-  bottom: 19px;
-  right: 0;
-}
-
-.stickit-end {
-  position: absolute;
-  bottom: 19px;
-  right: 0;
+.overflowHidden {
+  overflow: hidden;
 }
 
 .logo {
