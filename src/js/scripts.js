@@ -13,31 +13,7 @@ function debounce(func, wait, immediate) {
     };
 }
 
-function menuMobileSets() {
 
-    var menuMobileHeight = $('.menu-mobile__inner').innerHeight();
-    var headerHeight = $('.header').height();
-    var windowHeight = $(window).height();
-    var totalHeight = menuMobileHeight + headerHeight;
-    var stickemStart = menuMobileHeight - windowHeight;
-
-    if ($('.js-burger').hasClass('active')) {
-        $('.menu-mobile').css('height', menuMobileHeight);
-    } else {
-        $('.menu-mobile').css('height', 0);
-    }
-
-    if ($(window).height() < totalHeight) {
-        $('.main-controls--mobile').addClass('stickem');
-        // console.log("true");
-        $('.container').stickem({
-            start: stickemStart
-        });
-    } else {
-        $('.main-controls--mobile').removeClass('stickem');
-        console.log("false");
-    }
-}
 
 function resetStikemSets() {
     $('.container').stickem().destroy();
