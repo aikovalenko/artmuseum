@@ -21,6 +21,7 @@
 
 html {
   font-size: 100%;
+  font-family: 'GMTypewriter', Arial, sans-serif;
 }
 
 body {
@@ -28,6 +29,12 @@ body {
 
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+.font-gmtext {
+  font-family: 'GMText', Arial, sans-serif;
+}
+p {
+  margin: 0;
 }
 a {
   text-decoration: none;
@@ -90,6 +97,19 @@ button {
       opacity: .6;
     }
   }
+}
+.btn-wrap {
+  text-align: center;
+}
+
+.btn {
+  display: inline-block;
+  padding: 12px 15px;
+  border-radius: 2px;
+  text-transform: uppercase;
+  @include fontSize(19px);
+  line-height: calculateRem(24px);
+  transition: $transition;
 }
 
 .burger {
@@ -193,6 +213,9 @@ button {
 .color-greyish {
   color: $greyish;
 }
+.color-white-two {
+  color: $white-two;
+}
 
 .bg-violet-blue {
   background-color: $violet-blue;
@@ -205,6 +228,9 @@ button {
 }
 .bg-black {
   background-color: $black;
+}
+.bg-white-two {
+  background-color: $white-two;
 }
 
 //$black: #262626;
@@ -234,7 +260,6 @@ ul {
   @include clearfix;
 }
 .header {
-  font-family: 'GMTypewriter', Arial, sans-serif;
 
   &__notifications {
     padding: 0 72px;
@@ -727,7 +752,6 @@ ul {
 }
 
 .footer {
-  font-family: 'GMTypewriter', Arial, sans-serif;
   font-weight: 500;
   cursor: default;
 
@@ -842,6 +866,259 @@ ul {
   }
 }
 
+
+.main-slider {
+  margin-bottom: 68px;
+}
+.slick-main{
+
+  .slick-slide {
+    position: relative;
+    display: block;
+    width: 984px;
+    height: 608px;
+
+    img {
+      width: 100%;
+    }
+
+    .desc {
+      position: absolute;
+      top: 32px;
+      left: 0;
+      width: 100%;
+      padding-left: 64px;
+      padding-right: 64px;
+      box-sizing: border-box;
+      font-weight: 500;
+
+      span {
+        display: block;
+      }
+      &__name {
+        margin-bottom: 13.3px;
+        @include fontSize(48px);
+      }
+
+      &__date,
+      &__place {
+        @include fontSize(24px);
+        line-height: 133%;
+        text-transform: uppercase;
+        opacity: .8;
+      }
+    }
+  }
+}
+
+.main-slider-btn {
+  width: 984px;
+  margin-top: 32px;
+  @include push--auto;
+}
+
+.slick-arrow {
+  position: absolute;
+  width: 48px;
+  height: 264px;
+  top: 0;
+  background-color: rgba(38, 38, 38, 0.5);
+  z-index: 2;
+  color: $pale-grey;
+
+  &:before {
+    font-size: 45px;
+  }
+}
+.slick-next {
+  right: 0;
+}
+.slick-prev {
+  left: 0;
+}
+.slick-dots {
+  position: absolute;
+  bottom: 9px;
+  width: 100%;
+  text-align: center;
+
+  li {
+    display: inline-block;
+    margin-right: 8px;
+    cursor: pointer;
+
+    &:last-child {
+      margin-right: 0;
+    }
+
+    button {
+      width: 70px;
+      height: 4px;
+      margin-bottom: 12px;
+      padding: 0;
+      opacity: 0.5;
+      background-color: $pale-grey;
+      border: none;
+      font-size: 0;
+      transition: $transition;
+    }
+
+    &.slick-active {
+      button {
+        opacity: 1;
+        transition: $transition;
+      }
+    }
+  }
+}
+
+
+
+.slick-slide {
+  outline: none;
+}
+.multiple-items-slider {
+  font-size: 0;
+
+  .item {
+    width: 264px;
+
+    margin: 0 12px;
+    display: inline-block;
+    vertical-align: top;
+    font-size: 0;
+
+
+    img {
+      filter: grayscale(100%);
+      transition: $transition;
+    }
+
+    .desc {
+      padding-top: 21px;
+      padding-bottom: 62px;
+      color: $warm-grey-two;
+      transition: $transition;
+
+
+
+      &__date {
+        margin-bottom: 20.2px;
+        padding: 0 11px;
+        @include fontSize(28px);
+        font-weight: 300;
+      }
+
+      &__type {
+        margin-bottom: 11px;
+        padding: 0 16px;
+        display: inline-block;
+        @include fontSize(16px);
+        font-weight: 500;
+
+        span {
+          border-bottom: solid 1px $warm-grey-two;
+          display: inline;
+          padding-bottom: 2px;
+          text-transform: uppercase;
+        }
+      }
+
+      &__place {
+        display: inline-block;
+        margin-bottom: 36px;
+        padding: 0 17px;
+        @include fontSize(12px);
+        font-weight: 500;
+        letter-spacing: 0.1px;
+
+        span {
+          border-bottom: solid 1px $warm-grey-two;
+          display: inline;
+          padding-bottom: 2px;
+          font-weight: 500;
+          text-transform: uppercase;
+        }
+      }
+
+      p {
+        margin-bottom: 14px;
+        padding-left: 16px;
+        padding-right: 19px;
+        @include fontSize(24px);
+        line-height: 117%;
+      }
+    }
+    &:hover {
+      img {
+        transition: $transition;
+        filter: grayscale(0);
+      }
+      .desc {
+        color: $greyish-brown-two;
+        transition: $transition;
+
+        &__type {
+          color: $violet-blue;
+
+          span {
+            border-bottom: solid 1px $violet-blue;
+            transition: $transition;
+          }
+        }
+        &__place {
+
+          span {
+            border-bottom: solid 1px rgba(38, 38, 38, 0.8);
+          }
+        }
+        .btn {
+          transition: $transition;
+          background-color: $pale-grey;
+        }
+      }
+    }
+  }
+}
+
+.section {
+
+  &__header {
+    text-align: center;
+
+    h2 {
+      margin: 0;
+      margin-bottom: 44px;
+      font-weight: 400;
+      @include fontSize(43px);
+      text-transform: uppercase;
+    }
+
+    &__controls {
+      margin-bottom: 54px;
+      font-size: 0;
+
+      li {
+        display: inline-block;
+        margin-right: 7px;
+
+        &:last-child {
+          margin-right: 0;
+        }
+      }
+      a {
+        transition: $transition;
+
+        &.active {
+          color: $pale-grey;
+          background-color: $warm-grey-two;
+          transition: $transition;
+        }
+      }
+    }
+  }
+}
+
 //от 1024 до 1279
 @media screen and (max-width: em(1279px, 16px)) {
   .header {
@@ -856,6 +1133,9 @@ ul {
       padding-right: 44px;
       padding-left: 88px;
     }
+    &__menu {
+      max-width: 848px;
+    }
   }
 
   .footer {
@@ -865,7 +1145,18 @@ ul {
     }
   }
 
+  .main-slider .slick-slide {
+    width: 848px;
+    height: 523.95px;
+  }
+
+  .main-slider-btn {
+    width: 848px;
+  }
+
 }
+
+
 
 //от 0 до 1023
 @media screen and (max-width: em(1023px, 16px)) {
@@ -944,5 +1235,41 @@ ul {
   }
   .column--social {
     margin-top: 77.5px;
+  }
+
+
+  .main-slider {
+
+    .slick-slide {
+      .desc {
+        top: 24px;
+        padding-left: 24px;
+        padding-right: 24px;
+
+        &__name {
+          @include fontSize(38px);
+          line-height: 105%;
+        }
+
+
+        &__date,
+        &__place {
+          @include fontSize(19px);
+          line-height: 147%;
+        }
+      }
+    }
+  }
+  .main-slider-btn {
+    width: 100%;
+    text-align: center;
+  }
+}
+
+//от 0 до 848 для слайдера на главной странице
+@media screen and (max-width: em(848px, 16px)) {
+  .main-slider .slick-slide {
+    height: auto;
+    width: auto;
   }
 }

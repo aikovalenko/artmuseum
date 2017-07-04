@@ -140,6 +140,71 @@ $(document).ready(function() {
 
 
 
+    var mainSlider = $('.js-main-slider').slick({
+        infinite: true,
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        centerMode: true,
+        variableWidth: true,
+        dots: true,
+        arrows: false,
+        responsive: [
+            {
+                breakpoint: 848,
+                settings: {
+                    variableWidth: false,
+                    centerMode: true,
+                    centerPadding: '0px'
+                }
+            }
+        ]
+    }).on('afterChange', function(event, slick, currentSlide, nextSlide){
+        var link = $(slick.$slides.get(currentSlide)).data('ticket');
+        $('.slider-btn-buy').attr('href', link);
+    });
+    var link = $('.slick-slide.slick-current.slick-active').data('ticket');
+    $('.slider-btn-buy').attr('href', link);
+
+
+    var announceSlider = $('.js-multiple-items-slider').slick({
+        infinite: true,
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        centerMode: true,
+        // centerPadding: '12px',
+        variableWidth: true,
+        dots: false,
+        arrows: true
+        // responsive: [
+        //     {
+        //         breakpoint: 848,
+        //         settings: {
+        //             variableWidth: false,
+        //             centerMode: true,
+        //             centerPadding: '0px'
+        //         }
+        //     }
+        // ]
+    });
+
+
+    $('.js-content-control').each(function () {
+
+        var block =  $(this);
+
+        $(this).find('.js-content-control-btn').click(function (e) {
+
+            e.preventDefault();
+            $(this).toggleClass('active');
+
+
+            block.find('.js-content-control-btn').not(this).each(function () {
+                $(this).removeClass('active');
+            });
+        });
+    });
+
+
 
     var resizeFn = debounce(function() {
 
