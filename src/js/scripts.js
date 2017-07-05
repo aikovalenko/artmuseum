@@ -13,7 +13,10 @@ function debounce(func, wait, immediate) {
     };
 }
 
-
+jQuery.fn.clickToggle = function(a,b) {
+    function cb(){ [b,a][this._tog^=1].call(this); }
+    return this.on("click", cb);
+};
 
 
 
@@ -166,26 +169,7 @@ $(document).ready(function() {
     $('.slider-btn-buy').attr('href', link);
 
 
-    var announceSlider = $('.js-multiple-items-slider').slick({
-        infinite: true,
-        slidesToShow: 1,
-        slidesToScroll: 1,
-        centerMode: true,
-        // centerPadding: '12px',
-        variableWidth: true,
-        dots: false,
-        arrows: true
-        // responsive: [
-        //     {
-        //         breakpoint: 848,
-        //         settings: {
-        //             variableWidth: false,
-        //             centerMode: true,
-        //             centerPadding: '0px'
-        //         }
-        //     }
-        // ]
-    });
+
 
 
     $('.js-content-control').each(function () {
@@ -195,20 +179,124 @@ $(document).ready(function() {
         $(this).find('.js-content-control-btn').click(function (e) {
 
             e.preventDefault();
-            $(this).toggleClass('active');
+            $(this).addClass('active');
 
 
             block.find('.js-content-control-btn').not(this).each(function () {
                 $(this).removeClass('active');
+                $('.section--afisha__filter').removeClass('opened');
             });
         });
     });
 
+    $('.js-call-filter').click(function() {
+        $('.section--afisha__filter').addClass('opened');
+    });
+
+
+
+    $('.accordion-title').click(function(e) {
+        e.preventDefault();
+        if ($(window).width() < 1024) {
+
+            var $this = $(this),
+                time = 500;
+
+            if ($this.next().hasClass('show')) {
+                $this.next().removeClass('show');
+                $this.next().slideUp(time);
+            } else {
+                $this.parent().parent().find('.accordion-content').removeClass('show');
+                $this.parent().parent().find('.accordion-content').slideUp(time);
+                $this.next().toggleClass('show');
+                $this.next().slideToggle(time);
+            }
+        }
+    });
+
+    function resetAccordion() {
+        if ($(window).width() >= 1024) {
+            $('.accordion-content').show();
+        }
+    }
+
+
+    function headerControl() {
+        var first = $('.first'),
+            second = $('.second'),
+            firstWidth = first.width(),
+            secondWidth = second.width();
+
+        $('.js-control-menu').clickToggle(function() {
+            first.css('width', firstWidth);
+            setTimeout(function () {
+                first.css('width', 0);
+                second.addClass('full-width');
+                setTimeout(function () {
+                    second.css('width', secondWidth);
+                }, 100);
+            }, 100);
+        }, function() {
+            first.css('width', firstWidth);
+            setTimeout(function () {
+                second.css('width', 0);
+                second.addClass('null-width');
+            }, 100);
+        });
+    }
+
+    headerControl();
+
+
+    var afishaSliderSets = {
+        infinite: true,
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        centerMode: true,
+        variableWidth: true,
+        dots: false,
+        arrows: true
+    };
+
+    var afishaSlider = $('.js-multiple-items-slider').slick(afishaSliderSets);
+
+    function afishaSliderSettings() {
+
+        function unwrap() {
+            afishaSlider.slick('unslick');
+            $('.js-multiple-items-slider .slide .item').unwrap();
+            $('.js-multiple-items-slider .slide').remove();
+        }
+
+        function reset(num) {
+            unwrap();
+            var divs = $(".item");
+            for(var i = 0; i < divs.length; i += num) {
+                divs.slice(i, i + num).wrapAll("<div class='slide'></div>");
+            }
+        }
+
+        if ($(window).width() < 1280) {
+            reset(3);
+            afishaSlider.slick(afishaSliderSets);
+
+        }
+        if ($(window).width() >= 1280) {
+            reset(4);
+            afishaSlider.slick(afishaSliderSets);
+        }
+        if ($(window).width() < 1024) {
+            unwrap();
+        }
+    }
+
+    afishaSliderSettings();
 
 
     var resizeFn = debounce(function() {
-
-    }, 100);
+        resetAccordion();
+        afishaSliderSettings();
+    }, 500);
 
     $(window).on("resize", resizeFn);
 

@@ -52,6 +52,7 @@ button {
   background: none;
   font-size: inherit;
   cursor: pointer;
+  font-family: 'GMTypewriter', Arial, sans-serif;
 }
 .icon {
   span {
@@ -98,7 +99,7 @@ button {
     }
   }
 }
-.btn-wrap {
+.btn-centered {
   text-align: center;
 }
 
@@ -110,6 +111,10 @@ button {
   @include fontSize(19px);
   line-height: calculateRem(24px);
   transition: $transition;
+
+  &--np {
+    padding-left: 0;
+  }
 }
 
 .burger {
@@ -982,100 +987,110 @@ ul {
 
   .item {
     width: 264px;
-
-    margin: 0 12px;
     display: inline-block;
     vertical-align: top;
-    font-size: 0;
+    white-space: normal;
+    .desc {
+      .btn-centered {
+        margin-bottom: 61px;
+      }
+    }
+  }
+}
+
+.item--card {
+
+  margin: 0 12px;
+  display: inline-block;
+  vertical-align: top;
 
 
-    img {
-      filter: grayscale(100%);
-      transition: $transition;
+
+  img {
+    filter: grayscale(100%);
+    transition: $transition;
+  }
+
+  .desc {
+    padding-top: 21px;
+    color: $warm-grey-two;
+    transition: $transition;
+
+
+
+    &__date {
+      margin-bottom: 20.2px;
+      padding: 0 11px;
+      @include fontSize(28px);
+      font-weight: 300;
     }
 
-    .desc {
-      padding-top: 21px;
-      padding-bottom: 62px;
-      color: $warm-grey-two;
-      transition: $transition;
+    &__type {
+      margin-bottom: 11px;
+      padding: 0 16px;
+      display: inline-block;
+      @include fontSize(16px);
+      font-weight: 500;
 
-
-
-      &__date {
-        margin-bottom: 20.2px;
-        padding: 0 11px;
-        @include fontSize(28px);
-        font-weight: 300;
+      span {
+        border-bottom: solid 1px $warm-grey-two;
+        display: inline;
+        padding-bottom: 2px;
+        text-transform: uppercase;
       }
+    }
+
+    &__place {
+      display: inline-block;
+      margin-bottom: 36px;
+      padding: 0 17px;
+      @include fontSize(12px);
+      font-weight: 500;
+      letter-spacing: 0.1px;
+
+      span {
+        border-bottom: solid 1px $warm-grey-two;
+        display: inline;
+        padding-bottom: 2px;
+        font-weight: 500;
+        text-transform: uppercase;
+      }
+    }
+
+    p {
+      margin-bottom: 14px;
+      padding-left: 16px;
+      padding-right: 19px;
+      @include fontSize(24px);
+      line-height: 117%;
+    }
+  }
+  &:hover {
+    img {
+      transition: $transition;
+      filter: grayscale(0);
+    }
+    .desc {
+      color: $greyish-brown-two;
+      transition: $transition;
 
       &__type {
-        margin-bottom: 11px;
-        padding: 0 16px;
-        display: inline-block;
-        @include fontSize(16px);
-        font-weight: 500;
+        color: $violet-blue;
 
         span {
-          border-bottom: solid 1px $warm-grey-two;
-          display: inline;
-          padding-bottom: 2px;
-          text-transform: uppercase;
-        }
-      }
-
-      &__place {
-        display: inline-block;
-        margin-bottom: 36px;
-        padding: 0 17px;
-        @include fontSize(12px);
-        font-weight: 500;
-        letter-spacing: 0.1px;
-
-        span {
-          border-bottom: solid 1px $warm-grey-two;
-          display: inline;
-          padding-bottom: 2px;
-          font-weight: 500;
-          text-transform: uppercase;
-        }
-      }
-
-      p {
-        margin-bottom: 14px;
-        padding-left: 16px;
-        padding-right: 19px;
-        @include fontSize(24px);
-        line-height: 117%;
-      }
-    }
-    &:hover {
-      img {
-        transition: $transition;
-        filter: grayscale(0);
-      }
-      .desc {
-        color: $greyish-brown-two;
-        transition: $transition;
-
-        &__type {
-          color: $violet-blue;
-
-          span {
-            border-bottom: solid 1px $violet-blue;
-            transition: $transition;
-          }
-        }
-        &__place {
-
-          span {
-            border-bottom: solid 1px rgba(38, 38, 38, 0.8);
-          }
-        }
-        .btn {
+          border-bottom: solid 1px $violet-blue;
           transition: $transition;
-          background-color: $pale-grey;
         }
+      }
+      &__place {
+
+        span {
+          border-bottom: solid 1px rgba(38, 38, 38, 0.8);
+        }
+      }
+      .btn {
+        transition: $transition;
+        background-color: $pale-grey;
       }
     }
   }
@@ -1097,7 +1112,15 @@ ul {
     &__controls {
       margin-bottom: 54px;
       font-size: 0;
+      overflow: hidden;
 
+
+      ul {
+        display: inline-block;
+        overflow: hidden;
+        transition: all .5s linear;
+        vertical-align: top;
+      }
       li {
         display: inline-block;
         margin-right: 7px;
@@ -1115,9 +1138,197 @@ ul {
           transition: $transition;
         }
       }
+
+      .scroller {
+        display: block;
+        overflow-x: scroll;
+        overflow-y: hidden;
+        white-space: nowrap;
+        margin-bottom: -30px;
+        padding-bottom: 30px;
+
+        &-wrap {
+          overflow: hidden;
+        }
+
+        &--p {
+          padding-left: 24px;
+          padding-right: 24px;
+        }
+      }
+
     }
   }
 }
+
+.controls-spec {
+  cursor: pointer;
+  vertical-align: top;
+}
+.null-width {
+  position: absolute;
+  z-index: -1;
+  opacity: 0;
+}
+.full-width {
+  position: static;
+  z-index: 1;
+  opacity: 1;
+  width: 0;
+}
+
+.element {
+  animation: pulse 5s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    width: 0;
+  }
+  100% {
+    width: auto;
+  }
+}
+
+
+
+
+.section--4-column {
+  .section__inner {
+    padding-left: 72px;
+    padding-right: 72px;
+  }
+  .column-wrap {
+    margin-left: -12px;
+    margin-right: -12px;
+    display: flex;
+  }
+  .column {
+    width: 25%;
+    margin: 0 12px;
+  }
+}
+
+.section--afisha {
+  margin-bottom: 89px;
+
+  &__filter {
+    height: 0;
+    overflow: hidden;
+    transition: $transition;
+
+    &.opened {
+      height: 32px;
+      margin-top: -9px;
+      margin-bottom: 61px;
+      transition: $transition;
+    }
+  }
+}
+
+
+/*----- Accordion start -----*/
+.accordion, .accordion * {
+  -webkit-box-sizing:border-box;
+  -moz-box-sizing:border-box;
+  box-sizing:border-box;
+}
+
+.accordion {
+  overflow:hidden;
+  .accordion__item {
+    display: inline-block;
+  }
+
+}
+
+/*----- Section Titles -----*/
+.accordion-section-title {
+  display: flex;
+  justify-content: space-between;
+  width:100%;
+  padding: 15px;
+}
+
+.accordion-section-title.active, .accordion-section-title:hover {
+
+}
+.accordion-title {
+  cursor: default;
+}
+/*----- accordion Section Content -----*/
+.accordion-content {
+  display:block;
+}
+
+
+/*----- Accordion end-----*/
+
+
+.section--collection {
+  margin-bottom: 94px;
+  .accordion-title {
+    margin-bottom: 18px;
+    @include fontSize(24px);
+    line-height: 133%;
+    color: #939393;
+    text-transform: uppercase;
+    text-align: left;
+    transition: $transition;
+  }
+  .accordion-content {
+
+    font-weight: 500;
+    line-height: 131%;
+    color: $warm-grey-two;
+    transition: $transition;
+
+
+
+    p {
+      margin-bottom: 2rem;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+
+      a {
+        display: inline-block;
+        span {
+          border-bottom: solid 1px $warm-grey-two;
+          display: inline;
+          padding-bottom: 2px;
+        }
+      }
+    }
+  }
+
+  .column-wrap {
+    margin-bottom: 58px;
+  }
+
+  .column {
+    &:hover {
+      .accordion-title {
+        color: $greyish-brown-two;
+        transition: $transition;
+      }
+      .accordion-content {
+        font-weight: 500;
+        line-height: 131%;
+        color: $greyish-brown-two;
+        transition: $transition;
+      }
+    }
+  }
+
+  .btn-wrap {
+    .btn {
+      margin-right: 46px;
+    }
+  }
+}
+
 
 //от 1024 до 1279
 @media screen and (max-width: em(1279px, 16px)) {
@@ -1154,6 +1365,12 @@ ul {
     width: 848px;
   }
 
+  .section--4-column {
+    .section__inner {
+      padding-left: 44px;
+      padding-right: 44px;
+    }
+  }
 }
 
 
@@ -1264,6 +1481,131 @@ ul {
     width: 100%;
     text-align: center;
   }
+  .section {
+
+    &__header {
+      h2 {
+        @include fontSize(34px);
+        line-height: 0.94;
+      }
+    }
+  }
+
+  .section--4-column {
+    .section__inner {
+      padding-left: 24px;
+      padding-right: 24px;
+    }
+    .column-wrap {
+      display: block;
+      margin: 0;
+    }
+    .column {
+      width: 100%;
+      margin: 0;
+    }
+  }
+  /*----- accordion Section Content -----*/
+  .accordion-content {
+
+    display: none;
+  }
+  .section--afisha {
+    .section__header {
+      h2 {
+        margin-bottom: 39px;
+      }
+
+      &__controls {
+        display: none;
+      }
+
+    }
+  }
+  .section--collection {
+    .accordion-title {
+      margin: 11.3px 0;
+      @include fontSize(19px);
+      color: $greyish-brown-two;
+    }
+    .accordion-content {
+      font-weight: 500;
+      line-height: 131%;
+      color: $warm-grey-two;
+
+      p {
+        margin-bottom: 1rem !important;
+      }
+    }
+    .btn-wrap {
+      margin-top: 32px;
+      .btn {
+        margin-bottom: 15px;
+      }
+    }
+  }
+
+  .controls-spec {
+    display: none;
+  }
+
+  .scroller {
+    display: block;
+    overflow-x: scroll;
+    overflow-y: hidden;
+    white-space: nowrap;
+    margin-bottom: -30px;
+    padding-bottom: 30px;
+
+    &-wrap {
+      overflow: hidden;
+    }
+
+    &--p {
+      padding-left: 24px;
+      padding-right: 24px;
+    }
+  }
+
+
+  .null-width, .full-width {
+
+    //нужно сбросить js установку ширины
+    width: auto !important;
+    position: static;
+    opacity: 1;
+    z-index: 1;
+  }
+
+
+  .item--card {
+    margin-right: 4px;
+    margin-left: 0;
+
+    &:first-child {
+      margin-left: 24px;
+    }
+
+    &:last-child {
+      margin-right: 24px;
+
+    }
+
+    .desc {
+      color: $greyish-brown-two;
+      &__type {
+        @include fontSize(14px);
+      }
+      p {
+        @include fontSize(19px);
+        line-height: 147%;
+      }
+    }
+
+    .btn-centered {
+      display: none;
+    }
+  }
 }
 
 //от 0 до 848 для слайдера на главной странице
@@ -1273,3 +1615,4 @@ ul {
     width: auto;
   }
 }
+
