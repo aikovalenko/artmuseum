@@ -52,21 +52,28 @@ $(document).ready(function() {
     });
 
 
-    $('.js-burger').click(function () {
+    var burger = $('.js-burger'),
+        menu = $('.menu-mobile'),
+        close = $('.js-notifs-close'),
+        notifsTop = $('.header__notifications__inner');
 
-        $(this).toggleClass("active");
-        $('.menu-mobile').toggleClass("opened");
+    burger.click(function () {
 
-        $('html').toggleClass('overflowHidden');
+        notifsTop.toggleClass('hidden');
+        burger.toggleClass("active");
+        menu.toggleClass("opened");
 
-        $('.header__notifications__inner').toggleClass('hidden');
+
+        // $('html').toggleClass('overflowHidden');
+
+
 
 
 
     });
 
-    $('.js-notifs-close').click(function() {
-        $('.header__notifications__inner').addClass('closed');
+    close.click(function() {
+        notifsTop.addClass('closed');
     });
 
     $('.js-mobile-menu').click(function() {
@@ -222,26 +229,30 @@ $(document).ready(function() {
 
 
     function headerControl() {
-        var first = $('.first'),
-            second = $('.second'),
-            firstWidth = first.width(),
-            secondWidth = second.width();
 
-        $('.js-control-menu').clickToggle(function() {
-            first.css('width', firstWidth);
-            setTimeout(function () {
-                first.css('width', 0);
-                second.addClass('full-width');
+        $('.section__header__controls').each(function () {
+
+            var first = $(this).find('.first'),
+                second = $(this).find('.second'),
+                firstWidth = first.width(),
+                secondWidth = second.width();
+
+            $(this).find('.js-control-menu').clickToggle(function() {
+                first.css('width', firstWidth);
                 setTimeout(function () {
-                    second.css('width', secondWidth);
+                    first.css('width', 0);
+                    second.addClass('full-width');
+                    setTimeout(function () {
+                        second.css('width', secondWidth);
+                    }, 100);
                 }, 100);
-            }, 100);
-        }, function() {
-            first.css('width', firstWidth);
-            setTimeout(function () {
-                second.css('width', 0);
-                second.addClass('null-width');
-            }, 100);
+            }, function() {
+                first.css('width', firstWidth);
+                setTimeout(function () {
+                    second.css('width', 0);
+                    second.addClass('null-width');
+                }, 100);
+            });
         });
     }
 
@@ -296,7 +307,7 @@ $(document).ready(function() {
     var resizeFn = debounce(function() {
         resetAccordion();
         afishaSliderSettings();
-    }, 500);
+    }, 300);
 
     $(window).on("resize", resizeFn);
 

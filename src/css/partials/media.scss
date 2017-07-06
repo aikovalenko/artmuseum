@@ -1,0 +1,424 @@
+
+//от 1024 до 1279
+@media screen and (max-width: em(1279px, 16px)) {
+  .header {
+    &__notifications {
+      padding: 0 44px;
+      &__inner {
+        height: calculateRem(40px);
+        max-height: calculateRem(40px);
+        line-height: calculateRem(40px);
+      }
+    }
+    &__controls {
+      padding-right: 44px;
+      padding-left: 88px;
+    }
+    &__menu {
+      max-width: 848px;
+    }
+  }
+
+  .footer {
+    &__inner {
+      padding-right: 44px;
+      padding-left: 44px;
+    }
+  }
+
+  .main-slider .slick-slide {
+    width: 848px;
+    height: 523.95px;
+  }
+
+  .main-slider-btn {
+    width: 848px;
+  }
+
+  .section--4-column {
+    .section__inner {
+      padding-left: 44px;
+      padding-right: 44px;
+    }
+  }
+
+  .section--ratio {
+
+    .section__inner {
+      padding-left: 44px;
+      padding-right: 44px;
+    }
+  }
+  .block-buildings {
+    padding: 0;
+
+    .column-wrap {
+      width: 1148px;
+    }
+    .column {
+      width: 286px;
+      padding: 0 12px;
+    }
+    .scroller-wrap {
+      overflow: hidden;
+    }
+    .scroller {
+      display: block;
+      overflow-x: scroll;
+      overflow-y: hidden;
+      white-space: nowrap;
+      margin-bottom: -30px;
+      padding-bottom: 30px;
+      -webkit-overflow-scrolling: touch;
+
+      padding-left: 44px;
+    }
+  }
+}
+
+
+
+
+//от 0 до 1023
+@media screen and (max-width: em(1023px, 16px)) {
+  .header {
+    &__notifications {
+      padding: 0 24px;
+    }
+    &__controls {
+      padding-right: 24px;
+      padding-left: 24px;
+      margin-bottom: 48px;
+    }
+    &__menu {
+      display: none;
+    }
+  }
+  .logo {
+    &--mobile {
+      display: block;
+    }
+    &--desktop {
+      display: none;
+    }
+  }
+  .main-controls-section {
+    display: none;
+  }
+  .main-menu-burger {
+    display: block;
+  }
+
+  .footer {
+    &__inner {
+      padding-top: 40px;
+      padding-right: 24px;
+      padding-left: 24px;
+
+      &__bottom {
+        padding-top: 37.4px;
+
+        .copyright, .rules {
+          width: 100%;
+        }
+      }
+      &__list {
+        li {
+          margin-bottom: 20px;
+          line-height: 147%;
+        }
+      }
+    }
+    .social-buttons {
+      li {
+
+        &:nth-child(4n) {
+          margin-right: 0;
+        }
+
+        .icon {
+          @include fontSize(48px);
+        }
+      }
+    }
+  }
+
+  .column-3-container {
+    display: flex;
+    width: 100%;
+    .column {
+      width: 100%;
+    }
+  }
+
+  .push-down {
+    order: 1;
+  }
+  .column--social {
+    margin-top: 77.5px;
+  }
+
+
+  .main-slider {
+
+    .slick-slide {
+      .desc {
+        top: 24px;
+        padding-left: 24px;
+        padding-right: 24px;
+
+        &__name {
+          @include fontSize(38px);
+          line-height: 105%;
+        }
+
+
+        &__date,
+        &__place {
+          @include fontSize(19px);
+          line-height: 147%;
+        }
+      }
+    }
+  }
+  .main-slider-btn {
+    width: 100%;
+    text-align: center;
+  }
+  .section {
+
+    &__header {
+      h2 {
+        @include fontSize(34px);
+        line-height: 0.94;
+      }
+    }
+  }
+
+  .section--4-column {
+    .section__inner {
+      padding-left: 24px;
+      padding-right: 24px;
+    }
+    .column-wrap {
+      display: block;
+    }
+    .column {
+      width: 100%;
+      margin: 0;
+    }
+  }
+  /*----- accordion Section Content -----*/
+  .accordion-content {
+
+    display: none;
+  }
+  .section--afisha {
+    .section__header {
+      h2 {
+        margin-bottom: 39px;
+      }
+
+      &__controls {
+        display: none;
+      }
+
+    }
+  }
+  .section--collection {
+    .accordion-title {
+      margin: 11.3px 0;
+      //@include fontSize(19px);
+      //color: $greyish-brown-two;
+    }
+    .accordion-content {
+      //font-weight: 500;
+      //line-height: 131%;
+      //color: $warm-grey-two;
+
+      p {
+        margin-bottom: 1rem !important;
+      }
+    }
+    .btn-wrap {
+      margin-top: 32px;
+      .btn {
+        margin-bottom: 15px;
+      }
+    }
+  }
+
+  .item-styles {
+    &__header {
+      @include fontSize(19px);
+      color: $greyish-brown-two;
+    }
+
+    &__content {
+      line-height: 131%;
+      color: $warm-grey-two;
+
+      p {
+        margin-bottom: 1rem;
+      }
+    }
+  }
+
+  .controls-spec {
+    display: none;
+  }
+
+  .scroller {
+    display: block;
+    overflow-x: scroll;
+    overflow-y: hidden;
+    white-space: nowrap;
+    margin-bottom: -30px;
+    padding-bottom: 30px;
+    -webkit-overflow-scrolling: touch;
+
+    &-wrap {
+      overflow: hidden;
+    }
+
+    &--p {
+      padding-left: 24px;
+      padding-right: 24px;
+    }
+  }
+
+
+  .null-width, .full-width {
+
+    //нужно сбросить js установку ширины
+    width: auto !important;
+    position: static;
+    opacity: 1;
+    z-index: 1;
+  }
+
+
+  .item--card {
+    margin-right: 4px;
+    margin-left: 0;
+
+    &:first-child {
+      margin-left: 24px;
+    }
+
+    &:last-child {
+      margin-right: 24px;
+
+    }
+
+    .desc {
+      color: $greyish-brown-two;
+      &__type {
+        @include fontSize(14px);
+      }
+      p {
+        @include fontSize(19px);
+        line-height: 147%;
+      }
+    }
+
+    .btn-centered {
+      display: none;
+    }
+  }
+
+  .section--ratio {
+
+    .section__inner {
+      padding-left: 24px;
+      padding-right: 24px;
+    }
+  }
+  .block-buildings {
+    .scroller {
+      padding-left: 24px;
+    }
+    .column-wrap {
+      width: auto;
+      display: block;
+    }
+    .column {
+      display: inline-block;
+      vertical-align: top;
+      margin-bottom: 0;
+    }
+    .btn--more {
+      display: none;
+    }
+  }
+  .section {
+
+    &--collection {
+      margin-bottom: 94px;
+    }
+    &--afisha {
+      margin-bottom: 89px;
+    }
+    &--media {
+      margin-bottom: 111px;
+    }
+    &--museum {
+      margin-bottom: 79px;
+    }
+    &--visitors {
+      margin-bottom: 97px;
+    }
+    &--friends {
+      margin-bottom: 111px;
+    }
+  }
+
+}
+
+
+@media screen and (min-width: em(1024px, 16px)) {
+  .item--card {
+    img {
+      filter: grayscale(100%);
+    }
+    &:hover {
+      img {
+        transition: $transition;
+        filter: grayscale(0);
+      }
+      .desc {
+        color: $greyish-brown-two;
+        transition: $transition;
+
+        &__type {
+          color: $violet-blue;
+
+          span {
+            border-bottom: solid 1px $violet-blue;
+            transition: $transition;
+          }
+        }
+        &__place {
+
+          span {
+            border-bottom: solid 1px rgba(38, 38, 38, 0.8);
+          }
+        }
+        .btn {
+          transition: $transition;
+          background-color: $pale-grey;
+        }
+      }
+    }
+  }
+
+}
+
+//от 0 до 848 для слайдера на главной странице
+@media screen and (max-width: em(848px, 16px)) {
+  .main-slider .slick-slide {
+    height: auto;
+    width: auto;
+  }
+}
+
