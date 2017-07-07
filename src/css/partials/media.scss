@@ -74,6 +74,23 @@
       padding-left: 44px;
     }
   }
+
+  .section--shop {
+    .section__inner {
+      padding-left: 36px;
+      padding-right: 36px;
+    }
+    &__wrapper {
+      &__item {
+        width: 33.333%;
+      }
+    }
+    .item--shop {
+      &:last-child {
+        display: none;
+      }
+    }
+  }
 }
 
 
@@ -189,8 +206,13 @@
 
     &__header {
       h2 {
+        margin-bottom: 23px;
         @include fontSize(34px);
-        line-height: 0.94;
+        line-height: 100%;
+      }
+
+      &__controls {
+        margin-bottom: 30px;
       }
     }
   }
@@ -211,7 +233,7 @@
   /*----- accordion Section Content -----*/
   .accordion-content {
 
-    display: none;
+    //display: none;
   }
   .section--afisha {
     .section__header {
@@ -308,7 +330,6 @@
 
     &:last-child {
       margin-right: 24px;
-
     }
 
     .desc {
@@ -371,11 +392,62 @@
     &--friends {
       margin-bottom: 111px;
     }
+    &--shop {
+      margin-bottom: 88px;
+    }
   }
+  .typical-accordion {
+    .accordion-control {
+      margin-bottom: 20px;
+      @include fontSize(19px);
+      line-height: 147%;
+      color: $greyish-brown-two;
+    }
+  }
+  .section--shop {
+    .section__header {
+      h2 {
+        margin-bottom: 45px;
+      }
+    }
+    .section__inner {
+      padding-left: 0;
+      padding-right: 0;
 
+    }
+    .item--shop {
+      width: 272px;
+
+      &:first-child {
+        margin-left: 24px;
+      }
+
+      &:last-child {
+        display: inline-block;
+        margin-right: 24px;
+      }
+    }
+    .btn {
+      margin-top: 48px;
+    }
+  }
+  .item--shop {
+    .desc {
+      color: $greyish-brown-two;
+
+      &__type {
+        span {
+          border-bottom: solid 1px $greyish-brown-two;
+        }
+      }
+      .btn {
+        margin-top: 25px;
+      }
+    }
+  }
 }
 
-
+//тут ховеры для > 1024
 @media screen and (min-width: em(1024px, 16px)) {
   .item--card {
     img {
@@ -411,7 +483,39 @@
       }
     }
   }
+  .typical-accordion {
+    .accordion-control {
+      &:hover {
+        color: $greyish-brown;
+        transition: $transition;
 
+        span {
+          border-bottom: 1px solid $greyish-brown;
+        }
+      }
+    }
+  }
+  .item--shop {
+
+    &:hover {
+      .desc {
+        color: $warm-grey;
+
+        &__type {
+          color: $violet-blue;
+          transition: $transition;
+
+          span {
+            border-bottom: solid 1px rgba(38, 38, 38, 0.8);
+          }
+        }
+        .btn {
+          background-color: $pale-grey;
+          color: $pinkish-grey;
+        }
+      }
+    }
+  }
 }
 
 //от 0 до 848 для слайдера на главной странице

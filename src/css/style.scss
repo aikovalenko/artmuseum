@@ -229,6 +229,9 @@ button {
 .color-white-two {
   color: $white-two;
 }
+.color-pinkish-grey {
+  color: $pinkish-grey;
+}
 
 .bg-violet-blue {
   background-color: $violet-blue;
@@ -244,6 +247,9 @@ button {
 }
 .bg-white-two {
   background-color: $white-two;
+}
+.bg-white-three {
+  background-color: $white-three;
 }
 
 //$black: #262626;
@@ -1097,9 +1103,16 @@ ul {
   }
   &--visitors {
     margin-bottom: 97px;
+
+    .section__header__controls {
+      margin-bottom: 36px;
+    }
   }
   &--friends {
     margin-bottom: 111px;
+  }
+  &--shop {
+    margin-bottom: 72px;
   }
 
 
@@ -1225,13 +1238,14 @@ ul {
 
 
 /*----- Accordion start -----*/
-.accordion, .accordion * {
+.accordion, .accordion *,
+.accordion--mobile, .accordion--mobile * {
   -webkit-box-sizing:border-box;
   -moz-box-sizing:border-box;
   box-sizing:border-box;
 }
 
-.accordion {
+.accordion--mobile {
   overflow:hidden;
   .accordion__item {
     display: inline-block;
@@ -1256,6 +1270,10 @@ ul {
 /*----- accordion Section Content -----*/
 .accordion-content {
   display:block;
+
+  &.maxHeight {
+    max-height: 100% !important;
+  }
 }
 
 
@@ -1454,5 +1472,81 @@ ul {
   }
 }
 
+.typical-accordion {
+  .accordion-control {
+    @include fontSize(24px);
+    font-weight: 500;
+    line-height: 202%;
+    letter-spacing: 0.2px;
+    color: $warm-grey-two;
+    text-transform: uppercase;
+    cursor: pointer;
+    text-align: left;
+    transition: $transition;
+
+    span {
+      display: inline;
+      border-bottom: 1px solid transparent;
+    }
+  }
+}
+
+.section--shop {
+
+  .section__inner {
+    padding-left: 64px;
+    padding-right: 64px;
+  }
+  &__wrapper {
+    font-size: 0;
+    margin: 0 -4px;
+
+    &__item {
+      display: inline-block;
+      vertical-align: top;
+      width: 25%;
+      padding: 0 4px;
+      box-sizing: border-box;
+    }
+  }
+  .btn {
+    margin-top: 72px;
+  }
+}
+
+.item--shop {
+  text-align: center;
+
+  img {
+    max-width: 264px;
+  }
+
+  &__inner {
+    padding-bottom: 32px;
+  }
+
+  .desc {
+    margin-top: 26px;
+    padding: 0 18px;
+    @include fontSize(14px);
+    line-height: 150%;
+    white-space: normal;
+
+    &__type {
+      display: inline-block;
+      margin-bottom: 6px;
+      text-transform: uppercase;
+      transition: $transition;
+
+      span {
+        display: inline;
+        border-bottom: 1px solid $warm-grey-two;
+      }
+    }
+    .btn {
+      margin-top: 27px;
+    }
+  }
+}
 
 @import "partials/media";

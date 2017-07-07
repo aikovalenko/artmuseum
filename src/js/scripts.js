@@ -202,29 +202,42 @@ $(document).ready(function() {
 
 
 
-    $('.accordion-title').click(function(e) {
-        e.preventDefault();
+    // $('.accordion-title').click(function(e) {
+    //     e.preventDefault();
+    //     if ($(window).width() < 1024) {
+    //
+    //         var $this = $(this),
+    //             time = 500;
+    //
+    //         if ($this.next().hasClass('show')) {
+    //             $this.next().removeClass('show');
+    //             $this.next().slideUp(time);
+    //         } else {
+    //             $this.parent().parent().find('.accordion-content').removeClass('show');
+    //             $this.parent().parent().find('.accordion-content').slideUp(time);
+    //             $this.next().toggleClass('show');
+    //             $this.next().slideToggle(time);
+    //         }
+    //     }
+    // });
+    //
+    function accordion() {
+        var content = $('.accordion--mobile .accordion-content');
+
         if ($(window).width() < 1024) {
-
-            var $this = $(this),
-                time = 500;
-
-            if ($this.next().hasClass('show')) {
-                $this.next().removeClass('show');
-                $this.next().slideUp(time);
-            } else {
-                $this.parent().parent().find('.accordion-content').removeClass('show');
-                $this.parent().parent().find('.accordion-content').slideUp(time);
-                $this.next().toggleClass('show');
-                $this.next().slideToggle(time);
-            }
+            $('.js-accordion--mobile').accordion({
+                "transitionSpeed": 400
+            });
+            content.removeClass('maxHeight');
         }
-    });
-
-    function resetAccordion() {
-        if ($(window).width() >= 1024) {
-            $('.accordion-content').show();
+        else {
+            content.addClass('maxHeight');
         }
+
+        $('.js-accordion').accordion({
+            "transitionSpeed": 400
+        });
+
     }
 
 
@@ -301,11 +314,17 @@ $(document).ready(function() {
         }
     }
 
+    $('video').mediaelementplayer({
+        features: ['']
+    });
+
     afishaSliderSettings();
+    accordion();
+
 
 
     var resizeFn = debounce(function() {
-        resetAccordion();
+        accordion();
         afishaSliderSettings();
     }, 300);
 

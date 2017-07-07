@@ -256,13 +256,14 @@
       <div class="section__header">
         <h2 class="color-greyish-brown">Коллекция</h2>
       </div>
-      <div class="section__inner accordion">
+
+      <div class="section__inner" data-accordion-group>
         <div class="column-wrap">
-          <div class="column item-styles">
-            <button class="item-styles__header accordion-title">
+          <div class="column item-styles accordion--mobile js-accordion--mobile">
+            <button class="item-styles__header accordion-title" data-control>
               <span>время работы</span>
             </button>
-            <div class="item-styles__content accordion-content">
+            <div class="item-styles__content accordion-content" data-content>
               <p>Сегодня музей работает
                 с 10 до 21</p>
 
@@ -278,11 +279,11 @@
                 <a href="" title=""><span>обеспыливание</span></a></p>
             </div>
           </div>
-          <div class="column item-styles">
-            <button class="item-styles__header accordion-title">
+          <div class="column item-styles accordion--mobile js-accordion--mobile">
+            <button class="item-styles__header accordion-title" data-control>
               <span>БИЛЕТЫ</span>
             </button>
-            <div class="item-styles__content accordion-content">
+            <div class="item-styles__content accordion-content" data-content>
               <p>Входной билет:
               300 рублей
               Льготный билет:
@@ -294,11 +295,11 @@
                 «Лев Бакст / Léon Bakst. К 150‑летию со дня рождения»</p>
             </div>
           </div>
-          <div class="column item-styles">
-            <button class="item-styles__header accordion-title">
+          <div class="column item-styles accordion--mobile js-accordion--mobile">
+            <button class="item-styles__header accordion-title" data-control>
               <span>комплексные билеты</span>
             </button>
-            <div class="item-styles__content accordion-content">
+            <div class="item-styles__content accordion-content" data-content>
               <p>Главное здание, Галерея, Отдел личных коллекций:
                 750 ₽ / 400 ₽ — льготный</p>
 
@@ -309,45 +310,45 @@
                 500 ₽ / 250 ₽ — льготный</p>
             </div>
           </div>
-          <div class="column item-styles">
-            <button class="item-styles__header accordion-title">
+          <div class="column item-styles accordion--mobile js-accordion--mobile">
+            <button class="item-styles__header accordion-title" data-control>
               <span>ЭКСКУРСИИ</span>
             </button>
-            <div class="item-styles__content accordion-content">
+            <div class="item-styles__content accordion-content" data-content>
               <p>+7 (495) 697-74-12<br>
                 <a href="" title=""><span>Все экскурсии</span></a></p>
 
             </div>
           </div>
-          <div class="column item-styles">
-            <button class="item-styles__header accordion-title">
+          <div class="column item-styles accordion--mobile js-accordion--mobile">
+            <button class="item-styles__header accordion-title" data-control>
               <span>справки по телефону</span>
             </button>
-            <div class="item-styles__content accordion-content">
+            <div class="item-styles__content accordion-content" data-content>
               <p>+7 (495) 697-95-78</p>
             </div>
           </div>
-          <div class="column item-styles">
-            <button class="item-styles__header accordion-title">
+          <div class="column item-styles accordion--mobile js-accordion--mobile">
+            <button class="item-styles__header accordion-title" data-control>
               <span>автоответчик</span>
             </button>
-            <div class="item-styles__content accordion-content">
+            <div class="item-styles__content accordion-content" data-content>
               <p>+7 (495) 609-95-20</p>
             </div>
           </div>
-          <div class="column item-styles">
-            <button class="item-styles__header accordion-title">
+          <div class="column item-styles accordion--mobile js-accordion--mobile">
+            <button class="item-styles__header accordion-title" data-control>
               <span>адрес</span>
             </button>
-            <div class="item-styles__content accordion-content">
+            <div class="item-styles__content accordion-content" data-content>
               <p>Москва, ул. Волхонка, 12</p>
             </div>
           </div>
-          <div class="column item-styles">
-            <button class="item-styles__header accordion-title">
+          <div class="column item-styles accordion--mobile js-accordion--mobile">
+            <button class="item-styles__header accordion-title" data-control>
               <span>проезд</span>
             </button>
-            <div class="item-styles__content accordion-content">
+            <div class="item-styles__content accordion-content" data-content>
               <p>Станции метро: Кропоткинская, Боровицкая, Библиотека им. Ленина</p>
             </div>
           </div>
@@ -712,11 +713,71 @@
         </div>
       </div>
       <div class="section__inner">
+        <div class="">
 
+          <div class="typical-accordion" data-accordion-group>
+            <div class="accordion js-accordion" data-accordion>
+              <button class="accordion-control" data-control title="стоимость экскурсионного обслуживания"><span>стоимость экскурсионного обслуживания</span></button>
+              <div class="accordion-content" data-content>
+                <div>Row</div>
+                <div>Row</div>
+                <div>Row</div>
+              </div>
+            </div>
+            <div class="accordion js-accordion" data-accordion>
+              <button class="accordion-control" data-control title="виды экскурсий"><span>виды экскурсий</span></button>
+              <div data-content>
+                <div>Row</div>
+                <div>Row</div>
+                <div>Row</div>
+              </div>
+            </div>
+            <div class="accordion js-accordion" data-accordion>
+              <button class="accordion-control" data-control title="порядок бронирования и оплаты экскурсий"><span>порядок бронирования и оплаты экскурсий</span></button>
+              <div data-content>
+                <div>Row</div>
+                <div>Row</div>
+                <div>Row</div>
+              </div>
+            </div>
+            <div class="accordion js-accordion" data-accordion>
+              <button class="accordion-control" data-control title="отмена и изменение даты проведения экскурсий"><span>отмена и изменение даты проведения экскурсий</span></button>
+              <div data-content>
+                <div>Row</div>
+                <div>Row</div>
+                <div>Row</div>
+              </div>
+            </div>
+            <div class="accordion js-accordion" data-accordion>
+              <button class="accordion-control" data-control title="правила проведения экскурсии"><span>правила проведения экскурсии</span></button>
+              <div data-content>
+                <div>Row</div>
+                <div>Row</div>
+                <div>Row</div>
+              </div>
+            </div>
+            <div class="accordion js-accordion" data-accordion>
+              <button class="accordion-control" data-control title="темы экскурсий для взрослых"><span>темы экскурсий для взрослых</span></button>
+              <div data-content>
+                <div>Row</div>
+                <div>Row</div>
+                <div>Row</div>
+              </div>
+            </div>
+            <div class="accordion js-accordion" data-accordion>
+              <button class="accordion-control" data-control title="порядок бронирования и оплаты экскурсий"><span>порядок бронирования и оплаты экскурсий</span></button>
+              <div data-content>
+                <div>Row</div>
+                <div>Row</div>
+                <div>Row</div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
 
-    <section class="section section--friends">
+    <section class="section section--ratio section--friends">
       <div class="section__header">
         <h2 class="color-greyish-brown">Друзья музея</h2>
         <div class="section__header__controls color-greyish-brown js-content-control">
@@ -738,7 +799,78 @@
         </div>
       </div>
       <div class="section__inner">
+        <div class="section--ratio">
+          <div class="video-container">
+            <video poster="http://via.placeholder.com/1128x634/ff0000/000000" style="width: 100%; height: 100%;">
+              <source type="video/youtube" controls src="http://www.youtube.com/watch?v=kJQP7kiw5Fk" />
+            </video>
+          </div>
+        </div>
+      </div>
+    </section>
 
+    <section class="section section--shop">
+      <div class="section__header">
+        <h2 class="color-greyish-brown">Магазин</h2>
+      </div>
+      <div class="section__inner">
+        <div class="scroller-wrap">
+          <div class="scroller">
+            <div class="section--shop__wrapper">
+              <div class="section--shop__wrapper__item item--shop">
+                <div class="item--shop__inner bg-white-three">
+                  <a class="" href="" title=""><img src="http://via.placeholder.com/264x310/5100d3/ffffff" alt=""></a>
+                  <div class="desc color-warm-grey-two">
+                    <a class="desc__type" href="" title=""><span>мастер-класс</span></a>
+                    <p>Henri Matisse Umbrella with print</p>
+                    <div class="btn-centered">
+                      <a class="btn" href="" title="Купить билет"><span>Купить билет</span></a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="section--shop__wrapper__item item--shop">
+                <div class="item--shop__inner bg-white-three">
+                  <a class="" href="" title=""><img src="http://via.placeholder.com/464x260/5100d3/ffffff" alt=""></a>
+                  <div class="desc color-warm-grey-two">
+                    <a class="desc__type" href="" title=""><span>мастер-класс</span></a>
+                    <p>Henri Matisse Umbrella with print</p>
+                    <div class="btn-centered">
+                      <a class="btn" href="" title="Купить билет"><span>Купить билет</span></a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="section--shop__wrapper__item item--shop">
+                <div class="item--shop__inner bg-white-three">
+                  <a class="" href="" title=""><img src="http://via.placeholder.com/264x218/5100d3/ffffff" alt=""></a>
+                  <div class="desc color-warm-grey-two">
+                    <a class="desc__type" href="" title=""><span>мастер-класс</span></a>
+                    <p>Henri Matisse Umbrella with print</p>
+                    <div class="btn-centered">
+                      <a class="btn" href="" title="Купить билет"><span>Купить билет</span></a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="section--shop__wrapper__item item--shop">
+                <div class="item--shop__inner bg-white-three">
+                  <a class="" href="" title=""><img src="http://via.placeholder.com/208x300/5100d3/ffffff" alt=""></a>
+                  <div class="desc color-warm-grey-two">
+                    <a class="desc__type" href="" title=""><span>мастер-класс</span></a>
+                    <p>Henri Matisse Umbrella with print</p>
+                    <div class="btn-centered">
+                      <a class="btn" href="" title="Купить билет"><span>Купить билет</span></a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="btn-centered">
+          <a class="btn btn--more btn--border" href="" title="перейти в магазин"><span>перейти в магазин</span></a>
+        </div>
       </div>
     </section>
 
