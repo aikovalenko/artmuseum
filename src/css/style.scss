@@ -155,6 +155,8 @@ button {
 }
 .main-menu-burger {
   display: none;
+  width: 32px;
+  height: 23px;
   padding-top: 8px;
   cursor: pointer;
   z-index: 30;
@@ -289,16 +291,13 @@ ul {
     &__inner {
       position: relative;
       height: calculateRem(32px);
-      max-height: calculateRem(32px);
+      max-height: 100%;
       line-height: calculateRem(32px);
       overflow: hidden;
-      transition: max-height 0.2s cubic-bezier(0, 1, 0, 1);
+      transition: $transition;
       &.closed, &.hidden {
         max-height: 0;
-        transform: translate(0, -100%);
-        transition: max-height 0.2s ease-in-out;;
-
-
+        transition: $transition;
       }
 
 
@@ -890,9 +889,21 @@ ul {
   }
 }
 
+.slick-slider {
+  visibility: hidden;
+  position: relative;
+
+  &.slick-initialized {
+    visibility: visible;
+  }
+}
 
 .main-slider {
   margin-bottom: 68px;
+
+  &__inner {
+    position: relative;
+  }
 }
 .slick-main{
 
@@ -1546,6 +1557,18 @@ ul {
     .btn {
       margin-top: 27px;
     }
+  }
+}
+
+.preloader {
+  position: absolute;
+  top: 150px;
+  right: 0;
+  left: 0;
+  text-align: center;
+
+  span {
+
   }
 }
 
