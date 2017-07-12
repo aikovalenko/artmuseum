@@ -689,15 +689,15 @@
       </div>
     </section>
 
-    <section class="section section--ratio section--visitors">
+    <section class="section section--ratio section--visitors section--tabs">
       <div class="section__header">
         <h2 class="color-greyish-brown">ПОСЕТИТЕЛЯМ</h2>
         <div class="section__header__controls color-greyish-brown js-content-control">
           <div class="scroller-wrap">
             <div class="scroller scroller--p">
               <ul class="first">
-                <li><a class="btn active js-content-control-btn" href="" title="ЭКСКУРСИИ"><span>ЭКСКУРСИИ</span></a></li>
-                <li><a class="btn js-content-control-btn" href="" title="ЛЕКТОРИЙ"><span>ЛЕКТОРИЙ</span></a></li>
+                <li><a class="btn active js-content-control-btn" href="test.html" title="ЭКСКУРСИИ" data-toggle="tab" data-target="#4"><span>ЭКСКУРСИИ</span></a></li>
+                <li><a class="btn js-content-control-btn" href="test.html" title="ЛЕКТОРИЙ" data-toggle="tab" data-target="#5"><span>ЛЕКТОРИЙ</span></a></li>
                 <li><a class="btn js-content-control-btn" href="" title="ДЕТЯМ"><span>ДЕТЯМ</span></a></li>
                 <li><a class="btn js-content-control-btn" href="" title="ДРУЗЬЯ ПУШКИНСКОГО"><span>ДРУЗЬЯ ПУШКИНСКОГО</span></a></li>
                 <li><a class="btn js-content-control-btn" href="" title="ЛЬГОТНЫЕ КАТЕГОРИИ"><span>ЛЬГОТНЫЕ КАТЕГОРИИ</span></a></li>
@@ -713,84 +713,29 @@
         </div>
       </div>
       <div class="section__inner">
-        <div class="">
-
-          <div class="typical-accordion" data-accordion-group>
-            <div class="accordion js-accordion" data-accordion>
-              <button class="accordion-control" data-control title="стоимость экскурсионного обслуживания"><span>стоимость экскурсионного обслуживания</span></button>
-              <div class="accordion-content" data-content>
-                <div>Row</div>
-                <div>Row</div>
-                <div>Row</div>
-              </div>
-            </div>
-            <div class="accordion js-accordion" data-accordion>
-              <button class="accordion-control" data-control title="виды экскурсий"><span>виды экскурсий</span></button>
-              <div data-content>
-                <div>Row</div>
-                <div>Row</div>
-                <div>Row</div>
-              </div>
-            </div>
-            <div class="accordion js-accordion" data-accordion>
-              <button class="accordion-control" data-control title="порядок бронирования и оплаты экскурсий"><span>порядок бронирования и оплаты экскурсий</span></button>
-              <div data-content>
-                <div>Row</div>
-                <div>Row</div>
-                <div>Row</div>
-              </div>
-            </div>
-            <div class="accordion js-accordion" data-accordion>
-              <button class="accordion-control" data-control title="отмена и изменение даты проведения экскурсий"><span>отмена и изменение даты проведения экскурсий</span></button>
-              <div data-content>
-                <div>Row</div>
-                <div>Row</div>
-                <div>Row</div>
-              </div>
-            </div>
-            <div class="accordion js-accordion" data-accordion>
-              <button class="accordion-control" data-control title="правила проведения экскурсии"><span>правила проведения экскурсии</span></button>
-              <div data-content>
-                <div>Row</div>
-                <div>Row</div>
-                <div>Row</div>
-              </div>
-            </div>
-            <div class="accordion js-accordion" data-accordion>
-              <button class="accordion-control" data-control title="темы экскурсий для взрослых"><span>темы экскурсий для взрослых</span></button>
-              <div data-content>
-                <div>Row</div>
-                <div>Row</div>
-                <div>Row</div>
-              </div>
-            </div>
-            <div class="accordion js-accordion" data-accordion>
-              <button class="accordion-control" data-control title="порядок бронирования и оплаты экскурсий"><span>порядок бронирования и оплаты экскурсий</span></button>
-              <div data-content>
-                <div>Row</div>
-                <div>Row</div>
-                <div>Row</div>
-              </div>
-            </div>
+        <div class="tab-content">
+          <div class="tab-pane active" id="4">
           </div>
+          <div class="tab-pane" id="5"></div>
         </div>
+        <div class="preloader preloader--content" style="display: none;">грузим</div>
       </div>
     </section>
 
-    <section class="section section--ratio section--friends">
+    <section class="section section--ratio section--friends section--tabs">
       <div class="section__header">
         <h2 class="color-greyish-brown">Друзья музея</h2>
         <div class="section__header__controls color-greyish-brown js-content-control">
           <div class="scroller-wrap">
             <div class="scroller scroller--p">
               <ul class="first">
-                <li><a class="btn active js-content-control-btn" href="" title="Стать другом музея"><span>Стать другом музея</span></a></li>
-                <li><a class="btn js-content-control-btn" href="" title="Сделать пожертвование"><span>Сделать пожертвование</span></a></li>
+                <li class="active"><a class="btn active js-content-control-btn" href="test.html" title="Стать другом музея" data-toggle="tab" data-target="#1"><span>Стать другом музея</span></a></li>
+                <li><a class="btn js-content-control-btn" href="content.html" title="Сделать пожертвование" data-toggle="tab" data-target="#2"><span>Сделать пожертвование</span></a></li>
                 <li><a class="btn js-content-control-btn" href="" title="Попечители"><span>Попечители</span></a></li>
               </ul>
               <span class="btn controls-spec js-control-menu" title="ещё"><span>...</span></span>
               <ul class="second null-width">
-                <li><a class="btn js-content-control-btn" href="" title="сегодня"><span>Еще пункт</span></a></li>
+                <li><a class="btn js-content-control-btn" href="#3" title="сегодня" data-toggle="tab"><span>Еще пункт</span></a></li>
                 <li><a class="btn js-content-control-btn" href="" title="завтра"><span>Другой пункт</span></a></li>
                 <li><a class="btn js-content-control-btn" href="" title="И вот вам еще"><span>И вот вам ещё</span></a></li>
               </ul>
@@ -799,13 +744,12 @@
         </div>
       </div>
       <div class="section__inner">
-        <div class="section--ratio">
-          <div class="video-container">
-            <video poster="http://via.placeholder.com/1128x634/ff0000/000000" style="width: 100%; height: 100%;">
-              <source type="video/youtube" controls src="http://www.youtube.com/watch?v=kJQP7kiw5Fk" />
-            </video>
-          </div>
+        <div class="tab-content">
+          <div class="tab-pane active" id="1"></div>
+          <div class="tab-pane" id="2"></div>
+          <div class="tab-pane" id="3"></div>
         </div>
+        <div class="preloader preloader--content" style="display: none;">грузим</div>
       </div>
     </section>
 
@@ -873,6 +817,8 @@
         </div>
       </div>
     </section>
+
+    <div class="test"></div>
 
     @@include('partials/footer.html')
   <script src='js/libs.js'></script>

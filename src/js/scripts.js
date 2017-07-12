@@ -180,6 +180,9 @@ $(document).ready(function() {
             block.find('.js-content-control-btn').not(this).each(function () {
                 $(this).removeClass('active');
                 $('.section--afisha__filter').removeClass('opened');
+
+                //для ситуации двух ul меню, сборс active
+                $(this).parent().removeClass('active');
             });
         });
     });
@@ -279,9 +282,146 @@ $(document).ready(function() {
 
 
     //для видео
-    $('video').mediaelementplayer({
-        features: ['']
+    function videoLoad() {
+        $('video').mediaelementplayer({
+            features: ['']
+        });
+    }
+    videoLoad();
+
+    $.get('content.html', function(data) {
+        $(".test").html(data);
+        call();
     });
+
+    function call() {
+        $('.click').click(function() {
+            $(this).addClass('opened');
+        });
+    }
+
+
+    $('[data-toggle="tab"]').click(function(e) {
+        var $this = $(this);
+
+
+
+
+        if (!$this.hasClass('loaded')) {
+
+
+
+            var loadUrl = $this.attr('href'),
+                target = $this.attr('data-target'),
+                preloader = $this.parents().find('section--tabs').children().find('.preloader--content');
+
+            console.log(preloader);
+
+            preloader.css('display', 'block');
+
+            callAjaxContent(loadUrl,target, preloader);
+            $this.addClass('loaded');
+        }
+
+
+        $this.tab('show');
+    });
+
+
+
+
+    function callAjaxContent(loadUrl,target, preloader) {
+        $.get(loadUrl, function(data) {
+
+
+            $(target).html(data);
+            accordion();
+            videoLoad();
+
+
+
+        }).done(function() {
+            $(preloader).css('display', 'none');
+        }).fail(function() {
+            $(target).html('Что-то пошло не так...');
+        }).always(function() {
+
+        });
+
+    }
+    $(function() {
+        var $this = $('[data-toggle="tab"].active'),
+            loadUrl = $this.attr('href'),
+            target = $this.attr('data-target'),
+            preloader = $('.preloader--content');
+
+        callAjaxContent(loadUrl,target);
+        $this.addClass('loaded');
+    });
+    // $(function() {
+    //
+    //     $("#tabsId").on("click", "li", function(evt) {
+    //
+    //         evt.preventDefault();
+    //         var id = $(this).data("tabContent");
+    //         $("#tabsContentId")
+    //             .find(".tab-content[data-tab-content='" + id + "']").show()
+    //             .siblings().hide();
+    //     });
+    // });
+
+    (function($){
+        jQuery.fn.lightTabs = function(options){
+
+
+            var createTabs = function(){
+                tabs = this;
+                i = 0;
+                j = 0;
+                var control = $('.js-content-control'),
+                    content = $(),
+                    tab = $();
+
+
+                showPage = function(i){
+                    $(tabs).find('.tabs').find('.tab').css({"opacity": "0", "z-index": "-1"}).removeClass("active");
+                    $(tabs).find('.tabs').find('.tab').eq(i).css({"opacity": "1", "z-index": "1"}).addClass("active");
+                    $(tabs).find('.js-content-control').find("li").removeClass("active");
+                    $(tabs).find('.js-content-control').find("li").eq(i).addClass("active");
+
+
+                };
+
+                showPage(0);
+
+                $(tabs).find(control).find("li").each(function(index, element){
+                    $(element).attr("data-page", i);
+                    i++;
+                });
+                $(tabs).find(content).find(tab).each(function(index, element){
+                    $(element).attr("data-fetch", j);
+                    j++;
+                });
+
+                $(tabs).find(control).find("li").click(function() {
+                    var num = $(this).attr("data-page");
+                    showPage(parseInt(num));
+                    // var $this = $(this),
+                    //     loadurl = $this.attr('href'),
+                    //     targ = $this.attr('data-target');
+
+                    $(tabs).find(content).find(tab).eq(num).addClass('tst');
+                    console.log($(this).find("a").attr('href'));
+
+                    // $.get(loadurl, function(data) {
+                    //     $(targ).html(data);
+                    // });
+                });
+            };
+            return this.each(createTabs);
+        };
+    })(jQuery);
+
 
 
     //правильный пересчет функций на ресайз

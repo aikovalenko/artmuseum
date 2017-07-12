@@ -360,6 +360,7 @@ ul {
     line-height: calculateRem(32px);
 
     .icon {
+      align-self: center;
       @include fontSize(12px);
       opacity: .6;
     }
@@ -370,6 +371,7 @@ ul {
       margin-left: calculateRem(8px);
     }
     .notifications-badge {
+      align-self: center;
       width: calculateRem(15px);
       height: calculateRem(15px);
       margin-left: calculateRem(8.5px);
@@ -1126,7 +1128,9 @@ ul {
     margin-bottom: 72px;
   }
 
-
+  &__inner {
+    position: relative;
+  }
 
   &__header {
     text-align: center;
@@ -1562,7 +1566,7 @@ ul {
 
 .preloader {
   position: absolute;
-  top: 150px;
+  top: 50%;
   right: 0;
   left: 0;
   text-align: center;
@@ -1570,6 +1574,24 @@ ul {
   span {
 
   }
+}
+//.tabs {
+//  position: relative;
+//}
+//.tab {
+//  top: 0;
+//  position: absolute;
+//
+//  &.active {
+//    position: static;
+//  }
+//}
+
+.tab-content > .tab-pane {
+  display: none;
+}
+.tab-content > .active {
+  display: block;
 }
 
 @import "partials/media";
