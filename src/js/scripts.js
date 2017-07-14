@@ -365,6 +365,54 @@ $(document).ready(function() {
     });
 
 
+    //подменю у главного меню
+    $(function() {
+        var menu = $('.js-main-menu-hover'),
+            under = $('.main-menu-under'),
+            dropdown = $('.js-dropdown'),
+            hoverInner = $('.hover--inner'),
+            dropdownInner = $('.dropdown--inner'),
+            headerControls = $('.header__controls');
+
+        function reset() {
+            under.removeClass('visible');
+            dropdown.removeClass('visible');
+            dropdownInner.removeClass('visible');
+        }
+
+        menu.on("mouseenter", function() {
+            var $this = $(this),
+                 num  = $this.attr('data-dropdown');
+
+            if (num != undefined) {
+                var width = $this.offset(),
+                    id = $('#' + num);
+
+                dropdown.removeClass('visible');
+
+                id.addClass('visible').css('left', width.left);
+                under.addClass('visible');
+                under.css('height', id.height());
+            } else {
+                reset();
+            }
+        });
+        hoverInner.on("mouseenter", function() {
+            $(this).next(dropdownInner).addClass('visible');
+            hoverInner.not(this).each(function () {
+                $(this).next(dropdownInner).removeClass('visible');
+            });
+        });
+        under.on("mouseleave", function() {
+            reset();
+        });
+
+        headerControls.on("mouseenter", function() {
+            reset();
+        });
+    });
+
+
     //правильный пересчет функций на ресайз
     var resizeFn = debounce(function() {
         accordion();

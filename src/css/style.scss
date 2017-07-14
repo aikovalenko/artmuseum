@@ -281,6 +281,7 @@ ul {
   @include clearfix;
 }
 .header {
+  position: relative;
 
   &__notifications {
     padding: 0 72px;
@@ -336,15 +337,96 @@ ul {
     max-width: 984px;
     @include push--auto;
     margin-bottom: 25px;
+
+  }
+
+  .main-menu-under {
+    //display: none;
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 100px;
+    padding-top: 14px;
+    padding-bottom: 20px;
+    background-color: rgba(81, 81, 81, 0.8);
+    z-index: -1;
+    //opacity: 0;
+    visibility: hidden;
+
+    &.visible {
+      z-index: 1;
+      //opacity: 0;
+      visibility: visible;
+    }
+    .dropdown {
+      position: absolute;
+      visibility: hidden;
+      padding-top: 14px;
+      padding-bottom: 20px;
+      @include fontSize(16px);
+      font-weight: 500;
+      top: 0;
+      z-index: -1;
+      line-height: 175%;
+      color: $warm-grey-two;
+
+      a {
+        transition: color .2s ease;
+
+        span {
+          border-bottom: solid 1px transparent;
+          display: inline;
+          padding-bottom: 4px;
+        }
+        &:hover {
+          color: $pale-grey;
+          transition: color .2s ease;
+
+          span {
+            border-bottom: solid 1px $pale-grey;
+            display: inline;
+            padding-bottom: 4px;
+          }
+        }
+      }
+
+      &--inner {
+        position: absolute;
+        top: 14px;
+        left: 100%;
+        min-width: 350px;
+        padding-left: 72px;
+        z-index: -1;
+        visibility: hidden;
+
+        &.visible {
+          z-index: 100;
+          //opacity: 0;
+          visibility: visible;
+        }
+      }
+
+
+      &.visible {
+        z-index: 99;
+        //opacity: 0;
+        visibility: visible;
+      }
+    }
   }
 }
 .main-navigation {
-  ul {
+
+  &__inner {
     display: flex;
     justify-content: space-between;
-    text-transform: uppercase;
-    @include fontSize(24px);
+    position: relative;
+    .hover {
+      @include fontSize(18px);
+      text-transform: uppercase;
+    }
   }
+
 }
 .main-controls {
   position: relative;
@@ -1173,6 +1255,11 @@ ul {
 
   &__inner {
     position: relative;
+  }
+
+  &--limited {
+    max-width: 1272px;
+    @include push--auto;
   }
 
   &__header {

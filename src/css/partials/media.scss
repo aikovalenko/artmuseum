@@ -93,7 +93,33 @@
   }
 }
 
+//от  до 1023
+@media screen and (max-width: em(1024px, 16px)) and (min-width: em(700px, 16px)) {
+  .menu-mobile {
+    right: 0;
+    left: auto;
+    width: 50%;
+    transform: translateX(100%);
 
+    &.opened {
+      transform: translateX(0);
+    }
+  }
+  .menu-mobile {
+    &__inner {
+      .logo {
+        min-height: 124px;
+        img {
+          display: none;
+        }
+      }
+    }
+    &__copyright {
+      position: absolute;
+      bottom: 0;
+    }
+  }
+}
 
 
 //от 0 до 1023
@@ -445,6 +471,9 @@
       }
     }
   }
+  .main-menu-under {
+    display: none;
+  }
 }
 
 //тут ховеры для > 1024
@@ -520,6 +549,8 @@
     display: none;
   }
 }
+
+
 
 //от 0 до 848 для слайдера на главной странице
 @media screen and (max-width: em(848px, 16px)) {

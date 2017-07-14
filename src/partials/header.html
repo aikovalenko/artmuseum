@@ -1,6 +1,6 @@
 <header class="header">
     <div class="header__notifications bg-violet-blue">
-        <div class="wrapper">
+        <div class="wrapper section--limited">
             <div class="header__notifications__inner">
                 <ul class="color-pale-grey">
                     <li><a class="" href="" title="ОТМЕНА ЛЕКЦИИ КАПРИЧОС">ОТМЕНА ЛЕКЦИИ КАПРИЧОС.</a></li>
@@ -14,7 +14,7 @@
             </div>
         </div>
     </div>
-    <div class="wrapper">
+    <div class="wrapper section--limited">
         <div class="header__controls">
             <div class="logo">
                 <a class="" href="" title="Государственный музей изобразительных искусств имени А. С. Пушкина">
@@ -253,15 +253,38 @@
         </div>
         <div class="header__menu">
             <nav class="main-navigation greyish-brown" role="navigation">
-                <ul>
-                    <li><a class="hover" href=""  title="">Музей</a></li>
-                    <li><a class="hover" href=""  title="">Афиша</a></li>
-                    <li><a class="hover" href=""  title="">Коллекции</a></li>
-                    <li><a class="hover" href=""  title="">Медиа</a></li>
-                    <li><a class="hover" href=""  title="">Образование</a></li>
-                    <li><a class="hover" href=""  title="">Магазин</a></li>
+                <ul class="main-navigation__inner">
+                    <li><a class="hover js-main-menu-hover" href=""  title="">Музей</a></li>
+                    <li><a class="hover js-main-menu-hover" data-dropdown="dropdown-1" href=""  title="">Афиша</a></li>
+                    <li><a class="hover js-main-menu-hover" href=""  title="">Коллекции</a></li>
+                    <li><a class="hover js-main-menu-hover" data-dropdown="dropdown-2" href=""  title="">Медиа</a></li>
+                    <li><a class="hover js-main-menu-hover" href=""  title="">Образование</a></li>
+                    <li><a class="hover js-main-menu-hover" href=""  title="">Магазин</a></li>
                 </ul>
             </nav>
         </div>
+    </div>
+    <div class="main-menu-under">
+        <ul id="dropdown-1" class="dropdown js-dropdown">
+            <li><a class="hover--inner" href="" title=""><span>Все события</span></a></li>
+            <li><a class="hover--inner" href="" title=""><span>Выставки</span></a></li>
+            <li>
+                <a class="hover--inner" href="" title=""><span>Экскурсии</span></a>
+                <ul class="dropdown--inner">
+                    <li><a href="" title=""><span>Cборные</span></a></li>
+                    <li><a href="" title=""><span>Тематические</span></a></li>
+                    <li><a href="" title=""><span>Экскурсионный абонемент</span></a></li>
+                </ul>
+            </li>
+            <li><a class="hover--inner" class="hover--inner" href="" title=""><span>Лекции</span></a></li>
+            <li><a class="hover--inner" href="" title=""><span>Концерты</span></a></li>
+            <li><a class="hover--inner" href="" title=""><span>Кинопоказы</span></a></li>
+            <li><a class="hover--inner" href="" title=""><span>Чтения</span></a></li>
+        </ul>
+        <ul id="dropdown-2" class="dropdown js-dropdown">
+            <li><a href="" title=""><span>Пример</a></li>
+            <li><a href="" title=""><span>Пример</span></a></li>
+            <li><a href="" title=""><span>Пример</span></a></li>
+        </ul>
     </div>
 </header>
