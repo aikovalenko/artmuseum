@@ -680,7 +680,50 @@ ul {
   padding-bottom: calculateRem(30px);
   padding-left: calculateRem(14px);
 
+  &__primary {
+    margin-top: 14px;
+  }
+  &__secondary {
+    margin-top: 4px;
+    @include fontSize(12px);
+    line-height: 133%;
 
+    li {
+      position: relative;
+
+      &:after {
+        content: '';
+      }
+      &:last-child:after {
+        display: none;
+      }
+    }
+  }
+  a, button {
+    color: $warm-grey-two;
+
+    &.active {
+      color: $violet-blue;
+    }
+  }
+
+}
+.mobile-settings {
+  &__primary {
+    @include fontSize(19px);
+    line-height: 253%;
+
+    button {
+      text-transform: uppercase;
+
+      &.active {
+        color: $violet-blue;
+      }
+    }
+  }
+  &__secondary {
+
+  }
 }
 
 .share-block {
@@ -1241,6 +1284,16 @@ ul {
     height: 0;
     overflow: hidden;
     transition: $transition;
+    display: flex;
+    justify-content: center;
+
+    .select {
+      width: 120px;
+      margin: 0 12px;
+      font-weight: 500;
+      letter-spacing: 1.1px;
+      color: $white-two;
+    }
 
     &.opened {
       height: 32px;
@@ -1248,6 +1301,68 @@ ul {
       margin-bottom: 61px;
       transition: $transition;
     }
+  }
+}
+
+.select2-container {
+  outline: none;
+  text-align: left;
+  .select2-selection {
+    height: 32px;
+    border-radius: 2px;
+    background-color: $warm-grey-two;
+    border: 1px solid $warm-grey-two;
+    border-bottom: none;
+    outline: none;
+  }
+  .select2-selection .select2-selection__rendered {
+    color: $white-two;
+    padding-left: 14px;
+  }
+}
+.select2-dropdown {
+  border-radius: 2px;
+  border: solid 1px $warm-grey-two;
+  color: $warm-grey-two;
+  padding-top: 5px;
+  padding-left: 14px;
+  padding-bottom: 22px;
+  padding-right: 11px;
+}
+.select2-container--default .select2-results__option--highlighted[aria-selected] {
+  color: $greyish-brown-two;
+  background-color: transparent;
+}
+.select2-container--default .select2-results__option[aria-selected=true] {
+  background-color: transparent;
+}
+.select2-results__option {
+  padding: 0;
+  font-weight: 500;
+  line-height: 119%;
+  letter-spacing: 1.1px;
+}
+
+.select2-container--default .select2-selection--single .select2-selection__arrow {
+  top: 11px;
+  right: 16px;
+  height: 10px;
+  width: 11px;
+  font-size: 10px;
+  b {
+    display: none;
+  }
+}
+.select2-container--open {
+  .select2-selection {
+    background-color: #fff;
+    .select2-selection__rendered {
+      color: $greyish-brown-two;
+    }
+  }
+  .select2-selection__arrow {
+    transform: rotate(180deg);
+    color: $greyish-brown-two;
   }
 }
 

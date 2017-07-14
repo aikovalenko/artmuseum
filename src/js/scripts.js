@@ -186,7 +186,8 @@ $(document).ready(function() {
             });
         });
     });
-    $('.js-call-filter').click(function() {
+    $('.js-call-filter').click(function(e) {
+        e.preventDefault();
         $('.section--afisha__filter').addClass('opened');
     });
 
@@ -359,7 +360,9 @@ $(document).ready(function() {
     });
 
 
-
+    $(".js-select").select2({
+        minimumResultsForSearch: Infinity
+    });
 
 
     //правильный пересчет функций на ресайз

@@ -1,4 +1,4 @@
-[class^="icon-"], [class*=" icon-"], .slick-arrow {
+[class^="icon-"], [class*=" icon-"], .slick-arrow, .select2-selection__arrow {
   /* use !important to prevent issues with browser extensions that change fonts */
   font-family: 'icomoon' !important;
   speak: none;
@@ -21,6 +21,11 @@
 .slick-prev {
   &:before {
     content: "\e90a";
+  }
+}
+.select2-selection__arrow {
+  &:before {
+    content: "\e90c";
   }
 }
 
