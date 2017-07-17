@@ -49,4 +49,25 @@
     color: inherit !important;
   }
 
+  button,
+  a,
+  input {
+    outline-width: 2px;
+  }
+
+  .icon {
+    font-size: 0 !important;
+    font-family: 'Arial', sans-serif !important;
+  }
+  .icon-text {
+    font-size: 25px !important;
+    font-family: 'Arial', sans-serif !important;
+  }
+  .quality-estimation {
+    width: 250px;
+    a {
+      align-self: center;
+    }
+  }
+
 }

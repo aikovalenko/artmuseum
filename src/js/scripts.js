@@ -509,7 +509,7 @@ $(document).ready(function() {
             html.addClass('contrast');
             $(this).addClass('active');
             normal.removeClass('active');
-            img.hide();
+            // img.hide();
             setCookie("contrast", "on");
 
             $grid.masonry();
@@ -518,7 +518,7 @@ $(document).ready(function() {
             html.removeClass('contrast');
             $(this).addClass('active');
             contrast.removeClass('active');
-            img.show();
+            // img.show();
             setCookie("contrast", "off");
 
             $grid.masonry();
@@ -541,12 +541,14 @@ $(document).ready(function() {
             contrast.addClass('active');
             normal.removeClass('active');
             html.addClass('contrast');
-            img.hide();
+            // img.hide();
+            $grid.masonry();
         } else {
             contrast.removeClass('active');
             normal.addClass('active');
             html.removeClass('contrast');
-            img.show();
+            // img.show();
+            $grid.masonry();
         }
 
 
