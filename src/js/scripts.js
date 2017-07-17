@@ -333,7 +333,7 @@ $(document).ready(function() {
         }
         function reset(num) {
             unwrap();
-            var divs = $(".item");
+            var divs = $(".js-multiple-items-slider .item");
             for(var i = 0; i < divs.length; i += num) {
                 divs.slice(i, i + num).wrapAll("<div class='slide'></div>");
             }
