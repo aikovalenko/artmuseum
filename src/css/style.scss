@@ -688,7 +688,7 @@ ul {
     transition: $transition;
     input {
       width: 360px;
-      opacity: .6;
+      opacity: 1;
       transition: $transition;
     }
   }
@@ -1858,4 +1858,5 @@ ul {
 }
 
 
+@import "partials/contrast";
 @import "partials/media";

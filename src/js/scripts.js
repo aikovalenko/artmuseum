@@ -20,6 +20,52 @@ jQuery.fn.clickToggle = function(a,b) {
     return this.on("click", cb);
 };
 
+// возвращает cookie с именем name, если есть, если нет, то undefined
+function getCookie(name) {
+    var matches = document.cookie.match(new RegExp(
+        "(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"
+    ));
+    return matches ? decodeURIComponent(matches[1]) : undefined;
+}
+
+// устанавливает cookie с именем name и значением value
+// options - объект с свойствами cookie (expires, path, domain, secure)
+function setCookie(name, value, options) {
+    options = options || {};
+
+    var expires = options.expires;
+
+    if (typeof expires == "number" && expires) {
+        var d = new Date();
+        d.setTime(d.getTime() + expires * 1000);
+        expires = options.expires = d;
+    }
+    if (expires && expires.toUTCString) {
+        options.expires = expires.toUTCString();
+    }
+
+    value = encodeURIComponent(value);
+
+    var updatedCookie = name + "=" + value;
+
+    for (var propName in options) {
+        updatedCookie += "; " + propName;
+        var propValue = options[propName];
+        if (propValue !== true) {
+            updatedCookie += "=" + propValue;
+        }
+    }
+
+    document.cookie = updatedCookie;
+}
+
+// удаляет cookie с именем name
+function deleteCookie(name) {
+    setCookie(name, "", {
+        expires: -1
+    })
+}
+
 
 
 
@@ -438,11 +484,72 @@ $(document).ready(function() {
         });
     });
 
-    $('.grid').masonry({
+    var $grid = $('.grid').masonry({
         // options
 
         itemSelector: '.grid-item',
         columnWidth: '.grid-sizer'
+    });
+
+
+    $(function() {
+        var html = $("html"),
+            body = $("body"),
+            img = $("img"),
+
+            contrast = $(".js-contrast-version"),
+            normal = $(".js-normal-version"),
+            font = $(".js-font"),
+
+            contrastCookie = getCookie("contrast"),
+            fontCookie = getCookie("font");
+
+
+        contrast.on('click', function () {
+            html.addClass('contrast');
+            $(this).addClass('active');
+            normal.removeClass('active');
+            img.hide();
+            setCookie("contrast", "on");
+
+            $grid.masonry();
+        });
+        normal.on('click', function () {
+            html.removeClass('contrast');
+            $(this).addClass('active');
+            contrast.removeClass('active');
+            img.show();
+            setCookie("contrast", "off");
+
+            $grid.masonry();
+        });
+        font.on('click', function (e) {
+            e.preventDefault();
+            if ($(this).hasClass('active')) {
+                setCookie("font", "normal");
+            }
+            html.toggleClass('big-font');
+            font.toggleClass('active');
+            setCookie("font", "big");
+
+
+        });
+
+
+
+        if (contrastCookie == 'on') {
+            contrast.addClass('active');
+            normal.removeClass('active');
+            html.addClass('contrast');
+            img.hide();
+        } else {
+            contrast.removeClass('active');
+            normal.addClass('active');
+            html.removeClass('contrast');
+            img.show();
+        }
+
+
     });
 
 

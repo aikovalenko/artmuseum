@@ -1,0 +1,52 @@
+.contrast {
+  font-family: 'Arial', sans-serif;
+  font-size: 140%;
+
+  .font-gmtext,
+  button,
+  a {
+    font-family: 'Arial', sans-serif;
+  }
+
+  .color-greyish-brown,
+  .color-warm-grey-two,
+  .color-warm-grey,
+  .color-greyish-brown-two,
+  .color-black,
+  .color-violet-blue,
+  .color-greyish,
+  .color-white-two,
+  .color-pinkish-grey,
+  .item-styles__header,
+  .item-styles__content,
+  .item--card .desc,
+  .item--shop:hover .desc .btn,
+  .typical-accordion .accordion-control {
+    color: #000 !important;
+  }
+  .color-pale-grey,
+  .select2-container .select2-selection .select2-selection__rendered {
+    color: #fff !important;
+  }
+
+  .slick-main .slick-slide .desc__date, .slick-main .slick-slide .desc__place {
+    opacity: 1;
+  }
+
+  .btn.active,
+  .slick-arrow,
+  .slick-main .slick-slide {
+    background-color: #000 !important;
+    color: #fff !important;
+  }
+
+  .bg-primary,
+  .footer {
+    background-color: #fff !important;
+  }
+
+  a:hover {
+    color: inherit !important;
+  }
+
+}
