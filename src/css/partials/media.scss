@@ -41,6 +41,11 @@
       padding-right: 44px;
     }
   }
+  .padding {
+    padding-left: 44px;
+    padding-right: 44px;
+  }
+
 
   .section--ratio {
 
@@ -91,9 +96,14 @@
       }
     }
   }
+  .grid--4-columns {
+    .grid-item, .grid-sizer {
+      width: 33.3333%;
+    }
+  }
 }
 
-//от  до 1023
+//от 700 до 1023 для ипад меню
 @media screen and (max-width: em(1024px, 16px)) and (min-width: em(700px, 16px)) {
   .menu-mobile {
     right: 0;
@@ -256,6 +266,10 @@
       margin: 0;
     }
   }
+  .padding {
+    padding-left: 24px;
+    padding-right: 24px;
+  }
   /*----- accordion Section Content -----*/
   .accordion-content {
 
@@ -272,7 +286,30 @@
       }
 
     }
+    .section__inner {
+      .show-all {
+        display: none;
+      }
+    }
+    &__filter {
+      &.opened {
+        margin-bottom: 0;
+      }
+      &__categories {
+        margin-bottom: 48px;
+      }
+    }
   }
+  .afisha-page {
+    .section--afisha {
+      .section__header {
+        &__controls {
+          display: block;
+        }
+      }
+    }
+  }
+
   .section--collection {
     .accordion-title {
       margin: 11.3px 0;
@@ -333,6 +370,18 @@
       padding-left: 24px;
       padding-right: 24px;
     }
+    .item--card {
+      margin-right: 4px;
+      margin-left: 0;
+
+      &:first-child {
+        margin-left: 24px;
+      }
+
+      &:last-child {
+        margin-right: 24px;
+      }
+    }
   }
 
 
@@ -347,16 +396,7 @@
 
 
   .item--card {
-    margin-right: 4px;
-    margin-left: 0;
 
-    &:first-child {
-      margin-left: 24px;
-    }
-
-    &:last-child {
-      margin-right: 24px;
-    }
 
     .desc {
       color: $greyish-brown-two;
@@ -373,6 +413,8 @@
       display: none;
     }
   }
+
+
 
   .section--ratio {
 
@@ -474,16 +516,33 @@
   .main-menu-under {
     display: none;
   }
+  .section--afisha__filter__inner {
+    display: none;
+  }
+  .section--afisha {
+
+    &__filter {
+
+      &__categories {
+        ul {
+          display: none;
+        }
+        .select {
+          display: block;
+        }
+      }
+    }
+  }
 }
 
 //тут ховеры для > 1024
 @media screen and (min-width: em(1024px, 16px)) {
   .item--card {
-    img {
+    .grayscale-filter {
       filter: grayscale(100%);
     }
     &:hover {
-      img {
+      .grayscale-filter {
         transition: $transition;
         filter: grayscale(0);
       }
@@ -510,6 +569,12 @@
           background-color: $pale-grey;
         }
       }
+    }
+  }
+  .item--bordered {
+    &:hover {
+      border: 2px solid $violet-blue;
+      transition: border .2s ease;
     }
   }
   .typical-accordion {
@@ -552,11 +617,22 @@
 
 
 
-//от 0 до 848 для слайдера на главной странице
+//от 0 до 848 для слайдера на главном экране
 @media screen and (max-width: em(848px, 16px)) {
   .main-slider .slick-slide {
     height: auto;
     width: auto;
+  }
+
+}
+
+
+//от 0 до 480
+@media screen and (max-width: em(480px, 16px)) {
+  .grid--4-columns, .grid--3-columns  {
+    .grid-item, .grid-sizer {
+      width: 100%;
+    }
   }
 }
 

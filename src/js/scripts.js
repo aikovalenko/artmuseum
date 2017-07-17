@@ -172,23 +172,49 @@ $(document).ready(function() {
 
     //кнопки переключеня контентом в секции, и в афише кнопка фильтра
     $('.js-content-control').each(function () {
-        var block = $(this);
+        var block = $(this),
+            btnFirst = $(this).find('.btn-first');
 
         $(this).find('.js-content-control-btn').click(function (e) {
-            // e.preventDefault();
+
+            //если ссылка пуста
+            if($(this).attr('href') == '') {
+                e.preventDefault();
+            }
+
             $(this).addClass('active');
             block.find('.js-content-control-btn').not(this).each(function () {
                 $(this).removeClass('active');
-                $('.section--afisha__filter').removeClass('opened');
+
+                //на странице с афишей фильтр доступен всегда
+                if(!$('body').hasClass('afisha-page')) {
+                    $('.section--afisha__filter').removeClass('opened');
+                }
 
                 //для ситуации двух ul меню, сборс active
                 $(this).parent().removeClass('active');
             });
+            checkIfFirstIsActive();
         });
+
+        function checkIfFirstIsActive() {
+            if (!btnFirst.hasClass('active') && $(window).width() < 1024) {
+                btnFirst.addClass('btn--np');
+            } else btnFirst.removeClass('btn--np');
+        }
+        checkIfFirstIsActive();
     });
     $('.js-call-filter').click(function(e) {
         e.preventDefault();
         $('.section--afisha__filter').addClass('opened');
+    });
+
+    //кнопки категорий в секции афиша
+    $('.js-categories-control-btn').click(function () {
+        // e.preventDefault();
+        if (!$(this).hasClass('btn--unavailable')){
+            $(this).toggleClass('active');
+        }
     });
 
 
@@ -410,6 +436,13 @@ $(document).ready(function() {
         headerControls.on("mouseenter", function() {
             reset();
         });
+    });
+
+    $('.grid').masonry({
+        // options
+
+        itemSelector: '.grid-item',
+        columnWidth: '.grid-sizer'
     });
 
 
