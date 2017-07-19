@@ -188,7 +188,7 @@ $(document).ready(function() {
     /*
     у ссылки в слайдере на событие есть data-ticket, который тянется к кнопке Купить под слайдером
      */
-    var mainSlider = $('.js-main-slider').slick({
+    var mainSliderSets = {
         infinite: true,
         slidesToShow: 1,
         slidesToScroll: 1,
@@ -206,14 +206,47 @@ $(document).ready(function() {
                 }
             }
         ]
-    }).on('afterChange', function(event, slick, currentSlide, nextSlide){
-        var link = $(slick.$slides.get(currentSlide)).data('ticket');
+    };
+    var sliderWithArrowsSets = {
+        infinite: true,
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        centerMode: true,
+        variableWidth: true,
+        dots: true,
+        arrows: true,
+        responsive: [
+            {
+                breakpoint: 848,
+                settings: {
+                    variableWidth: false,
+                    centerMode: true,
+                    centerPadding: '0px',
+                    arrows: false
+                }
+            }
+        ]
+    };
 
-        $('.slider-btn-buy').attr('href', link);
-    });
-    var link = $('.slick-slide.slick-current.slick-active').data('ticket');
+    function initSlider(initClass, sliderSets, dataAttr) {
+        var mainSlider = $(initClass).slick(sliderSets).on('afterChange', function(event, slick, currentSlide, nextSlide){
+            var attr = $(slick.$slides.get(currentSlide)).data(dataAttr);
 
-    $('.slider-btn-buy').attr('href', link);
+            $('.slider-btn-buy').attr('href', attr);
+            $('.js-slider-title').html(attr);
+        });
+        var attr = $('.slick-slide.slick-current.slick-active').data(dataAttr);
+
+        $('.slider-btn-buy').attr('href', attr);
+        $('.js-slider-title').html(attr);
+    }
+    initSlider('.js-main-slider', mainSliderSets, 'ticket' );
+    initSlider('.js-slider-with-arrows', sliderWithArrowsSets, 'title' );
+
+
+
+
+
 
 
     //кнопки переключеня контентом в секции, и в афише кнопка фильтра
@@ -314,45 +347,90 @@ $(document).ready(function() {
 
 
     //слайдер афиша с адаптивом
-    var afishaSliderSets = {
-        infinite: true,
+    var multipleItemsSliderSets = {
+        infinite: false,
         slidesToShow: 1,
         slidesToScroll: 1,
         centerMode: true,
         variableWidth: true,
         dots: false,
         arrows: true
-    },
-        afishaSlider = $('.js-multiple-items-slider').slick(afishaSliderSets);
+    };
+    //     afishaSlider = $('.js-multiple-items-slider').slick(multipleItemsSliderSets);
+    //
+    //
+    // function multipleItemsSliderSettings() {
+    //     $('.js-multiple-items-slider').each(function () {
+    //         var $this = $(this);
+    //         function unwrap() {
+    //             $this.slick('unslick');
+    //             $(this).find('.slide .item').unwrap();
+    //             $(this).find('.slide').remove();
+    //         }
+    //
+    //         function reset(num) {
+    //
+    //             unwrap();
+    //
+    //                 var divs = $this.find(".item");
+    //                 for (var i = 0; i < divs.length; i += num) {
+    //                     divs.slice(i, i + num).wrapAll("<div class='slide'></div>");
+    //                 }
+    //
+    //
+    //         }
+    //
+    //         if ($(window).width() < 1280) {
+    //             reset(3);
+    //             $this.slick(multipleItemsSliderSets);
+    //
+    //         }
+    //         if ($(window).width() >= 1280) {
+    //             reset(4);
+    //             $this.slick(multipleItemsSliderSets);
+    //         }
+    //         if ($(window).width() < 1024) {
+    //             unwrap();
+    //         }
+    //     });
+    // }
 
-    function afishaSliderSettings() {
-        function unwrap() {
-            afishaSlider.slick('unslick');
-            $('.js-multiple-items-slider .slide .item').unwrap();
-            $('.js-multiple-items-slider .slide').remove();
-        }
-        function reset(num) {
-            unwrap();
-            var divs = $(".js-multiple-items-slider .item");
-            for(var i = 0; i < divs.length; i += num) {
-                divs.slice(i, i + num).wrapAll("<div class='slide'></div>");
+    $('.js-multiple-items-slider').each(function () {
+        $(this).slick(multipleItemsSliderSets);
+    });
+    function multipleItemsSliderSettings() {
+
+        $('.js-multiple-items-slider').each(function () {
+            var $this = $(this);
+
+            function unwrap() {
+                $this.slick('unslick');
+                $this.find('.slide .item').unwrap();
+                $this.find('.slide').remove();
             }
-        }
-        if ($(window).width() < 1280) {
-            reset(3);
-            afishaSlider.slick(afishaSliderSets);
+            function reset(num) {
+                var divs = $this.find('.item');
+                for (var i = 0; i < divs.length; i += num) {
+                    divs.slice(i, i + num).wrapAll("<div class='slide'></div>");
+                }
+            }
+            if ($(window).width() < 1280) {
+                unwrap();
+                reset(3);
+                $(this).slick(multipleItemsSliderSets);
+            }
+            if ($(window).width() >= 1280) {
+                unwrap();
+                reset(4);
 
-        }
-        if ($(window).width() >= 1280) {
-            reset(4);
-            afishaSlider.slick(afishaSliderSets);
-        }
-        if ($(window).width() < 1024) {
-            unwrap();
-        }
+                $(this).slick(multipleItemsSliderSets);
+            }
+            if ($(window).width() < 1024) {
+                unwrap();
+            }
+        });
     }
-    afishaSliderSettings();
-
+    multipleItemsSliderSettings();
 
     //для видео
     function videoLoad() {
@@ -535,8 +613,6 @@ $(document).ready(function() {
 
         });
 
-
-
         if (contrastCookie == 'on') {
             contrast.addClass('active');
             normal.removeClass('active');
@@ -551,14 +627,45 @@ $(document).ready(function() {
             $grid.masonry();
         }
 
-
     });
+
+    function adaptiveText() {
+        var textAdditional = $('.text-additional'),
+            textAdditionalHtml = textAdditional.html(),
+            textMain = $('.text-main'),
+            textMainHtml = textMain.html();
+
+        if ($(window).width() < 1024) {
+            if ($('.add').length < 1 ) {
+                console.log();
+                textMain.append('<div class="add">' + textAdditionalHtml + '</div>');
+                textMain.children('p,div').not(':first-child').wrapAll('<div class="wrapit" />');
+                textMain.children('p:first-child').append('<button class="underline-text more-text color-warm-grey-two js-btn-more-text"><span>ЧИТАТЬ ДАЛЬШЕ</span></button>');
+            }
+            $('.js-btn-more-text').on('click', function () {
+                $('.wrapit').addClass('show');
+                $(this).addClass('hide');
+            });
+        }
+        if ($(window).width() >= 1024) {
+            textMain.children('.wrapit').children().unwrap();
+            $('.add').remove();
+            $('.js-btn-more-text').remove();
+        }
+
+        console.log(textMain.children());
+
+    }
+
+    adaptiveText();
+
 
 
     //правильный пересчет функций на ресайз
     var resizeFn = debounce(function() {
         accordion();
-        afishaSliderSettings();
+        multipleItemsSliderSettings();
+        adaptiveText();
     }, 300);
 
     $(window).on("resize", resizeFn);

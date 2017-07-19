@@ -31,7 +31,7 @@
     height: 523.95px;
   }
 
-  .main-slider-btn {
+  .main-slider-info {
     width: 848px;
   }
 
@@ -101,6 +101,20 @@
       width: 33.3333%;
     }
   }
+
+  .columns-2-section {
+
+    &__inner {
+      &__left {
+        width: 70%;
+      }
+
+      &__right {
+        width: 30%;
+      }
+    }
+  }
+
 }
 
 //от 700 до 1023 для ипад меню
@@ -234,9 +248,12 @@
       }
     }
   }
-  .main-slider-btn {
+  .main-slider-info {
     width: 100%;
     text-align: center;
+  }
+  .main-slider-info--title {
+    display: none;
   }
   .section {
 
@@ -463,6 +480,12 @@
     &--shop {
       margin-bottom: 88px;
     }
+    &--extra {
+      margin-bottom: 78px;
+      h2 {
+        margin-bottom: 42px;
+      }
+    }
   }
   .typical-accordion {
     .accordion-control {
@@ -533,6 +556,41 @@
       }
     }
   }
+
+  .columns-2-section {
+    margin-bottom: 80px;
+
+    &__inner {
+      &__left {
+        width: 100%;
+      }
+
+      &__right {
+        display: none;
+      }
+    }
+    h1 {
+      @include fontSize(38px);
+      line-height: 105%;
+      margin-bottom: 15px;
+    }
+  }
+  .mobile--view {
+    display: block;
+
+    .item--shop {
+      margin-top: 0;
+    }
+  }
+  .section--gallery {
+    display: none;
+  }
+  .text-additional {
+    display: none;
+  }
+  .video-container {
+    display: none;
+  }
 }
 
 //тут ховеры для > 1024
@@ -600,7 +658,7 @@
           transition: $transition;
 
           span {
-            border-bottom: solid 1px rgba(38, 38, 38, 0.8);
+            border-bottom: solid 1px $violet-blue;
           }
         }
         .btn {

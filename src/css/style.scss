@@ -1050,6 +1050,10 @@ ul {
     position: relative;
   }
 }
+
+.slider {
+  margin-bottom: 44px;
+}
 .slick-main{
 
   .slick-slide {
@@ -1091,10 +1095,18 @@ ul {
   }
 }
 
-.main-slider-btn {
+.main-slider-info {
   width: 984px;
   margin-top: 32px;
   @include push--auto;
+}
+.main-slider-info--title {
+  margin-top: 24px;
+  @include fontSize(14px);
+  font-weight: 500;
+  line-height: 1.5;
+  color: #939393;
+  min-height: 42px;
 }
 
 .slick-arrow {
@@ -1105,6 +1117,7 @@ ul {
   background-color: rgba(38, 38, 38, 0.5);
   z-index: 2;
   color: $pale-grey;
+  font-size: 0;
 
   &:before {
     font-size: 45px;
@@ -1115,6 +1128,28 @@ ul {
 }
 .slick-prev {
   left: 0;
+}
+.slick-main--with-arrows {
+  .slick-arrow {
+    position: absolute;
+    width: 48px;
+    height: 264px;
+    top: 50%;
+    margin-top: -132px;
+    background-color: transparent;
+    z-index: 2;
+    color: $pale-grey;
+
+    &:before {
+      font-size: 45px;
+    }
+  }
+  .slick-next {
+    right: 60px;
+  }
+  .slick-prev {
+    left: 60px;
+  }
 }
 .slick-dots {
   position: absolute;
@@ -1167,9 +1202,17 @@ ul {
     white-space: normal;
     .desc {
       .btn-centered {
-        margin-bottom: 61px;
+        margin-bottom: 39px;
       }
     }
+  }
+  .slick-arrow {
+    transition: $transition;
+  }
+  .slick-disabled {
+    z-index: -1;
+    opacity: 0;
+    transition: $transition;
   }
 }
 
@@ -1188,6 +1231,7 @@ ul {
     padding-top: 21px;
     color: $warm-grey-two;
     transition: $transition;
+    padding-bottom: 22px;
 
     &__date {
       margin-bottom: 20.2px;
@@ -1279,6 +1323,15 @@ ul {
   &--shop {
     margin-bottom: 72px;
   }
+  &--extra {
+    margin-bottom: 111px;
+  }
+  &--gallery {
+    margin-bottom: 57px;
+  }
+  &--partners {
+    margin-bottom: 110px;
+  }
 
   &__inner {
     position: relative;
@@ -1287,6 +1340,7 @@ ul {
   &--limited {
     max-width: 1272px;
     @include push--auto;
+    box-sizing: border-box;
   }
 
   &__header {
@@ -1856,6 +1910,141 @@ ul {
   }
 }
 
+.columns-2-section {
+  @include push--auto;
+  box-sizing: border-box;
+  margin-bottom: 110px;
+
+  &__inner {
+    display: flex;
+    justify-content: space-between;
+    margin-left: -12px;
+    margin-right: -12px;
+    box-sizing: border-box;
+
+    &__left {
+      width: 66.66666667%;
+      padding-right: 12px;
+      padding-left: 12px;
+      box-sizing: border-box;
+    }
+
+    &__right {
+      width: 25%;
+      padding: 0 12px;
+      padding-top: 10px;
+      box-sizing: border-box;
+    }
+
+    .item--shop {
+      margin: 0 -4px;
+    }
+  }
+  h1 {
+    margin-bottom: 45px;
+  }
+  .description {
+    margin-bottom: 9px;
+  }
+  .btn-wrap {
+    margin-bottom: 31px;
+    font-size: 0;
+
+    .btn {
+      margin-right: 58px;
+      margin-bottom: 15px;
+    }
+  }
+  .font-gmtext {
+    p {
+      @include fontSize(24px);
+      line-height: calculateRem(36px);
+      margin-bottom: calculateRem(50px);
+    }
+  }
+  .age-limited {
+    margin-top: 19px;
+    margin-bottom: 48px;
+  }
+
+  .wrapit {
+    max-height: 0;
+    overflow: hidden;
+
+    &.show {
+      max-height: 100%;
+    }
+  }
+
+  .more-text {
+    display: block;
+    margin-top: 16px;
+
+    &.hide {
+      display: none;
+    }
+  }
+
+}
+.mobile--view {
+  display: none;
+  .description__date {
+    margin-bottom: 39px;
+  }
+  .item--shop {
+    max-width: 272px;
+    @include push--auto;
+    margin-top: 79px;
+  }
+}
+h1 {
+  @include fontSize(48px);
+  font-weight: 500;
+  color: $greyish-brown;
+  margin: 0;
+}
+.age-limited {
+  &__badge {
+    display: table;
+    width: calculateRem(35px);
+    height: calculateRem(35px);
+    border-radius: 50%;
+    border: 1px solid #939393;
+    color: #939393;
+    text-align: center;
+
+    span {
+      display: table-cell;
+      vertical-align: middle;
+      @include fontSize(14px);
+      font-weight: 500;
+    }
+  }
+}
+
+.description--item, .underline-text {
+  margin-bottom: 11px;
+  display: inline-block;
+  @include fontSize(14px);
+  font-weight: 500;
+  letter-spacing: -0.1px;
+  transition: $transition;
+
+  span {
+    border-bottom: solid 1px $warm-grey-two;
+    display: inline;
+    padding-bottom: 2px;
+    text-transform: uppercase;
+  }
+}
+
+.description-hover:hover {
+  color: $violet-blue;
+
+  span {
+    border-bottom: solid 1px $violet-blue;
+  }
+}
 
 @import "partials/contrast";
 @import "partials/media";
