@@ -1276,6 +1276,19 @@ ul {
       padding-right: 19px;
       @include fontSize(14px);
     }
+
+    &__title {
+      display: inline-block;
+      margin-bottom: 9px;
+      font-weight: 500;
+      padding-left: 16px;
+      padding-right: 19px;
+    }
+    &__amount {
+      font-weight: 500;
+      padding-left: 16px;
+      padding-right: 19px;
+    }
     p {
       margin-bottom: 14px;
       padding-left: 16px;
@@ -1331,8 +1344,45 @@ ul {
   }
   &--partners {
     margin-bottom: 110px;
-  }
 
+    .column-wrap {
+      display: flex;
+      flex-wrap: wrap;
+      padding-top: 28px;
+      padding-left: 8px;
+      padding-right: 8px;
+      .column {
+        width: 25%;
+        margin-bottom: 28px;
+        padding: 0 20px;
+        box-sizing: border-box;
+        white-space: normal;
+
+        .head {
+          min-height: 42px;
+          margin-bottom: 22px;
+        }
+        .pics {
+          a {
+            display: inline-block;
+            vertical-align: top;
+            margin-right: 20px;
+
+            &:last-child {
+              margin-right: 0;
+            }
+          }
+          img {
+            max-width: 100%;
+          }
+        }
+      }
+    }
+
+  }
+  &--abonements {
+    margin-bottom: 111px;
+  }
   &__inner {
     position: relative;
   }
@@ -2038,11 +2088,44 @@ h1 {
   }
 }
 
+
+
 .description-hover:hover {
   color: $violet-blue;
 
   span {
     border-bottom: solid 1px $violet-blue;
+  }
+}
+
+.text-6 {
+  @include fontSize(14px);
+  font-weight: 500;
+  line-height: 150%;
+  letter-spacing: 0;
+  color: $warm-grey-two;
+}
+
+.section--abonements {
+  &__wrapper {
+    display: flex;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    margin: 0 -12px;
+
+    .item {
+      width: 33.33333%;
+      transition: $transition;
+      box-sizing: border-box;
+      .desc {
+        padding-top: 18px;
+        padding-bottom: 30px;
+      }
+      img {
+        width: 100%;
+        display: block;
+      }
+    }
   }
 }
 
