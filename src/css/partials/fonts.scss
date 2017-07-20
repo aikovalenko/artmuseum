@@ -1,4 +1,4 @@
-[class^="icon-"], [class*=" icon-"], .slick-arrow, .select2-selection__arrow {
+[class^="icon-"], [class*=" icon-"], .slick-arrow, .select2-selection__arrow, .lg-prev, .lg-next {
   /* use !important to prevent issues with browser extensions that change fonts */
   font-family: 'icomoon' !important;
   speak: none;
@@ -27,6 +27,13 @@
   &:before {
     content: "\e90c";
   }
+}
+
+.lg-actions .lg-prev:after {
+  content: "\e90a";
+}
+.lg-actions .lg-next:before {
+  content: "\e90b";
 }
 
 .icon-search:before {

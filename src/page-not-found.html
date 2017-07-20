@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ru">
+  @@include('partials/head.html')
+  <body class="bg-primary page-404">
+
+
+    <main class="">
+      <div class="full-page-background color-pale-grey js-full-page-background" style="">
+        <div class="full-page-background__inner color-pale-grey">
+          <h1>ОШИБКА 404<br>СТРАНИЦА НЕ НАЙДЕНА</h1>
+          <a class="btn btn--go-back bg-violet-blue js-go-to-prev" href="" title="Вернуться на предыдущую страницу."><span>ВЕРНУТЬСЯ</span></a>
+        </div>
+        <div class="full-page-background__title js-full-page-background-title"></div>
+      </div>
+    </main>
+
+
+  <script src='js/libs.js'></script>
+  <script src='js/scripts.js'></script>
+  <script>
+      var pageNotFoundPath = 'images/pnf/',
+          pageNotFoundObj = [
+              {
+                  "pic": pageNotFoundPath + '1.jpg',
+                  "desc": "Паоло Кальяри, прозванный Веронезе (около 1528 – 1588). Воскресение Христа. Около 1575. Холст, масло.<br>Москва, ГМИИ им. А.С. Пушкина"
+              },
+              {
+                  "pic": pageNotFoundPath + '2.jpg',
+                  "desc": "Зимний пейзаж с птичьей западней. Питер II Брейгель (Младший). Антверпен. 1620-е годы. Дерево, масло.<br>Москва, ГМИИ им. А.С. Пушкина"
+              },
+              {
+                  "pic": pageNotFoundPath + '3.jpg',
+                  "desc": "Парусники в море. Неизвестный художник. 1750. Голландия. Масло.<br>Москва, ГМИИ им. А.С. Пушкина"
+              },
+              {
+                  "pic": pageNotFoundPath + '4.jpg',
+                  "desc": "Зимний пейзаж с крестьянами на льду озера за пределами города. Томас Хереманс. 1681. Голландия. Холст, масло.<br>Из интернета взял"
+              }
+          ];
+  </script>
+  </body>
+</html>

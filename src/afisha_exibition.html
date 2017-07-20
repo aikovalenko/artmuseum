@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="ru">
   @@include('partials/head.html')
   <body class="bg-primary afisha-exhibition-page">
     @@include('partials/header.html')
@@ -112,37 +112,38 @@
           </div>
         </div>
 
-        <section class="section section--gallery">
+        <section class="section section--gallery ">
           <div class="section__inner">
             <div class="scroller-wrap">
               <div class="scroller">
-                <div class="slick-slider multiple-items-slider js-multiple-items-slider">
+                <div class="slick-slider multiple-items-slider js-multiple-items-slider js-gallery">
                   <div class="slide">
                     <div class="item item--card bg-white-two">
-                      <a class="" href="" title=""><img src="http://via.placeholder.com/264x390/5100d3/ffffff" alt=""></a>
+                      <a class="js-gallery-item" href="" data-src="/images/des/test.jpg" data-sub-html="Ясумаса Моримура. История искусства в автопортретах. Ван Эйк в красном тюрбане. 2016.<br>
+Фотография, цветная печать. Собрание автора." title=""><img src="http://via.placeholder.com/264x390/5100d3/ffffff" alt=""></a>
                     </div>
                     <div class="item item--card bg-white-two">
-                      <a class="" href="" title=""><img src="http://via.placeholder.com/264x290/5100d3/ffffff" alt=""></a>
+                      <a class="js-gallery-item" href="" data-src="/images/des/test.jpg" data-sub-html="testtestes" title=""><img src="http://via.placeholder.com/264x290/5100d3/ffffff" alt=""></a>
                     </div>
                     <div class="item item--card bg-white-two">
-                      <a class="" href="" title=""><img src="http://via.placeholder.com/264x200/5100d3/ffffff" alt=""></a>
+                      <a class="js-gallery-item" href="" data-src="/images/des/test.jpg" title=""><img src="http://via.placeholder.com/264x200/5100d3/ffffff" alt=""></a>
                     </div>
                     <div class="item item--card bg-white-two">
-                      <a class="" href="" title=""><img src="http://via.placeholder.com/264x340/5100d3/ffffff" alt=""></a>
+                      <a class="js-gallery-item" href="" data-src="/images/des/test.jpg" title=""><img src="http://via.placeholder.com/264x340/5100d3/ffffff" alt=""></a>
                     </div>
                   </div>
                   <div class="slide">
                     <div class="item item--card bg-white-two">
-                      <a class="" href="" title=""><img src="http://via.placeholder.com/264x390/5100d3/ffffff" alt=""></a>
+                      <a class="js-gallery-item" href="" data-src="/images/des/test.jpg" title=""><img src="http://via.placeholder.com/264x390/5100d3/ffffff" alt=""></a>
                     </div>
                     <div class="item item--card bg-white-two">
-                      <a class="" href="" title=""><img src="http://via.placeholder.com/264x290/5100d3/ffffff" alt=""></a>
+                      <a class="js-gallery-item" href="" data-src="/images/des/test.jpg" title=""><img src="http://via.placeholder.com/264x290/5100d3/ffffff" alt=""></a>
                     </div>
                     <div class="item item--card bg-white-two">
-                      <a class="" href="" title=""><img src="http://via.placeholder.com/264x200/5100d3/ffffff" alt=""></a>
+                      <a class="js-gallery-item" href="" data-src="/images/des/test.jpg" title=""><img src="http://via.placeholder.com/264x200/5100d3/ffffff" alt=""></a>
                     </div>
                     <div class="item item--card bg-white-two">
-                      <a class="" href="" title=""><img src="http://via.placeholder.com/264x340/5100d3/ffffff" alt=""></a>
+                      <a class="js-gallery-item" href="" data-src="/images/des/test.jpg" title=""><img src="http://via.placeholder.com/264x340/5100d3/ffffff" alt=""></a>
                     </div>
                   </div>
                 </div>
@@ -554,66 +555,56 @@
       </section>
 
 
-      <section class="section section--abonements section--limited">
+      <section class="section section--abonements section--grid section--limited">
         <div class="section__header">
           <h2 class="color-greyish-brown">АБОНЕМЕНТЫ ЛЕКТОРИЯ</h2>
         </div>
         <div class="section__inner padding">
           <div class="scroller-wrap">
             <div class="scroller">
-              <div class="section--abonements__wrapper">
-                <div class="item item--card bg-white-two">
-                  <a class="" href="" title=""><img src="http://via.placeholder.com/360x400/5100d3/fffff" alt=""></a>
-                  <div class="desc">
-                    <a class="desc__title" href="" title="">Для учащихся начальной школы</a>
-                    <div class="font-gmtext">
-                      <p>Искусство Древнего мира, Средних веков и эпохи Возрождения</p>
+              <div class="section--grid__wrapper grid--desktop">
+                <div class="grid-sizer"></div>
+                <div class="grid-item">
+                  <div class="item item--card bg-white-two">
+                    <a class="" href="" title=""><img src="http://via.placeholder.com/360x400/5100d3/fffff" alt=""></a>
+                    <div class="desc">
+                      <a class="desc__title" href="" title="">Для учащихся начальной школы</a>
+                      <div class="font-gmtext">
+                        <p>Искусство Древнего мира, Средних веков и эпохи Возрождения</p>
+                      </div>
+                      <a class="desc__amount" href="" title="">12 занятий</a>
                     </div>
-                    <a class="desc__amount" href="" title="">12 занятий</a>
                   </div>
                 </div>
-                <div class="item item--card bg-white-two">
-                  <a class="" href="" title=""><img src="http://via.placeholder.com/360x200/5100d3/ffffff" alt=""></a>
-                  <div class="desc">
-                    <a class="desc__title" href="" title="">Для взрослых посетителей</a>
-                    <div class="font-gmtext">
-                      <p>Рождение авангарда в искусстве начала ХХ века: фовизм, кубизм, экспрессионизм, футуризм, дадаизм</p>
+                <div class="grid-item">
+                  <div class="item item--card bg-white-two">
+                    <a class="" href="" title=""><img src="http://via.placeholder.com/360x200/5100d3/ffffff" alt=""></a>
+                    <div class="desc">
+                      <a class="desc__title" href="" title="">Для взрослых посетителей</a>
+                      <div class="font-gmtext">
+                        <p>Рождение авангарда в искусстве начала ХХ века: фовизм, кубизм, экспрессионизм, футуризм, дадаизм</p>
+                      </div>
+                      <a class="desc__amount" href="" title="">6 занятий</a>
                     </div>
-                    <a class="desc__amount" href="" title="">6 занятий</a>
                   </div>
                 </div>
-                <div class="item item--card bg-white-two">
-                  <a class="" href="" title=""><img src="http://via.placeholder.com/360x350/5100d3/ffffff" alt=""></a>
-                  <div class="desc">
-                    <a class="desc__title" href="" title="">Для взрослых посетителей</a>
-                    <div class="font-gmtext">
-                      <p>Рождение авангарда в искусстве начала ХХ века: фовизм, кубизм, экспрессионизм, футуризм, дадаизм</p>
+                <div class="grid-item">
+                  <div class="item item--card bg-white-two">
+                    <a class="" href="" title=""><img src="http://via.placeholder.com/360x350/5100d3/ffffff" alt=""></a>
+                    <div class="desc">
+                      <a class="desc__title" href="" title="">Для взрослых посетителей</a>
+                      <div class="font-gmtext">
+                        <p>Рождение авангарда в искусстве начала ХХ века: фовизм, кубизм, экспрессионизм, футуризм, дадаизм</p>
+                      </div>
+                      <a class="desc__amount" href="" title="">8 занятий</a>
                     </div>
-                    <a class="desc__amount" href="" title="">8 занятий</a>
-                  </div>
-                </div>
-                <div class="item item--card bg-white-two">
-                  <a class="" href="" title=""><img src="http://via.placeholder.com/360x350/5100d3/ffffff" alt=""></a>
-                  <div class="desc">
-                    <a class="desc__title" href="" title="">Для взрослых посетителей</a>
-                    <div class="font-gmtext">
-                      <p>Рождение авангарда в искусстве начала ХХ века: фовизм, кубизм, экспрессионизм, футуризм, дадаизм</p>
-                    </div>
-                    <a class="desc__amount" href="" title="">8 занятий</a>
-                  </div>
-                </div>
-                <div class="item item--card bg-white-two">
-                  <a class="" href="" title=""><img src="http://via.placeholder.com/360x350/5100d3/ffffff" alt=""></a>
-                  <div class="desc">
-                    <a class="desc__title" href="" title="">Для взрослых посетителей</a>
-                    <div class="font-gmtext">
-                      <p>Рождение авангарда в искусстве начала ХХ века: фовизм, кубизм, экспрессионизм, футуризм, дадаизм</p>
-                    </div>
-                    <a class="desc__amount" href="" title="">8 занятий</a>
                   </div>
                 </div>
               </div>
             </div>
+          </div>
+          <div class="btn-centered">
+            <a class="btn btn--more btn--border" href="" title=""><span>ПОКАЗАТЬ ЕЩЕ</span></a>
           </div>
         </div>
       </section>

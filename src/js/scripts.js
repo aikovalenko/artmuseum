@@ -66,7 +66,10 @@ function deleteCookie(name) {
     })
 }
 
-
+//получаем случайное число от min  до max
+function getRandomInt(min, max) {
+    return Math.floor(Math.random() * (max - min + 1) + min);
+}
 
 
 
@@ -569,6 +572,20 @@ $(document).ready(function() {
         columnWidth: '.grid-sizer'
     });
 
+    function masonryForDesktop() {
+        var $gridDesktop = $('.grid--desktop').masonry({
+            // options
+
+            itemSelector: '.grid-item',
+            columnWidth: '.grid-sizer'
+        });
+
+        if ($(window).width() < 1024) {
+            $gridDesktop.masonry('destroy');
+        } else $gridDesktop
+    }
+    masonryForDesktop();
+
 
     $(function() {
         var html = $("html"),
@@ -637,7 +654,6 @@ $(document).ready(function() {
 
         if ($(window).width() < 1024) {
             if ($('.add').length < 1 ) {
-                console.log();
                 textMain.append('<div class="add">' + textAdditionalHtml + '</div>');
                 textMain.children('p,div').not(':first-child').wrapAll('<div class="wrapit" />');
                 textMain.children('p:first-child').append('<button class="underline-text more-text color-warm-grey-two js-btn-more-text"><span>ЧИТАТЬ ДАЛЬШЕ</span></button>');
@@ -653,11 +669,76 @@ $(document).ready(function() {
             $('.js-btn-more-text').remove();
         }
 
-        console.log(textMain.children());
 
     }
 
     adaptiveText();
+
+    var lightGallery = $(".js-gallery").lightGallery({
+        selector: '.js-gallery-item',
+        counter: false,
+        download: false,
+        pager: true,
+        actualSize: false,
+        zoom: false,
+        thumbnail: false,
+        share: false,
+        fullScreen: false,
+        autoplayControls: false,
+        enableSwipe: false,
+        enableDrag: true,
+        hideBarsDelay: 999999
+    });
+
+    function adaptiveLightGallery() {
+
+
+        if ($(window).width() < 580) {
+
+            function logic() {
+                $(".lg-sub-html").wrapInner('<div class="lg-sub-html__inner js-lg-info"></div>');
+                $(".lg-sub-html").prepend('<div class="lg-sub-html__badge js-lg-info-call">i</div>');
+                $(".lg-sub-html__inner").prepend('<div class="close js-lg-info-close"></div><div class="lg-sub-html__head">Информация</div> ');
+                $('.js-lg-info-call').on('click', function () {
+                    $('.js-lg-info').addClass('show');
+                    $('.lg-outer').addClass('lg-outer-back');
+                });
+                $('.js-lg-info-close').on('click', function () {
+                    $('.js-lg-info').removeClass('show');
+                    $('.lg-outer').removeClass('lg-outer-back');
+                });
+            }
+            lightGallery.on('onAferAppendSlide.lg', function () {
+                if ($('.js-lg-info').length < 1 ) {
+                    logic();
+                }
+            });
+            lightGallery.on('onAfterSlide.lg', function () {
+                if ($('.js-lg-info').length < 1 ) {
+                    logic();
+                }
+            });
+        }
+    }
+    adaptiveLightGallery();
+
+    //кнопка вернуться назад
+    $('.js-go-to-prev').on("click", function(e) {
+        e.preventDefault();
+        window.history.go(-1);
+    });
+
+
+    //выбираем случайный фон для страницы 404, сам объект находится на странице
+    function setRandomBackground() {
+        var randomNum = getRandomInt(0, pageNotFoundObj.length - 1);
+
+        $('.js-full-page-background').css('background-image', 'url(' + pageNotFoundObj[randomNum].pic + ')');
+        $('.js-full-page-background-title').html( pageNotFoundObj[randomNum].desc );
+    }
+    setRandomBackground();
+
+
 
 
 
@@ -666,6 +747,7 @@ $(document).ready(function() {
         accordion();
         multipleItemsSliderSettings();
         adaptiveText();
+        masonryForDesktop();
     }, 300);
 
     $(window).on("resize", resizeFn);

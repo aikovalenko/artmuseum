@@ -8,3 +8,4 @@
 //= ../libs/bootstrap/bootstrap.min.js
 //= ../libs/select2/dist/js/select2.min.js
 //= ../libs/masonry/dist/masonry.pkgd.min.js
+//= ../libs/lightgallery/dist/js/lightgallery-all.min.js

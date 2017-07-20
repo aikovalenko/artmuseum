@@ -122,7 +122,11 @@
       }
     }
   }
-
+  .full-page-background {
+    &__title {
+      left: 44px;
+    }
+  }
 }
 
 //от 700 до 1023 для ипад меню
@@ -594,7 +598,7 @@
     }
   }
   .section--gallery {
-    display: none;
+    //display: none;
   }
   .text-additional {
     display: none;
@@ -626,7 +630,8 @@
       padding: 0;
     }
   }
-  .section--abonements {
+  .section--grid {
+    margin-bottom: 81px;
 
     h2 {
       margin-bottom: 42px;
@@ -637,13 +642,59 @@
       display: block;
     }
     .scroller {
-      .item {
+      .grid-item {
         width: 272px;
         white-space: normal;
+        display: inline-block;
+        vertical-align: top;
+
+        &:nth-child(2) {
+          margin-left: 24px;
+        }
+        &:last-child {
+          margin-right: 24px;
+        }
+      }
+      .item {
+        margin: 0;
       }
     }
     .padding {
       padding: 0;
+    }
+    .btn--more {
+      display: none;
+    }
+  }
+  .section__header {
+    padding: 0 24px;
+  }
+
+  .page-404 {
+    h1 {
+      color: inherit;
+      @include fontSize(34px);
+      font-weight: 500;
+      line-height: 118%;
+    }
+    .btn--go-back {
+      margin-top: 25px;
+      padding-left: 16px;
+      padding-right: 16px;
+    }
+  }
+  .full-page-background {
+    justify-content: flex-start;
+
+
+    &__inner {
+      margin-bottom: 70px;
+      text-align: left;
+    }
+    &__title {
+      padding-right: 24px;
+      bottom: 27px;
+      left: 24px;
     }
   }
 }
@@ -654,7 +705,7 @@
     .grayscale-filter {
       filter: grayscale(100%);
     }
-    &:hover {
+    &:hover, &.active {
       .grayscale-filter {
         transition: $transition;
         filter: grayscale(0);
@@ -682,10 +733,18 @@
           background-color: $pale-grey;
         }
       }
+      .section--collections__name {
+        color: $violet-blue;
+        transition: $transition;
+      }
+      &.hover-white {
+        background-color: #fff;
+        transition: $transition;
+      }
     }
   }
   .item--bordered {
-    &:hover {
+    &:hover, &.active {
       border: 2px solid $violet-blue;
       transition: border .2s ease;
     }
@@ -723,11 +782,10 @@
       }
     }
   }
-  .section--abonements {
+  .section--grid {
     .item:hover {
       background-color: #fff;
       transition: $transition;
-
     }
   }
   .menu-mobile {
@@ -744,8 +802,64 @@
     width: auto;
   }
 
+
 }
 
+
+//от 0 до 580
+@media screen and (max-width: em(580px, 16px)) {
+  .lg-outer {
+    .lg-image {
+      height: 100% !important;
+      max-width: none !important;
+    }
+    .lg-img-wrap {
+      padding: 0;
+      overflow: scroll;
+    }
+    .lg-pager-thumb-cont {
+      display: none;
+    }
+    .lg-pager-outer {
+      display: block;
+    }
+    .lg-sub-html {
+      margin: 0 16px;
+    }
+  }
+  .lg-actions {
+    .lg-next, .lg-prev {
+      display: none;
+    }
+  }
+  .lg-toolbar {
+    .lg-close {
+      &:after, &:before {
+        background-color: #fff;
+      }
+    }
+  }
+  .lg-inner {
+    position: relative;
+    &:after, &:before {
+      position: absolute;
+      content: '';
+      display: block;
+      width: 100%;
+      height: 106px;
+      z-index: 1070;
+      transition: $transition;
+    }
+    &:after{
+      top: 0;
+      background-image: linear-gradient(to top, rgba(38, 38, 38, 0.0), $black);
+    }
+    &:before {
+      bottom: 0;
+      background-image: linear-gradient(to bottom, rgba(38, 38, 38, 0.0), $black);
+    }
+  }
+}
 
 //от 0 до 480
 @media screen and (max-width: em(480px, 16px)) {
