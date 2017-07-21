@@ -17,6 +17,12 @@
     &__menu {
       max-width: 848px;
     }
+    .main-menu-under {
+      .dropdown {
+        line-height: 167%;
+        @include fontSize(24px);
+      }
+    }
   }
 
   .footer {
@@ -126,6 +132,11 @@
     &__title {
       left: 44px;
     }
+  }
+
+
+  .col-8 {
+    width: 80%;
   }
 }
 
@@ -280,6 +291,17 @@
         margin-bottom: 30px;
       }
     }
+
+    &__description {
+      margin-bottom: 44px;
+      margin-top: 5px;
+      .btn--more-text {
+        margin-top: 16px;
+      }
+      p {
+        text-align: left;
+      }
+    }
   }
 
   .section--4-column {
@@ -320,6 +342,8 @@
         display: none;
       }
     }
+  }
+  .section--with-filters {
     &__filter {
       &.opened {
         margin-bottom: 0;
@@ -359,6 +383,9 @@
       .btn {
         margin-bottom: 15px;
       }
+    }
+    .btn--more {
+      margin-top: 48px;
     }
   }
 
@@ -471,14 +498,11 @@
   }
   .section {
 
-    &--collection {
-      margin-bottom: 94px;
-    }
     &--afisha {
       margin-bottom: 89px;
     }
     &--media {
-      margin-bottom: 111px;
+      margin-bottom: 78px;
     }
     &--museum {
       margin-bottom: 79px;
@@ -497,6 +521,18 @@
       h2 {
         margin-bottom: 42px;
       }
+    }
+    &--collection {
+      margin-bottom: 72px;
+    }
+    &--collections-filters {
+      margin-bottom: 72px;
+    }
+    &--info {
+      margin-bottom: 67px;
+    }
+    &--with-filters {
+      margin-bottom: 69px;
     }
   }
   .typical-accordion {
@@ -551,10 +587,12 @@
   .main-menu-under {
     display: none;
   }
-  .section--afisha__filter__inner {
-    display: none;
-  }
   .section--afisha {
+    .section--with-filters__filter__inner {
+      display: none;
+    }
+  }
+  .section--with-filters {
 
     &__filter {
 
@@ -568,7 +606,34 @@
       }
     }
   }
+  .section--with-filters__filter {
+    overflow: hidden;
+  }
+  .section--with-filters__filter__inner {
+    margin-top: 0 !important;
+    display: block;
+    overflow-x: scroll;
+    overflow-y: hidden;
+    white-space: nowrap;
+    margin-bottom: -30px;
+    padding-bottom: 30px;
+    -webkit-overflow-scrolling: touch;
 
+    .select {
+      display: inline-block;
+      width: 210px;
+      margin: 0;
+
+      &:first-child {
+        margin-left: 24px;
+      }
+
+      &:last-child {
+        margin-right: 24px;
+      }
+    }
+
+  }
   .columns-2-section {
     margin-bottom: 80px;
 
@@ -638,8 +703,9 @@
     }
 
     &__wrapper {
-      margin: 0;
+      margin: 0 -4px;
       display: block;
+      font-size: 0;
     }
     .scroller {
       .grid-item {
@@ -656,7 +722,7 @@
         }
       }
       .item {
-        margin: 0;
+        margin: 0 4px;
       }
     }
     .padding {
@@ -667,7 +733,10 @@
     }
   }
   .section__header {
-    padding: 0 24px;
+    h2 {
+      padding: 0 24px;
+    }
+
   }
 
   .page-404 {
@@ -696,6 +765,76 @@
       bottom: 27px;
       left: 24px;
     }
+  }
+  .section--collections {
+    //margin-bottom: 72px;
+
+    .grid-item {
+      width: 100%;
+    }
+    .item--card {
+
+      margin-bottom: 20px;
+      background-color: transparent;
+      border: none;
+
+      img {
+        display: none;
+      }
+
+      &.active {
+        .section--collections__name {
+          color: $violet-blue;
+        }
+      }
+    }
+    &__name {
+      padding: 0;
+      @include fontSize(19px);
+      line-height: 147%;
+      color: $greyish-brown-two;
+    }
+
+
+  }
+  .collections__common-text {
+    margin-bottom: 72px;
+    p {
+      @include fontSize(14px);
+      font-weight: 500;
+      line-height: 1.5;
+    }
+  }
+  .filters-alphabet-wrap {
+    display: block;
+    margin-top: 24px;
+    a {
+      @include fontSize(34px);
+      letter-spacing: 9px;
+
+      &:last-child {
+        margin-right: 24px;
+      }
+    }
+  }
+  .items-list {
+    line-height: 1.64;
+  }
+  .item--card--bigger {
+    .desc {
+      p {
+        @include fontSize(28px);
+        line-height: 104%;
+      }
+    }
+  }
+  .select2-container--default .select2-selection__rendered .select2-selection__placeholder {
+    text-transform: none;
+    font-size: 16px;
+  }
+
+  .col-8 {
+    width: 100%;
   }
 }
 
@@ -726,6 +865,14 @@
 
           span {
             border-bottom: solid 1px rgba(38, 38, 38, 0.8);
+          }
+        }
+        &__link {
+          color: $violet-blue;
+
+          span {
+            border-bottom: solid 1px $violet-blue;
+            transition: $transition;
           }
         }
         .btn {
@@ -791,6 +938,9 @@
   .menu-mobile {
     display: none;
   }
+
+
+
 }
 
 

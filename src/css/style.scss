@@ -104,6 +104,22 @@ button {
   text-align: center;
 }
 
+.description--item, .underline-text {
+  margin-bottom: 11px;
+  display: inline-block;
+  @include fontSize(14px);
+  font-weight: 500;
+  letter-spacing: -0.1px;
+  transition: $transition;
+
+  span {
+    border-bottom: solid 1px $warm-grey-two;
+    display: inline;
+    padding-bottom: 2px;
+    text-transform: uppercase;
+  }
+}
+
 .btn {
   display: inline-block;
   padding: 12px 15px;
@@ -142,6 +158,17 @@ button {
   &--unavailable {
     background-color: $white-two;
     cursor: not-allowed;
+  }
+  &--more-text {
+    @include fontSize(12px);
+    font-weight: 500;
+    color: #939393;
+    cursor: pointer;
+
+    span {
+      padding-bottom: 4px;
+      border-color: #939393;
+    }
   }
 }
 
@@ -298,6 +325,9 @@ ul {
 .wrapper {
   @include push--auto;
   @include clearfix;
+}
+.push-auto {
+  @include push--auto;
 }
 .header__notifications__inner {
   @include clearfix;
@@ -1277,7 +1307,7 @@ ul {
         text-transform: uppercase;
       }
     }
-    &__technique {
+    &__details {
       margin-bottom: 22px;
       padding-left: 16px;
       padding-right: 19px;
@@ -1286,15 +1316,36 @@ ul {
 
     &__title {
       display: inline-block;
+      @include fontSize(16px);
       margin-bottom: 9px;
       font-weight: 500;
       padding-left: 16px;
       padding-right: 19px;
     }
     &__amount {
+      @include fontSize(16px);
       font-weight: 500;
       padding-left: 16px;
       padding-right: 19px;
+    }
+    &__link {
+      display: inline-block;
+      @include fontSize(14px);
+      padding-left: 15px;
+      padding-right: 19px;
+
+      span {
+        border-bottom: solid 1px $warm-grey-two;
+        display: inline;
+        padding-bottom: 2px;
+      }
+    }
+    &__extra {
+      margin-top: 20px;
+      padding-left: 14px;
+      padding-right: 12px;
+      @include fontSize(14px);
+      line-height: 150%;
     }
     p {
       margin-bottom: 14px;
@@ -1307,6 +1358,14 @@ ul {
 
   .collection__section-name {
 
+  }
+}
+.item--card--bigger {
+  .desc {
+    p {
+      @include fontSize(28px);
+      line-height: 104%;
+    }
   }
 }
 .item--bordered {
@@ -1393,7 +1452,10 @@ ul {
 
   }
   &--collections {
-    margin-bottom: 68px;
+    margin-bottom: 31px;
+  }
+  &--collections-filters {
+    margin-bottom: 111px;
   }
   &--grid {
     margin-bottom: 111px;
@@ -1470,6 +1532,36 @@ ul {
       }
     }
   }
+
+  &--info {
+    margin-bottom: 111px;
+    .section__description {
+      margin-top: 0;
+    }
+  }
+  &__description {
+    max-width: 960px;
+    margin-top: -22px;
+    margin-bottom: 72px;
+    p {
+      @include fontSize(24px);
+      line-height: 150%;
+      font-family: 'GMText', Arial, sans-serif;
+    }
+    .btn--more-text {
+      margin-top: 12px;
+    }
+  }
+
+  &--banner {
+    margin-bottom: 61px;
+    img {
+      width: 100%;
+    }
+  }
+  &--with-filters {
+    margin-bottom: 110px;
+  }
 }
 
 .controls-spec {
@@ -1516,14 +1608,14 @@ ul {
   padding-right: 72px;
 }
 
-.section--afisha {
+.section--with-filters {
 
   &__filter {
 
     &.opened {
       margin-bottom: 61px;
 
-      .section--afisha__filter__inner {
+      .section--with-filters__filter__inner {
         height: 32px;
         margin-top: -9px;
         transition: $transition;
@@ -1557,7 +1649,6 @@ ul {
         display: none;
         width: 176px;
         margin-left: 24px;
-        margin-top: -14px;
       }
 
       .btn {
@@ -1595,6 +1686,8 @@ ul {
     border: 1px solid $warm-grey-two;
     border-bottom: none;
     outline: none;
+
+
   }
   .select2-selection .select2-selection__rendered {
     color: $white-two;
@@ -1634,6 +1727,10 @@ ul {
     display: none;
   }
 }
+.select2-container--default .select2-selection__rendered .select2-selection__placeholder {
+  text-transform: uppercase;
+  color: $white-two;
+}
 .select2-container--open {
   .select2-selection {
     background-color: #fff;
@@ -1645,7 +1742,13 @@ ul {
     transform: rotate(180deg);
     color: $greyish-brown-two;
   }
+  .select2-selection__rendered .select2-selection__placeholder {
+    text-transform: uppercase;
+    color: $greyish-brown-two;
+  }
 }
+
+
 
 
 /*----- Accordion start -----*/
@@ -1701,6 +1804,10 @@ ul {
   .btn--more {
     margin-bottom: 16px;
     margin-top: 67px;
+  }
+
+  .item--card .desc {
+    padding-bottom: 0;
   }
 }
 
@@ -2090,21 +2197,7 @@ h1 {
   }
 }
 
-.description--item, .underline-text {
-  margin-bottom: 11px;
-  display: inline-block;
-  @include fontSize(14px);
-  font-weight: 500;
-  letter-spacing: -0.1px;
-  transition: $transition;
 
-  span {
-    border-bottom: solid 1px $warm-grey-two;
-    display: inline;
-    padding-bottom: 2px;
-    text-transform: uppercase;
-  }
-}
 
 
 
@@ -2363,6 +2456,7 @@ h1 {
 .section--collections {
 
   &__name {
+    display: block;
     padding: 0 15px;
     padding-top: 12px;
     padding-bottom: 29px;
@@ -2373,6 +2467,92 @@ h1 {
     color: $warm-grey-two;
     text-transform: uppercase;
   }
+
+
+}
+.collections__common-text {
+  margin-bottom: 108px;
+  margin-top: 40px;
+  p {
+    @include fontSize(19px);
+    font-weight: 500;
+    line-height: 111%;
+    letter-spacing: 1px;
+  }
+}
+
+.section--collections-filters {
+  .section__header__controls {
+    margin-bottom: 29px;
+  }
+  .btn--more {
+    margin-top: 66px;
+  }
+}
+
+.filters-alphabet-wrap {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 45px;
+
+  a {
+    @include fontSize(43px);
+    font-weight: 300;
+    line-height: 100%;
+    color: $warm-grey-two;
+    text-transform: uppercase;
+    transition: $violet-blue;
+
+    &:hover {
+      color: $violet-blue;
+      transition: $violet-blue;
+    }
+
+    &.active {
+      color: $violet-blue;
+      background-color: transparent;
+    }
+  }
+}
+
+.items-list {
+  @include fontSize(14px);
+  font-weight: 500;
+  line-height: 171%;
+
+  a {
+    transition: $transition;
+    &:hover {
+      color: $violet-blue;
+      transition: $transition;
+    }
+  }
+}
+
+
+.svg-appstore {
+  margin-left: 16px;
+  margin-top: 19px;
+  width: 112px;
+  height: 32px;
+  display: inline-block;
+  background: url("../images/svg/appstore.svg");
+  background-repeat: no-repeat;
+
+}
+
+.normalize-margin {
+  margin-top: 10px;
+}
+
+.filters-collections {
+  .select {
+    width: 360px;
+  }
+}
+
+.col-8 {
+  width: 66.66666667%;
 }
 
 

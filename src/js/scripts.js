@@ -270,7 +270,7 @@ $(document).ready(function() {
 
                 //на странице с афишей фильтр доступен всегда
                 if(!$('body').hasClass('afisha-page')) {
-                    $('.section--afisha__filter').removeClass('opened');
+                    $('.js-hidden-filter').removeClass('opened');
                 }
 
                 //для ситуации двух ul меню, сборс active
@@ -288,7 +288,7 @@ $(document).ready(function() {
     });
     $('.js-call-filter').click(function(e) {
         e.preventDefault();
-        $('.section--afisha__filter').addClass('opened');
+        $('.js-hidden-filter').addClass('opened');
     });
 
     //кнопки категорий в секции афиша
@@ -512,11 +512,14 @@ $(document).ready(function() {
         });
     });
 
-
-    $(".js-select").select2({
-        minimumResultsForSearch: Infinity
+    $(function() {
+        $('.js-select').each(function () {
+            $(this).select2({
+                minimumResultsForSearch: Infinity,
+                placeholder: $(this).attr('data-placeholder')
+            });
+        });
     });
-
 
     //подменю у главного меню
     $(function() {
@@ -531,6 +534,7 @@ $(document).ready(function() {
             under.removeClass('visible');
             dropdown.removeClass('visible');
             dropdownInner.removeClass('visible');
+            menu.removeClass('active');
         }
 
         menu.on("mouseenter", function() {
@@ -541,6 +545,7 @@ $(document).ready(function() {
                 var width = $this.offset(),
                     id = $('#' + num);
 
+                $this.addClass('active');
                 dropdown.removeClass('visible');
 
                 id.addClass('visible').css('left', width.left);
@@ -565,7 +570,7 @@ $(document).ready(function() {
         });
     });
 
-    var $grid = $('.grid').masonry({
+    var $grid = $('.js-grid').masonry({
         // options
 
         itemSelector: '.grid-item',
@@ -573,7 +578,7 @@ $(document).ready(function() {
     });
 
     function masonryForDesktop() {
-        var $gridDesktop = $('.grid--desktop').masonry({
+        var $gridDesktop = $('.js-grid--desktop').masonry({
             // options
 
             itemSelector: '.grid-item',
@@ -731,15 +736,22 @@ $(document).ready(function() {
 
     //выбираем случайный фон для страницы 404, сам объект находится на странице
     function setRandomBackground() {
-        var randomNum = getRandomInt(0, pageNotFoundObj.length - 1);
+        if (typeof pageNotFoundObj != "undefined") {
+            var randomNum = getRandomInt(0, pageNotFoundObj.length - 1);
 
-        $('.js-full-page-background').css('background-image', 'url(' + pageNotFoundObj[randomNum].pic + ')');
-        $('.js-full-page-background-title').html( pageNotFoundObj[randomNum].desc );
+            $('.js-full-page-background').css('background-image', 'url(' + pageNotFoundObj[randomNum].pic + ')');
+            $('.js-full-page-background-title').html(pageNotFoundObj[randomNum].desc);
+        }
     }
     setRandomBackground();
 
 
-
+    $(".js-more-text").on("click", function(){
+        $(".js-additional-text").slideToggle(400);
+        buf = $(this).attr("rel");
+        $(this).attr("rel",$(this).text());
+        $(this).children('span').text(buf);
+    });
 
 
     //правильный пересчет функций на ресайз
