@@ -643,6 +643,8 @@ ul {
     color: $black;
     text-transform: uppercase;
     box-sizing: border-box;
+    -webkit-appearance: none;
+    border-radius: 0;
 
     @include placeholder {
       opacity: 0.2;

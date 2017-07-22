@@ -264,6 +264,20 @@ $(document).ready(function() {
                 e.preventDefault();
             }
 
+            var width = $( this ).outerWidth(),
+                widthWindow = $(window).width(),
+                offsetLeft = $( this ).offset().left,
+                offsetRight = (widthWindow - (offsetLeft + width)),
+                scroller = block.find('.scroller');
+
+
+            if ( offsetRight < 30 ) {
+                scroller.animate({scrollLeft: '+=' + width}, 300);
+            }
+            if ( offsetLeft < -10 ) {
+                scroller.animate({scrollLeft: '-=' + width}, 300);
+            }
+
             $(this).addClass('active');
             block.find('.js-content-control-btn').not(this).each(function () {
                 $(this).removeClass('active');
@@ -518,8 +532,36 @@ $(document).ready(function() {
                 minimumResultsForSearch: Infinity,
                 placeholder: $(this).attr('data-placeholder')
             });
+            $(this).click(function() {
+                console.log('asd');
+            });
+
+
         });
+        $('.js-select').on('select2:opening', function (evt) {
+            // Do something
+            var $this = $( this ).parents('.select'),
+                width = $this.outerWidth(),
+                widthWindow = $(window).width(),
+                offsetLeft = $this.offset().left,
+                offsetRight = (widthWindow - (offsetLeft + width)),
+                scroller = $this.parents('.section--with-filters__filter__inner');
+
+
+            if ( offsetRight < 30 ) {
+                scroller.animate({scrollLeft: '+=' + width}, 300);
+                $('.select2-dropdown').addClass('dds');
+            }
+            // if ( offsetLeft < -10 ) {
+            //     scroller.animate({scrollLeft: '-=' + width}, 300);
+            // }
+            console.log($('.select2-dropdown').css('left', width));
+        });
+
     });
+
+
+
 
     //подменю у главного меню
     $(function() {
