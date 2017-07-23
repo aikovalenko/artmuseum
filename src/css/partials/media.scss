@@ -140,8 +140,8 @@
   }
 }
 
-//от 700 до 1023 для ипад меню
-@media screen and (max-width: em(1024px, 16px)) and (min-width: em(700px, 16px)) {
+//от 760 до 1023 для ипад меню
+@media screen and (max-width: em(1024px, 16px)) and (min-width: em(760px, 16px)) {
   .menu-mobile {
     right: 0;
     left: auto;

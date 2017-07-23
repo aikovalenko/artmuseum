@@ -270,12 +270,11 @@ $(document).ready(function() {
                 offsetRight = (widthWindow - (offsetLeft + width)),
                 scroller = block.find('.scroller');
 
-
             if ( offsetRight < 30 ) {
-                scroller.animate({scrollLeft: '+=' + width}, 300);
+                scroller.animate({scrollLeft: '+=' + (-offsetRight + widthWindow/4)}, 300);
             }
-            if ( offsetLeft < -10 ) {
-                scroller.animate({scrollLeft: '-=' + width}, 300);
+            if ( offsetLeft < 30 ) {
+                scroller.animate({scrollLeft: '-=' + (-offsetLeft + widthWindow/4)}, 300);
             }
 
             $(this).addClass('active');
@@ -373,44 +372,6 @@ $(document).ready(function() {
         dots: false,
         arrows: true
     };
-    //     afishaSlider = $('.js-multiple-items-slider').slick(multipleItemsSliderSets);
-    //
-    //
-    // function multipleItemsSliderSettings() {
-    //     $('.js-multiple-items-slider').each(function () {
-    //         var $this = $(this);
-    //         function unwrap() {
-    //             $this.slick('unslick');
-    //             $(this).find('.slide .item').unwrap();
-    //             $(this).find('.slide').remove();
-    //         }
-    //
-    //         function reset(num) {
-    //
-    //             unwrap();
-    //
-    //                 var divs = $this.find(".item");
-    //                 for (var i = 0; i < divs.length; i += num) {
-    //                     divs.slice(i, i + num).wrapAll("<div class='slide'></div>");
-    //                 }
-    //
-    //
-    //         }
-    //
-    //         if ($(window).width() < 1280) {
-    //             reset(3);
-    //             $this.slick(multipleItemsSliderSets);
-    //
-    //         }
-    //         if ($(window).width() >= 1280) {
-    //             reset(4);
-    //             $this.slick(multipleItemsSliderSets);
-    //         }
-    //         if ($(window).width() < 1024) {
-    //             unwrap();
-    //         }
-    //     });
-    // }
 
     $('.js-multiple-items-slider').each(function () {
         $(this).slick(multipleItemsSliderSets);
@@ -532,35 +493,12 @@ $(document).ready(function() {
                 minimumResultsForSearch: Infinity,
                 placeholder: $(this).attr('data-placeholder')
             });
-            $(this).click(function() {
-                console.log('asd');
-            });
-
-
-        });
-        $('.js-select').on('select2:opening', function (evt) {
-            // Do something
-            var $this = $( this ).parents('.select'),
-                width = $this.outerWidth(),
-                widthWindow = $(window).width(),
-                offsetLeft = $this.offset().left,
-                offsetRight = (widthWindow - (offsetLeft + width)),
-                scroller = $this.parents('.section--with-filters__filter__inner');
-
-
-            if ( offsetRight < 30 ) {
-                scroller.animate({scrollLeft: '+=' + width}, 300);
-                $('.select2-dropdown').addClass('dds');
-            }
-            // if ( offsetLeft < -10 ) {
-            //     scroller.animate({scrollLeft: '-=' + width}, 300);
-            // }
-            console.log($('.select2-dropdown').css('left', width));
         });
 
     });
-
-
+    $( '.section--with-filters__filter__inner' ).scroll(function() {
+        $(".js-select").select2("close");
+    });
 
 
     //подменю у главного меню
@@ -793,6 +731,7 @@ $(document).ready(function() {
         buf = $(this).attr("rel");
         $(this).attr("rel",$(this).text());
         $(this).children('span').text(buf);
+
     });
 
 
