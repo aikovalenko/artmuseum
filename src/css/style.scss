@@ -112,11 +112,59 @@ button {
   letter-spacing: -0.1px;
   transition: $transition;
 
+  &.color-pale-grey {
+    span {
+      border-bottom: solid 1px $pale-grey;
+    }
+  }
+
   span {
     border-bottom: solid 1px $warm-grey-two;
     display: inline;
     padding-bottom: 2px;
     text-transform: uppercase;
+  }
+
+  .icon {
+    display: none;
+    margin-left: 10px;
+    border-bottom: none;
+    @include fontSize(10px);
+    padding-bottom: 0;
+
+    &.show {
+      display: inline-block;
+    }
+  }
+  .icon-arrow-down {
+    transform: rotate(180deg);
+  }
+
+  &.no-underline {
+    span {
+      border-bottom: none;
+    }
+  }
+}
+
+.underline-text-normal {
+  display: inline-block;
+  @include fontSize(14px);
+  font-weight: 500;
+  letter-spacing: -0.1px;
+  transition: $transition;
+
+  span {
+    border-bottom: solid 1px #979797;
+    display: inline;
+    padding-bottom: 1px;
+  }
+
+  &:hover {
+    color: $violet-blue;
+    span {
+      border-bottom: solid 1px $violet-blue;
+    }
   }
 }
 
@@ -160,6 +208,7 @@ button {
     cursor: not-allowed;
   }
   &--more-text {
+    font-family: 'GMTypewriter', Arial, sans-serif;
     @include fontSize(12px);
     font-weight: 500;
     color: #939393;
@@ -301,6 +350,9 @@ button {
 }
 .bg-white-three {
   background-color: $white-three;
+}
+.bg-warm-grey-two {
+  background-color: $warm-grey-two;
 }
 
 //$black: #262626;
@@ -2125,7 +2177,7 @@ ul {
     font-size: 0;
 
     .btn {
-      margin-right: 58px;
+      margin-right: 46px;
       margin-bottom: 15px;
     }
   }
@@ -2218,7 +2270,10 @@ h1 {
   letter-spacing: 0;
   color: $warm-grey-two;
 }
-
+.link-text-hint {
+  display: inline-block;
+  margin-top: 15px;
+}
 .section--grid {
   &__wrapper {
     display: flex;
@@ -2551,6 +2606,165 @@ h1 {
 .filters-collections {
   .select {
     width: 360px;
+  }
+}
+
+.item-text {
+  .btn--more-text {
+    margin-top: 16px;
+  }
+  p {
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+}
+
+.mobile--view {
+  .item-description {
+    margin-bottom: 44px;
+  }
+}
+.item-description {
+  line-height: 150%;
+  @include fontSize(14px);
+
+  .description {
+    margin-bottom: 1rem;
+
+    &__building {
+      display: block;
+      margin-top: 43px;
+      width: 100%;
+      margin-bottom: 27px;
+      text-align: center;
+
+      img {
+        max-width: 170px;
+      }
+    }
+  }
+  .btn--more-text {
+    @include fontSize(14px);
+  }
+
+  &--popup {
+
+    &__call {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 72px;
+      height: 72px;
+      border-radius: 50%;
+      background-color: $warm-grey-two;
+      z-index: 999;
+
+      img {
+        max-width: 40px;
+      }
+    }
+
+    &__inner {
+      position: fixed;
+      max-height: 606px;
+      overflow-y: scroll;
+      padding: 0 16px;
+      padding-bottom: 5px;
+      margin: 0 16px;
+      //visibility: hidden;
+      background-color: #a4a4a5;
+      bottom: 0;
+      left: 0;
+      z-index: 999;
+      transform: translateY(100%);
+      transition: $transition;
+      opacity: 0;
+
+      &.open {
+        transform: translateY(-24px);
+        opacity: 1;
+      }
+
+      .close {
+        position: absolute;
+        right: 12.5px;
+        top: 12.5px;
+        &:before, &:after {
+          background-color: $pale-grey;
+        }
+      }
+    }
+  }
+}
+
+.slider--collection-item {
+  position: relative;
+  margin-bottom: 87px;
+  background-color: $black;
+}
+
+.slick--slider-collection-item {
+  .slick-slide {
+    position: relative;
+    img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      max-height: 100%;
+      max-width: 100%;
+      margin: auto;
+    }
+  }
+  .slick-prev {
+    left: 0;
+  }
+  .slick-next {
+    right: 0;
+  }
+  .slick-dots {
+    bottom: -42px;
+
+    li {
+
+      button {
+        background-color: $white-two;
+        opacity: 1;
+      }
+
+      &.slick-active {
+        button {
+          background-color: #939393;
+        }
+      }
+    }
+  }
+}
+
+.dz-iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: calc(100% + 55px);
+  width: 100%;
+  z-index: -1;
+
+  &.open {
+    z-index: 99;
+  }
+
+  .close {
+    position: absolute;
+    top: 30px;
+    right: 30px;
+    &:after, &:before {
+      background-color: $pale-grey;
+    }
   }
 }
 

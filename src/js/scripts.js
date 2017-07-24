@@ -230,6 +230,27 @@ $(document).ready(function() {
             }
         ]
     };
+    var sliderWithCollectionItem = {
+        infinite: true,
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        centerMode: false,
+        variableWidth: false,
+        dots: true,
+        arrows: true,
+        fade: true
+        // responsive: [
+        //     {
+        //         breakpoint: 1024,
+        //         settings: {
+        //             variableWidth: false,
+        //             // centerMode: true,
+        //             // centerPadding: '0px',
+        //             arrows: false
+        //         }
+        //     }
+        // ]
+    };
 
     function initSlider(initClass, sliderSets, dataAttr) {
         var mainSlider = $(initClass).slick(sliderSets).on('afterChange', function(event, slick, currentSlide, nextSlide){
@@ -246,6 +267,26 @@ $(document).ready(function() {
     initSlider('.js-main-slider', mainSliderSets, 'ticket' );
     initSlider('.js-slider-with-arrows', sliderWithArrowsSets, 'title' );
 
+
+    function adaptiveSlider() {
+        var height = $(window).height();
+        $('.js-slider-collection-item .slick-slide').css('height', height - 55);
+        $('.js-call-dz').click(function (e) {
+            e.preventDefault();
+
+            var dzLink = $(this).attr('data-dz');
+
+            console.log(dzLink);
+            $('.js-dz-iframe').attr('src', dzLink);
+            $('.dz-iframe').addClass('open');
+        });
+        $('.js-close-dz').click(function (e) {
+            $('.js-dz-iframe').attr('src', '');
+            $('.dz-iframe').removeClass('open');
+        });
+    }
+    initSlider('.js-slider-collection-item', sliderWithCollectionItem, 'title' );
+    adaptiveSlider();
 
 
 
@@ -634,14 +675,14 @@ $(document).ready(function() {
     function adaptiveText() {
         var textAdditional = $('.text-additional'),
             textAdditionalHtml = textAdditional.html(),
-            textMain = $('.text-main'),
+            textMain = $('.js-text-main'),
             textMainHtml = textMain.html();
 
         if ($(window).width() < 1024) {
             if ($('.add').length < 1 ) {
                 textMain.append('<div class="add">' + textAdditionalHtml + '</div>');
                 textMain.children('p,div').not(':first-child').wrapAll('<div class="wrapit" />');
-                textMain.children('p:first-child').append('<button class="underline-text more-text color-warm-grey-two js-btn-more-text"><span>ЧИТАТЬ ДАЛЬШЕ</span></button>');
+                textMain.children('p:first-child').append('<button class="underline-text more-text color-warm-grey-two js-btn-more-text"><span class="text">ЧИТАТЬ ДАЛЬШЕ</span></button>');
             }
             $('.js-btn-more-text').on('click', function () {
                 $('.wrapit').addClass('show');
@@ -727,11 +768,20 @@ $(document).ready(function() {
 
 
     $(".js-more-text").on("click", function(){
-        $(".js-additional-text").slideToggle(400);
+        $(this).prev(".js-additional-text").slideToggle(400);
+        $(this).toggleClass('no-underline');
+        $(this).find('.icon').toggleClass('show');
         buf = $(this).attr("rel");
-        $(this).attr("rel",$(this).text());
-        $(this).children('span').text(buf);
+        $(this).attr("rel", $(this).find('.text').text());
+        $(this).children('.text').text(buf);
 
+    });
+
+    $(".js-popup-description-call").on("click", function(){
+        $(this).next('.js-popup-description').addClass('open');
+    });
+    $(".js-popup-description-close").on("click", function(){
+        $(this).parent('.js-popup-description').removeClass('open');
     });
 
 
