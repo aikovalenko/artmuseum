@@ -771,6 +771,7 @@ $(document).ready(function() {
     setRandomBackground();
 
 
+    //кнопка показать больше текста
     $(".js-more-text").on("click", function(){
         $(this).prev(".js-additional-text").slideToggle(400);
         $(this).toggleClass('no-underline');
@@ -781,12 +782,36 @@ $(document).ready(function() {
 
     });
 
+
+    //вызов попапа с описанием в мобильной версии на странице предмета коллекции
     $(".js-popup-description-call").on("click", function(){
         $(this).next('.js-popup-description').addClass('open');
     });
     $(".js-popup-description-close").on("click", function(){
         $(this).parent('.js-popup-description').removeClass('open');
     });
+
+
+    //плавный фокус на области со слайдером на странице предмета коллекции
+    (function( $ ) {
+        $(function() {
+            var div = $('.slider--collection-item'),
+                divHeight = div.height(),
+                offset = div.offset(),
+                windowPosition = $(window).scrollTop();
+
+            $( window ).scroll(function() {
+                clearTimeout( $.data( this, "scrollCheck" ) );
+                windowPosition = $(window).scrollTop();
+                $.data( this, "scrollCheck", setTimeout(function() {
+                    console.log(offset.top, windowPosition);
+                    if ( (windowPosition > offset.top - 100) && (windowPosition < offset.top + divHeight/4 )) {
+                        $("html, body").animate({ scrollTop: offset.top });
+                    }
+                }, 550) );
+            });
+        });
+    })();
 
 
     //правильный пересчет функций на ресайз
