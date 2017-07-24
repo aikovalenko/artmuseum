@@ -1,0 +1,56 @@
+	html, body { width: 100%; height: 100%; margin: 0px; padding: 0px; background: #272a2f;}
+		
+	#openseadragon1 {position:aboslute;margin:0px;padding:0px;overflow:hidden;width:100%;height:100%;}
+
+	.openseadragon-canvas {outline: none!important;    border: 0!important;}
+
+	/* DZ Controls */
+/*	#osd_ctrl {position:absolute;width:200px;height:50px;display:block;top:50px;left:50px;}
+	.dz_buttons {width:40px;height:40px;}
+	*/
+	#osd_ctrl {
+		
+	}
+		
+	.dz_buttons { position: absolute !important;
+    
+    bottom: 40px;
+    right: 40px;display: block;  width: 37px; height: 37px; margin-left: 20px; border: 0; background-color: #fbfaf8; background-position: center; background-repeat: no-repeat; -webkit-background-size: 22px; -moz-background-size: 22px; -ms-background-size: 22px; -o-background-size: 22px; background-size: 22px; cursor: pointer; z-index: 10; pointer-events: all; border-radius: 0; -webkit-transition: background-color 0.2s ease; -moz-transition: background-color 0.2s ease; -ms-transition: background-color 0.2s ease; -o-transition: background-color 0.2s ease; transition: background-color 0.2s ease; }
+	.dz_buttons:hover { }
+	
+	#ZoomIn {
+        bottom: 120px;
+        background: url('../img/dz-in.png');
+    }	
+	
+	#ZoomOut {
+        bottom: 80px;
+        background: url('../img/dz-out.png');
+    }
+	
+	#Home {background: url('../img/dz-fit.png');}
+
+	.dzbuttons {
+    
+}
+.dzbuttons input {
+    margin-top: 5px;
+    width: 37px;
+    height: 37px;
+    border: none;  
+    cursor: pointer;
+}
+.dzbuttons #ZoomIn {
+    ;
+}
+.dzbuttons #ZoomOut {
+    ;
+}
+.dzbuttons #Home {
+    ;
+}
+	#FullPage {display:none !important;}
+	#NextPage {display:none !important;}
+	#PreviousPage {display:none !important;}
+	
+	.dz_cms_error {padding:100px 0px;text-align:center;color:red;}
