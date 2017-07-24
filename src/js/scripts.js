@@ -804,14 +804,13 @@ $(document).ready(function() {
                 clearTimeout( $.data( this, "scrollCheck" ) );
                 windowPosition = $(window).scrollTop();
                 $.data( this, "scrollCheck", setTimeout(function() {
-                    console.log(offset.top, windowPosition);
-                    if ( (windowPosition > offset.top - 100) && (windowPosition < offset.top + divHeight/4 )) {
+                    if ( (div.length > 0) && (windowPosition > offset.top - 100) && (windowPosition < offset.top + divHeight/4 )) {
                         $("html, body").animate({ scrollTop: offset.top });
                     }
                 }, 550) );
             });
         });
-    })();
+    })( jQuery );
 
 
     //правильный пересчет функций на ресайз

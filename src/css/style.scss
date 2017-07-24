@@ -529,7 +529,7 @@ ul {
       @include fontSize(18px);
       text-transform: uppercase;
     }
-    .active {
+    .active, .current {
       color: $violet-blue;
     }
   }
