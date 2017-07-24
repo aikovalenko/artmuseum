@@ -556,6 +556,7 @@ $(document).ready(function() {
             dropdown.removeClass('visible');
             dropdownInner.removeClass('visible');
             menu.removeClass('active');
+
         }
 
         menu.on("mouseenter", function() {
@@ -572,6 +573,9 @@ $(document).ready(function() {
                 id.addClass('visible').css('left', width.left);
                 under.addClass('visible');
                 under.css('height', id.height());
+
+                $(".main-controls__button").removeClass('active');
+                $(".main-controls-section-block").removeClass('opened');
             } else {
                 reset();
             }
