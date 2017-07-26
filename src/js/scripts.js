@@ -620,7 +620,7 @@ $(document).ready(function() {
                 target = $this.attr('data-target'),
                 preloader = $this.closest('.section--tabs').find('.preloader--content');
 
-            if (( array.indexOf(target)) < 1) {
+            if ((array.indexOf(target)) < 1 || (window.location.hash == '') ){
                 callAjaxContent(loadUrl, target, preloader);
 
                 $this.addClass('loaded');
