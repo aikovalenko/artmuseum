@@ -344,7 +344,7 @@ $(document).ready(function() {
 
             var dzLink = $(this).attr('data-dz');
 
-            console.log(dzLink);
+            // console.log(dzLink);
             $('.js-dz-iframe').attr('src', dzLink);
             $('.dz-iframe').addClass('open');
         });
@@ -361,12 +361,15 @@ $(document).ready(function() {
 
 
 
-    //кнопки переключеня контентом в секции, и в афише кнопка фильтра
+    //кнопки переключеня контентом в секции, и в афише кнопка фильтра/добавление window.history
     $('.js-content-control').each(function () {
         var block = $(this),
             btnFirst = $(this).find('.btn-first');
 
         $(this).find('.js-content-control-btn').click(function (e) {
+            var blockName = $(this).attr('data-target');
+
+            window.history.pushState('', 'Title', blockName);
 
             //если ссылка пуста
             if($(this).attr('href') == '') {
@@ -390,6 +393,7 @@ $(document).ready(function() {
             block.find('.js-content-control-btn').not(this).each(function () {
                 $(this).removeClass('active');
 
+
                 //на странице с афишей фильтр доступен всегда
                 if(!$('body').hasClass('afisha-page')) {
                     $('.js-hidden-filter').removeClass('opened');
@@ -408,6 +412,9 @@ $(document).ready(function() {
         }
         checkIfFirstIsActive();
     });
+
+
+
     $('.js-call-filter').click(function(e) {
         e.preventDefault();
         $('.js-hidden-filter').addClass('opened');
@@ -556,9 +563,10 @@ $(document).ready(function() {
                 target = $this.attr('data-target'),
                 preloader = $this.closest('.section--tabs').find('.preloader--content');
 
-            console.log(preloader);
+            // console.log(preloader);
 
             preloader.css('display', 'block');
+
 
             callAjaxContent(loadUrl,target,preloader);
             $this.addClass('loaded');
@@ -591,16 +599,33 @@ $(document).ready(function() {
     }
 
 
+    //загружаем contents в табы / загружаем по ссылке
+    var array = ['#friends', '#tours', '#departaments'];
     $(function() {
+
+        if (window.location.hash && ~array.indexOf(window.location.hash)) {
+            var loadUrl = window.location.hash.slice(1) + '.html',
+                target = window.location.hash;
+
+            callAjaxContent(loadUrl,target);
+            $('.tab-pane').removeClass('active');
+            // $('.js-content-control-btn').removeClass('active');
+            $('[data-target="' + target + '"]').parents('ul').find('.js-content-control-btn').removeClass('active');
+            $('[data-target="' + target + '"]').addClass('active');
+            $(target).addClass('active');
+        }
         $('.section--tabs').each(function () {
-        var $this = $(this).find('[data-toggle="tab"].active'),
-            loadUrl = $this.attr('href'),
-            target = $this.attr('data-target'),
-            preloader = $this.closest('.section--tabs').find('.preloader--content');
+            var $this = $(this).find('[data-toggle="tab"].active'),
+                loadUrl = $this.attr('href'),
+                target = $this.attr('data-target'),
+                preloader = $this.closest('.section--tabs').find('.preloader--content');
 
+            if (( array.indexOf(target)) < 1) {
+                callAjaxContent(loadUrl, target, preloader);
 
-            callAjaxContent(loadUrl, target, preloader);
-            $this.addClass('loaded');
+                $this.addClass('loaded');
+                $(target).addClass('active');
+            }
         });
     });
 
