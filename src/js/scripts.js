@@ -72,6 +72,54 @@ function getRandomInt(min, max) {
 }
 
 
+(function($) {
+    $.fn.vmenuModule = function(option) {
+        var obj,
+            item;
+        var options = $.extend({
+                Speed: 220,
+                autostart: true,
+                autohide: 1
+            },
+            option);
+        obj = $(this);
+
+        item = obj.find("ul").parent("li").children("button");
+        item.attr("data-option", "off");
+
+        item.unbind('click').on("click", function(e) {
+            e.preventDefault();
+            var a = $(this);
+            if (options.autohide) {
+                a.parent().parent().find("button[data-option='on']").parent("li").children("ul").slideUp(options.Speed / 1.2,
+                    function() {
+                        $(this).parent("li").children("button").attr("data-option", "off");
+                    })
+            }
+            if (a.attr("data-option") == "off") {
+                a.parent("li").children("ul").slideDown(options.Speed,
+                    function() {
+                        a.attr("data-option", "on");
+                    });
+            }
+            if (a.attr("data-option") == "on") {
+                a.attr("data-option", "off");
+                a.parent("li").children("ul").slideUp(options.Speed)
+            }
+        });
+        if (options.autostart) {
+            obj.find("button").each(function() {
+
+                $(this).parent("li").parent("ul").slideDown(options.Speed,
+                    function() {
+                        $(this).parent("li").children("button").attr("data-option", "on");
+                    })
+            })
+        }
+
+    }
+})(jQuery);
+
 
 $(document).ready(function() {
 
@@ -238,12 +286,31 @@ $(document).ready(function() {
         variableWidth: false,
         dots: true,
         arrows: true,
+        fade: true,
+        responsive: [
+            {
+                breakpoint: 1024,
+                settings: {
+                    // centerMode: true,
+                    // centerPadding: '0px',
+                    arrows: false
+                }
+            }
+        ]
+    };
+    var sliderFotos = {
+        infinite: true,
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        centerMode: false,
+        variableWidth: false,
+        dots: true,
+        arrows: false,
         fade: true
         // responsive: [
         //     {
         //         breakpoint: 1024,
         //         settings: {
-        //             variableWidth: false,
         //             // centerMode: true,
         //             // centerPadding: '0px',
         //             arrows: false
@@ -266,6 +333,7 @@ $(document).ready(function() {
     }
     initSlider('.js-main-slider', mainSliderSets, 'ticket' );
     initSlider('.js-slider-with-arrows', sliderWithArrowsSets, 'title' );
+    initSlider('.js-slider-fotos', sliderFotos, 'title' );
 
 
     function adaptiveSlider() {
@@ -359,17 +427,24 @@ $(document).ready(function() {
         var content = $('.accordion--mobile .accordion-content');
 
         if ($(window).width() < 1024) {
-            $('.js-accordion--mobile').accordion({
-                "transitionSpeed": 400
+            $('.js-accordion--mobile').vmenuModule({
+                Speed: 400,
+                autostart: false,
+                autohide: true
             });
-            content.removeClass('maxHeight');
+            content.removeClass('display');
         }
         else {
-            content.addClass('maxHeight');
+            content.addClass('display');
         }
-        $('.js-accordion').accordion({
-            "transitionSpeed": 400
+        $('.js-accordion').vmenuModule({
+            Speed: 400,
+            autostart: false,
+            autohide: true
         });
+
+
+
     }
     accordion();
 
@@ -495,13 +570,14 @@ $(document).ready(function() {
 
 
     function callAjaxContent(loadUrl,target,preloader) {
+        var div = $('.tab-pane__common-content');
         $.get(loadUrl, function(data) {
 
 
-            $(target).html(data);
+            $(target).find(div).html(data);
             accordion();
             videoLoad();
-
+            btnMoreText();
 
 
         }).done(function() {
@@ -772,15 +848,17 @@ $(document).ready(function() {
 
 
     //кнопка показать больше текста
-    $(".js-more-text").on("click", function(){
-        $(this).prev(".js-additional-text").slideToggle(400);
-        $(this).toggleClass('no-underline');
-        $(this).find('.icon').toggleClass('show');
-        buf = $(this).attr("rel");
-        $(this).attr("rel", $(this).find('.text').text());
-        $(this).children('.text').text(buf);
-
-    });
+    function btnMoreText() {
+        $(".js-more-text").on("click", function(){
+            $(this).prev(".js-additional-text").slideToggle(400);
+            $(this).toggleClass('no-underline');
+            $(this).find('.icon').toggleClass('show');
+            buf = $(this).attr("rel");
+            $(this).attr("rel", $(this).find('.text').text());
+            $(this).children('.text').text(buf);
+        });
+    }
+    btnMoreText();
 
 
     //вызов попапа с описанием в мобильной версии на странице предмета коллекции
@@ -811,6 +889,8 @@ $(document).ready(function() {
             });
         });
     })( jQuery );
+
+
 
 
     //правильный пересчет функций на ресайз

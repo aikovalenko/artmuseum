@@ -276,7 +276,10 @@
     text-align: center;
   }
   .main-slider-info--title {
-    display: none;
+    //display: none;
+    box-sizing: border-box;
+    padding: 0 24px;
+    text-align: left;
   }
   .section {
 
@@ -396,6 +399,7 @@
     }
 
     &__content {
+      padding-bottom: 5px;
       line-height: 131%;
       color: $warm-grey-two;
 
@@ -533,6 +537,12 @@
     }
     &--with-filters {
       margin-bottom: 69px;
+    }
+    &--news {
+      margin-bottom: 80px;
+    }
+    &--quarter {
+      margin-bottom: 80px;
     }
   }
   .typical-accordion {
@@ -835,6 +845,25 @@
 
   .col-8 {
     width: 100%;
+  }
+  .section--news {
+    .btn {
+      margin-top: 48px;
+    }
+  }
+
+  .accordion--mobile ul{
+    display: none;
+  }
+
+  .section--programs {
+    margin: 0;
+  }
+
+  .program-block {
+    margin-left: 0;
+    margin-right: 0;
+    max-width: 272px;
   }
 }
 
