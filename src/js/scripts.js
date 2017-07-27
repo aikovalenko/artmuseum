@@ -71,7 +71,7 @@ function getRandomInt(min, max) {
     return Math.floor(Math.random() * (max - min + 1) + min);
 }
 
-
+//аккордеон
 (function($) {
     $.fn.vmenuModule = function(option) {
         var obj,
@@ -119,6 +119,20 @@ function getRandomInt(min, max) {
 
     }
 })(jQuery);
+
+
+//проверка на несколько классов
+$.fn.hasAnyClass = function() {
+    for (var i = 0; i < arguments.length; i++) {
+        var classes = arguments[i].split(" ");
+        for (var j = 0; j < classes.length; j++) {
+            if (this.hasClass(classes[j])) {
+                return true;
+            }
+        }
+    }
+    return false;
+};
 
 
 $(document).ready(function() {
@@ -915,6 +929,71 @@ $(document).ready(function() {
         });
     })( jQuery );
 
+
+
+    //логика работы с картой этажей
+    function linkChangeColor(id, $this) {
+        $('.map-svg').find('#' + id).css('fill', '#E6E6E6').addClass('active');
+        $this.css('color', '#E6E6E6');
+        $this.addClass('active');
+    }
+    function hallChangeColor(id, $this) {
+        $('.map-links').find('#' + id).css('color', '#E6E6E6').addClass('active');
+        $($this).css('fill', '#E6E6E6');
+        $this.addClass('active');
+    }
+    function mapChangeColorReset() {
+        $('.map-hall').css('fill', '#fff');
+        $('.map-link').css('color', '#000');
+        $('.map-hall').removeClass('active');
+        $('.map-link').removeClass('active');
+    }
+    if ($('html').hasAnyClass('ios', 'mobile', 'android')) {
+        $('.map-link').click(function(e) {
+            if ($(this).hasClass('active') == true) {
+                return
+            } else {
+                e.preventDefault();
+                    mapChangeColorReset();
+                    var $this = $(this),
+                        id = $this.attr('id');
+
+                    linkChangeColor(id, $this);
+            }
+        });
+        $('.map-hall').click(function(e) {
+            if ($(this).hasClass('active') == true) {
+                return
+            } else {
+                e.preventDefault();
+                mapChangeColorReset();
+                var $this = $(this),
+                    id = $this.attr('id');
+
+                hallChangeColor(id, $this);
+            }
+        });
+    } else {
+        $( ".map-link" ).hover(
+            function() {
+                var $this = $(this),
+                    id = $this.attr('id');
+
+                linkChangeColor(id, $this);
+            }, function() {
+                mapChangeColorReset();
+            }
+        );
+        $( ".map-hall" ).hover(
+            function() {
+                var $this = $(this),
+                    id = $this.attr('id');
+                hallChangeColor(id, $this);
+            }, function() {
+                mapChangeColorReset();
+            }
+        );
+    }
 
 
 
