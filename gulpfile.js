@@ -32,7 +32,7 @@ var path = {
 		css: 'dist/css/',
 		img: 'dist/images/',
 		fonts: 'dist/fonts/',
-		raw: 'dist/'
+		raw: 'dist/raw'
 	},
 	build: {
 		html: 'build/',
@@ -40,7 +40,7 @@ var path = {
 		css: 'build/css/',
 		img: 'build/images/',
 		fonts: 'build/fonts/',
-		raw: 'build/'
+		raw: 'build/raw'
 	},
 	src: {
 		html: 'src/*.html',
@@ -162,6 +162,18 @@ gulp.task('fonts:dist', function () {
 		.pipe(gulp.dest(path.dist.fonts));
 });
 
+gulp.task('raw:build', function () {
+    gulp.src(path.src.raw)
+        .pipe(gulp.dest(path.build.raw))
+        .on('end', function () {
+            browserSync.reload();
+        });
+});
+gulp.task('raw:dist', function () {
+    gulp.src(path.src.raw)
+        .pipe(gulp.dest(path.dist.raw));
+});
+
 gulp.task('js:build', function () {
 	gulp.src(path.src.js)
 		.pipe(rigger())
@@ -217,9 +229,9 @@ gulp.task('dist', ['clean:dist'], function() {
 	gulp.start('project:dist');
 });
 
-gulp.task('project:build', ['html:build', 'style:build', 'image:build', 'fonts:build', 'js:build']);
+gulp.task('project:build', ['html:build', 'style:build', 'image:build', 'fonts:build', 'js:build', 'raw:build']);
 
-gulp.task('project:dist', ['html:dist', 'style:dist', 'image:dist', 'fonts:dist', 'js:dist']);
+gulp.task('project:dist', ['html:dist', 'style:dist', 'image:dist', 'fonts:dist', 'js:dist', 'raw:dist']);
 
 /* Настроить автоматическую подготовку архива */
 gulp.task('zip', ['dist'], function() {
@@ -235,6 +247,7 @@ gulp.task('watch', ['build'], function() {
 	gulp.watch([path.watch.js], ['js:build']);
 	gulp.watch([path.watch.img], ['image:build']);
 	gulp.watch([path.watch.fonts], ['fonts:build']);
+	gulp.watch([path.watch.raw], ['raw:build']);
 });
 
 gulp.task('webserver', ['build'], function () {

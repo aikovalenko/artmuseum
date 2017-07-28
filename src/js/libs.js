@@ -4,8 +4,8 @@
 //= ../libs/platform.js/platform.js
 //= ../libs/slick-carousel/slick/slick.min.js
 //= ../libs/mediaelement/mediaelement-and-player.min.js
-//= ../libs/jquery.accordion.js
 //= ../libs/bootstrap/bootstrap.min.js
 //= ../libs/select2/dist/js/select2.min.js
 //= ../libs/masonry/dist/masonry.pkgd.min.js
+//= ../libs/masonry/dist/imagesloaded.pkgd.min.js
 //= ../libs/lightgallery/dist/js/lightgallery-all.min.js

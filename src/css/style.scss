@@ -1434,10 +1434,11 @@ ul {
   border: 2px solid transparent;
   transition: border .2s ease;
   .desc {
-    padding-top: 0;
+    //padding-top: 0;
   }
   img {
     padding: 16px;
+    padding-bottom: 0;
   }
 }
 
@@ -1658,8 +1659,8 @@ ul {
 
 .section--4-column {
   .section__inner {
-    padding-left: 72px;
-    padding-right: 72px;
+    //padding-left: 72px;
+    //padding-right: 72px;
   }
   .column-wrap {
     margin-left: -12px;
@@ -2605,7 +2606,7 @@ h1 {
   &__name {
     display: block;
     padding: 0 15px;
-    padding-top: 12px;
+    padding-top: 26px;
     padding-bottom: 29px;
     @include fontSize(19px);
     font-weight: 500;
@@ -2952,6 +2953,64 @@ h1 {
 .section--news {
   .btn--more {
     margin-top: 72px;
+  }
+}
+
+
+.plan-floor {
+  display: flex;
+
+  &__halls, &__links {
+    width: 50%;
+  }
+  &__halls {
+    padding-right: 12px;
+  }
+  &__links {
+    padding-left: 12px;
+  }
+}
+
+
+.map-hall {
+  transition: $transition;
+
+  &.hover {
+    fill: #E6E6E6;
+    transition: $transition;
+  }
+}
+
+.map-links {
+
+  ul {
+    column-count: 2;
+    column-gap: 24px;
+    white-space: normal;
+  }
+}
+.map-link {
+  display: flex;
+  font-weight: 500;
+  @include fontSize(14px);
+  line-height: 131%;
+  transition: $transition;
+
+  &.hover {
+    color: $violet-blue;
+    transition: $transition;
+  }
+
+  span {
+    //display: inline-block;
+  }
+
+  &__number {
+    width: 40px;
+  }
+
+  &__name {
+    width: 225px;
   }
 }
 

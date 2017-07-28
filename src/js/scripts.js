@@ -600,12 +600,15 @@ $(document).ready(function() {
             accordion();
             videoLoad();
             btnMoreText();
+            masonryForDesktop();
+            mapFloors();
 
 
         }).done(function() {
             $(preloader).css('display', 'none');
         }).fail(function() {
             $(target).html('Что-то пошло не так...');
+            $(preloader).css('display', 'none');
         }).always(function() {
 
         });
@@ -614,11 +617,12 @@ $(document).ready(function() {
 
 
     //загружаем contents в табы / загружаем по ссылке
-    var array = ['#friends', '#tours', '#departaments'];
+    var array = ['#friends', '#tours', '#departaments', '#first-floor', '#second-floor', '#expositions'];
     $(function() {
 
         if (window.location.hash && ~array.indexOf(window.location.hash)) {
-            var loadUrl = window.location.hash.slice(1) + '.html',
+            // var loadUrl = window.location.hash.slice(1) + '.html',
+            var loadUrl = '/raw/' + window.location.hash.slice(1) + '.html',
                 target = window.location.hash;
 
             callAjaxContent(loadUrl,target);
@@ -634,11 +638,15 @@ $(document).ready(function() {
                 target = $this.attr('data-target'),
                 preloader = $this.closest('.section--tabs').find('.preloader--content');
 
+            console.log(loadUrl + '1');
+
             if ((array.indexOf(target)) < 1 || (window.location.hash == '') ){
                 callAjaxContent(loadUrl, target, preloader);
+                // callAjaxContent('/raw/' + loadUrl, target, preloader);
 
                 $this.addClass('loaded');
                 $(target).addClass('active');
+                console.log(loadUrl + '2');
             }
         });
     });
@@ -710,24 +718,28 @@ $(document).ready(function() {
         });
     });
 
-    var $grid = $('.js-grid').masonry({
-        // options
-
-        itemSelector: '.grid-item',
-        columnWidth: '.grid-sizer'
-    });
-
-    function masonryForDesktop() {
-        var $gridDesktop = $('.js-grid--desktop').masonry({
+    var $grid = $('.js-grid').imagesLoaded( function() {
+        $grid.masonry({
             // options
 
             itemSelector: '.grid-item',
             columnWidth: '.grid-sizer'
         });
+    });
 
-        if ($(window).width() < 1024) {
-            $gridDesktop.masonry('destroy');
-        } else $gridDesktop
+    function masonryForDesktop() {
+        var $gridDesktop = $('.js-grid--desktop').imagesLoaded( function() {
+            $gridDesktop.masonry({
+                // options
+
+                itemSelector: '.grid-item',
+                columnWidth: '.grid-sizer'
+            });
+
+            if ($(window).width() < 1024) {
+                $gridDesktop.masonry('destroy');
+            } else $gridDesktop
+        });
     }
     masonryForDesktop();
 
@@ -930,69 +942,79 @@ $(document).ready(function() {
     })( jQuery );
 
 
-
     //логика работы с картой этажей
-    function linkChangeColor(id, $this) {
-        $('.map-svg').find('#' + id).css('fill', '#E6E6E6').addClass('active');
-        $this.css('color', '#E6E6E6');
-        $this.addClass('active');
-    }
-    function hallChangeColor(id, $this) {
-        $('.map-links').find('#' + id).css('color', '#E6E6E6').addClass('active');
-        $($this).css('fill', '#E6E6E6');
-        $this.addClass('active');
-    }
-    function mapChangeColorReset() {
-        $('.map-hall').css('fill', '#fff');
-        $('.map-link').css('color', '#000');
-        $('.map-hall').removeClass('active');
-        $('.map-link').removeClass('active');
-    }
-    if ($('html').hasAnyClass('ios', 'mobile', 'android')) {
-        $('.map-link').click(function(e) {
-            if ($(this).hasClass('active') == true) {
-                return
-            } else {
-                e.preventDefault();
+    function mapFloors() {
+        var hall = $('.map-hall'),
+            link = $('.map-link'),
+            linksBlock = $('.map-links'),
+            hallsBlock = $('.map-svg'),
+            html = $('html');
+
+        function linkChangeColor(id, $this) {
+            console.log(id);
+            hallsBlock.find('#' + id).addClass('hover').addClass('active');
+            $this.addClass('hover');
+            $this.addClass('active');
+        }
+
+        function hallChangeColor(id, $this) {
+            console.log(id);
+            linksBlock.find('#' + id).addClass('hover').addClass('active');
+            $this.addClass('hover');
+            $this.addClass('active');
+        }
+
+        function mapChangeColorReset() {
+            hall.removeClass('hover').removeClass('active');
+            link.removeClass('hover').removeClass('active');
+        }
+
+        if (html.hasAnyClass('ios', 'mobile', 'android')) {
+            link.click(function (e) {
+                if ($(this).hasClass('active') == true) {
+                    return
+                } else {
+                    e.preventDefault();
                     mapChangeColorReset();
                     var $this = $(this),
                         id = $this.attr('id');
 
                     linkChangeColor(id, $this);
-            }
-        });
-        $('.map-hall').click(function(e) {
-            if ($(this).hasClass('active') == true) {
-                return
-            } else {
-                e.preventDefault();
-                mapChangeColorReset();
-                var $this = $(this),
-                    id = $this.attr('id');
+                }
+            });
+            hall.click(function (e) {
+                if ($(this).hasClass('active') == true) {
+                    return
+                } else {
+                    e.preventDefault();
+                    mapChangeColorReset();
+                    var $this = $(this),
+                        id = $this.attr('id');
 
-                hallChangeColor(id, $this);
-            }
-        });
-    } else {
-        $( ".map-link" ).hover(
-            function() {
-                var $this = $(this),
-                    id = $this.attr('id');
+                    hallChangeColor(id, $this);
+                }
+            });
+        } else {
+            link.hover(
+                function () {
+                    var $this = $(this),
+                        id = $this.attr('id');
 
-                linkChangeColor(id, $this);
-            }, function() {
-                mapChangeColorReset();
-            }
-        );
-        $( ".map-hall" ).hover(
-            function() {
-                var $this = $(this),
-                    id = $this.attr('id');
-                hallChangeColor(id, $this);
-            }, function() {
-                mapChangeColorReset();
-            }
-        );
+                    linkChangeColor(id, $this);
+                }, function () {
+                    mapChangeColorReset();
+                }
+            );
+            hall.hover(
+                function () {
+                    var $this = $(this),
+                        id = $this.attr('id');
+                    hallChangeColor(id, $this);
+                }, function () {
+                    mapChangeColorReset();
+                }
+            );
+        }
     }
 
 
