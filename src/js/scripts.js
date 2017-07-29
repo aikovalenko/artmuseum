@@ -376,58 +376,60 @@ $(document).ready(function() {
 
 
     //кнопки переключеня контентом в секции, и в афише кнопка фильтра/добавление window.history
-    $('.js-content-control').each(function () {
-        var block = $(this),
-            btnFirst = $(this).find('.btn-first');
+    function contentControl() {
+        $('.js-content-control').each(function () {
+            var block = $(this),
+                btnFirst = $(this).find('.btn-first');
 
-        $(this).find('.js-content-control-btn').click(function (e) {
-            var blockName = $(this).attr('data-target');
+            $(this).find('.js-content-control-btn').click(function (e) {
+                var blockName = $(this).attr('data-target');
 
-            window.history.pushState('', 'Title', blockName);
+                window.history.pushState('', 'Title', blockName);
 
-            //если ссылка пуста
-            if($(this).attr('href') == '') {
-                e.preventDefault();
-            }
-
-            var width = $( this ).outerWidth(),
-                widthWindow = $(window).width(),
-                offsetLeft = $( this ).offset().left,
-                offsetRight = (widthWindow - (offsetLeft + width)),
-                scroller = block.find('.scroller');
-
-            if ( offsetRight < 30 ) {
-                scroller.animate({scrollLeft: '+=' + (-offsetRight + widthWindow/4)}, 300);
-            }
-            if ( offsetLeft < 30 ) {
-                scroller.animate({scrollLeft: '-=' + (-offsetLeft + widthWindow/4)}, 300);
-            }
-
-            $(this).addClass('active');
-            block.find('.js-content-control-btn').not(this).each(function () {
-                $(this).removeClass('active');
-
-
-                //на странице с афишей фильтр доступен всегда
-                if(!$('body').hasClass('afisha-page')) {
-                    $('.js-hidden-filter').removeClass('opened');
+                //если ссылка пуста
+                if ($(this).attr('href') == '') {
+                    e.preventDefault();
                 }
 
-                //для ситуации двух ul меню, сборс active
-                $(this).parent().removeClass('active');
+                var width = $(this).outerWidth(),
+                    widthWindow = $(window).width(),
+                    offsetLeft = $(this).offset().left,
+                    offsetRight = (widthWindow - (offsetLeft + width)),
+                    scroller = block.find('.scroller');
+
+                if (offsetRight < 30) {
+                    scroller.animate({scrollLeft: '+=' + (-offsetRight + widthWindow / 4)}, 300);
+                }
+                if (offsetLeft < 30) {
+                    scroller.animate({scrollLeft: '-=' + (-offsetLeft + widthWindow / 4)}, 300);
+                }
+
+                $(this).addClass('active');
+                block.find('.js-content-control-btn').not(this).each(function () {
+                    $(this).removeClass('active');
+
+
+                    //на странице с афишей фильтр доступен всегда
+                    if (!$('body').hasClass('afisha-page')) {
+                        $('.js-hidden-filter').removeClass('opened');
+                    }
+
+                    //для ситуации двух ul меню, сборс active
+                    $(this).parent().removeClass('active');
+                });
+                checkIfFirstIsActive();
             });
+
+            function checkIfFirstIsActive() {
+                if (!btnFirst.hasClass('active') && $(window).width() < 1024) {
+                    btnFirst.addClass('btn--np');
+                } else btnFirst.removeClass('btn--np');
+            }
+
             checkIfFirstIsActive();
         });
-
-        function checkIfFirstIsActive() {
-            if (!btnFirst.hasClass('active') && $(window).width() < 1024) {
-                btnFirst.addClass('btn--np');
-            } else btnFirst.removeClass('btn--np');
-        }
-        checkIfFirstIsActive();
-    });
-
-
+    }
+    contentControl();
 
     $('.js-call-filter').click(function(e) {
         e.preventDefault();
@@ -555,40 +557,42 @@ $(document).ready(function() {
     }
     videoLoad();
 
-    $.get('content.html', function(data) {
-        $(".test").html(data);
-        call();
-    });
+    // $.get('content.html', function(data) {
+    //     $(".test").html(data);
+    //     call();
+    // });
 
-    function call() {
-        $('.click').click(function() {
-            $(this).addClass('opened');
+    // function call() {
+    //     $('.click').click(function() {
+    //         $(this).addClass('opened');
+    //     });
+    // }
+
+    function tabs() {
+        $('[data-toggle="tab"]').click(function(e) {
+            e.preventDefault();
+            var $this = $(this);
+
+            if (!($this.hasClass('loaded')) && $this.hasClass('local')) {
+
+                var loadUrl = $this.attr('href'),
+                    target = $this.attr('data-target'),
+                    preloader = $this.closest('.section--tabs').find('.preloader--content');
+
+                // console.log(preloader);
+
+                preloader.css('display', 'block');
+
+
+                callAjaxContent(loadUrl,target,preloader);
+                $this.addClass('loaded');
+            }
+
+
+            $this.tab('show');
         });
     }
-
-
-    $('[data-toggle="tab"]').click(function(e) {
-        e.preventDefault();
-        var $this = $(this);
-
-        if (!$this.hasClass('loaded')) {
-
-            var loadUrl = $this.attr('href'),
-                target = $this.attr('data-target'),
-                preloader = $this.closest('.section--tabs').find('.preloader--content');
-
-            // console.log(preloader);
-
-            preloader.css('display', 'block');
-
-
-            callAjaxContent(loadUrl,target,preloader);
-            $this.addClass('loaded');
-        }
-
-
-        $this.tab('show');
-    });
+    tabs();
 
 
     function callAjaxContent(loadUrl,target,preloader) {
@@ -616,6 +620,7 @@ $(document).ready(function() {
     }
 
 
+
     //загружаем contents в табы / загружаем по ссылке
     var array = ['#friends', '#tours', '#departaments', '#first-floor', '#second-floor', '#expositions'];
     $(function() {
@@ -638,7 +643,6 @@ $(document).ready(function() {
                 target = $this.attr('data-target'),
                 preloader = $this.closest('.section--tabs').find('.preloader--content');
 
-            console.log(loadUrl + '1');
 
             if ((array.indexOf(target)) < 1 || (window.location.hash == '') ){
                 callAjaxContent(loadUrl, target, preloader);
@@ -646,7 +650,6 @@ $(document).ready(function() {
 
                 $this.addClass('loaded');
                 $(target).addClass('active');
-                console.log(loadUrl + '2');
             }
         });
     });
@@ -848,8 +851,6 @@ $(document).ready(function() {
     });
 
     function adaptiveLightGallery() {
-
-
         if ($(window).width() < 580) {
 
             function logic() {
@@ -1016,6 +1017,45 @@ $(document).ready(function() {
             );
         }
     }
+
+    var arrResult = [];
+    $('.form-search').on('submit', function (e) {
+        e.preventDefault();
+        var val = $(this).find('input').val();
+
+        arrResult.push(val);
+
+        search('raw/search.html');
+
+        console.log(val);
+    });
+
+    function search(loadUrl,target,preloader) {
+        var div = $('.search--section');
+        $.get(loadUrl, function(data) {
+
+
+            div.html(data);
+            // tabs();
+            $('[data-toggle="tab"]').click(function(e) {
+                $(this).tab('show');
+            });
+            contentControl();
+            $('.search-val').html(arrResult[0]);
+
+
+        }).done(function() {
+            $(preloader).css('display', 'none');
+        }).fail(function() {
+            $(target).html('Что-то пошло не так...');
+            $(preloader).css('display', 'none');
+        }).always(function() {
+
+        });
+
+    }
+
+
 
 
 
