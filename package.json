@@ -35,5 +35,8 @@
   "bugs": {
     "url": "https://github.com/aikovalenko/artmuseum/issues"
   },
-  "homepage": "https://github.com/aikovalenko/artmuseum#readme"
+  "homepage": "https://github.com/aikovalenko/artmuseum#readme",
+  "devDependencies": {
+    "gulp-sass": "^3.1.0"
+  }
 }

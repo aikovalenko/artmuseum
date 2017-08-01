@@ -3019,6 +3019,46 @@ h1 {
     margin-top: 105px;
     margin-bottom: 111px;
   }
+  .btn--more {
+    margin-top: 80px;
+  }
+}
+
+.search-results {
+  @include fontSize(14px);
+  font-weight: 500;
+  line-height: 150%;
+
+  li {
+    margin-bottom: 19px;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+  
+  a {
+
+    span {
+      display: block;
+      &:first-child {
+        color: $greyish-brown-two;
+        transition: $transition;
+      }
+      &:last-child {
+        color: $warm-grey-two;
+      }
+    }
+
+    &:hover {
+      span {
+        &:first-child {
+          color: $violet-blue;
+          transition: $transition;
+        }
+      }
+    }
+  }
 }
 
 .col-8 {

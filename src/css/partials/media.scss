@@ -897,6 +897,24 @@
       margin-left: 24px;
     }
   }
+  .search--section {
+    .section {
+      margin-top: 0;
+      margin-bottom: 77px;
+
+      &__header {
+        h2 {
+          text-align: left;
+          span {
+            display: block;
+          }
+        }
+      }
+    }
+    .btn--more {
+      margin-top: 43px;
+    }
+  }
 }
 
 //тут ховеры для > 1024

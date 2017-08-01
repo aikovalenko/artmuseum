@@ -138,37 +138,76 @@ $.fn.hasAnyClass = function() {
 $(document).ready(function() {
 
     //определим девайс и ОС и добавим класс к <html/>
-    $('html').addClass(platform.name.toLowerCase()).addClass(platform.os.family.toLowerCase());
+    var htmlTag = document.querySelector('html');
+    htmlTag.className += (' ' + platform.name.toLowerCase() + ' ' + platform.os.family.toLowerCase());
 
 
     //десктоп панель настроек
-    var callControl = $('.js-call-control'),
-        mainControlsSectionBlock = $('.main-controls-section-block');
+    var callControl = document.getElementsByClassName('js-call-control'),
+        mainControlsSectionBlock = document.querySelectorAll('.main-controls-section-block');
 
-    callControl.click(function(e) {
+    function callControlClick() {
+        [].forEach.call(callControl, function(el, i, els) {
+            el.addEventListener('click', function() {
+                [].forEach.call(els, function(el) {
+                    event.stopPropagation();
 
-        e.stopPropagation();
+                    var btn = this.querySelectorAll(".main-controls__button"),
+                        mainControlsSectionBlock = this.querySelectorAll(".main-controls-section-block");
 
-        $(this).find(mainControlsSectionBlock).toggleClass('opened');
-        $(this).find(".main-controls__button").toggleClass('active');
-
-        callControl.not(this).each(function () {
-            $(this).find(mainControlsSectionBlock).removeClass('opened');
-            $(this).find(".main-controls__button").removeClass('active');
+                    btn[0].classList.toggle('active');
+                    mainControlsSectionBlock[0].classList.toggle('opened');
+                    if(el !== this) {
+                        el.querySelectorAll(".main-controls__button")[0].classList.remove('active');
+                        el.querySelectorAll(".main-controls-section-block")[0].classList.remove('opened');
+                    }
+                }, this);
+            });
         });
+    }
+    callControlClick();
 
-
+    document.addEventListener("click", function( ) {
+        for (var i = 0; i < callControl.length; i++) {
+            document.querySelectorAll('.main-controls__button')[i].classList.remove('active');
+            document.querySelectorAll('.main-controls-section-block')[i].classList.remove('opened');
+        }
     });
+
+    function callControlInnerClick() {
+        for (var i = 0; i < mainControlsSectionBlock.length; i++) {
+            mainControlsSectionBlock[i].addEventListener("click", function (event) {
+                event.stopPropagation();
+            });
+        }
+    }
+    callControlInnerClick();
+
+
+    // callControl.click(function(e) {
+    //
+    //     e.stopPropagation();
+    //
+    //     $(this).find(mainControlsSectionBlock).toggleClass('opened');
+    //     $(this).find(".main-controls__button").toggleClass('active');
+    //
+    //     callControl.not(this).each(function () {
+    //         $(this).find(mainControlsSectionBlock).removeClass('opened');
+    //         $(this).find(".main-controls__button").removeClass('active');
+    //     });
+    //
+    //
+    // });
     $('.js-call-search').click(function(e) {
         $('.form-search input').focus();
     });
-    mainControlsSectionBlock.click(function(e){
-        e.stopPropagation();
-    });
-    $(document).click(function() {
-        callControl.find(mainControlsSectionBlock).removeClass('opened');
-        callControl.find(".main-controls__button").removeClass('active');
-    });
+    // mainControlsSectionBlock.click(function(e){
+    //     e.stopPropagation();
+    // });
+    // $(document).click(function() {
+    //     callControl.find(mainControlsSectionBlock).removeClass('opened');
+    //     callControl.find(".main-controls__button").removeClass('active');
+    // });
 
 
     //меню-бургер
@@ -176,6 +215,7 @@ $(document).ready(function() {
         menu = $('.menu-mobile'),
         close = $('.js-notifs-close'),
         notifsTop = $('.header__notifications__inner');
+
 
     burger.click(function () {
         notifsTop.toggleClass('hidden');
@@ -200,6 +240,12 @@ $(document).ready(function() {
 
         var name = $(this).data("name");
 
+        if (name == 'mobile-search') {
+            setTimeout(function () {
+                $('.form--mobile-search').focus();
+            }, 1);
+        }
+
         $('.' + name).addClass('active');
         mobileMenu.not(this).each(function () {
             $(this).removeClass('active');
@@ -217,7 +263,7 @@ $(document).ready(function() {
     });
 
 
-    //пункт Внимание в мобильной версии /можно заменить на аккордион/
+    //пункт Внимание в мобильной версии /можно заменить на аккордеон/
     $('.js-call-notifs').click(function(e) {
         e.preventDefault();
         var notifs = $('.mobile-notifs'),
@@ -466,8 +512,6 @@ $(document).ready(function() {
             autohide: true
         });
 
-
-
     }
     accordion();
 
@@ -573,7 +617,7 @@ $(document).ready(function() {
             e.preventDefault();
             var $this = $(this);
 
-            if (!($this.hasClass('loaded')) && $this.hasClass('local')) {
+            if (!($this.hasClass('loaded'))) {
 
                 var loadUrl = $this.attr('href'),
                     target = $this.attr('data-target'),
@@ -603,7 +647,7 @@ $(document).ready(function() {
             $(target).find(div).html(data);
             accordion();
             videoLoad();
-            btnMoreText();
+            // btnMoreText();
             masonryForDesktop();
             mapFloors();
 
@@ -622,35 +666,46 @@ $(document).ready(function() {
 
 
     //загружаем contents в табы / загружаем по ссылке
-    var array = ['#friends', '#tours', '#departaments', '#first-floor', '#second-floor', '#expositions'];
+    var array = ['#friends', '#tours', '#departments', '#first-floor', '#second-floor', '#expositions', '#buildings'];
     $(function() {
-
-        if (window.location.hash && ~array.indexOf(window.location.hash)) {
-            // var loadUrl = window.location.hash.slice(1) + '.html',
-            var loadUrl = '/raw/' + window.location.hash.slice(1) + '.html',
-                target = window.location.hash;
-
-            callAjaxContent(loadUrl,target);
-            $('.tab-pane').removeClass('active');
-            // $('.js-content-control-btn').removeClass('active');
-            $('[data-target="' + target + '"]').parents('ul').find('.js-content-control-btn').removeClass('active');
-            $('[data-target="' + target + '"]').addClass('active');
-            $(target).addClass('active');
-        }
         $('.section--tabs').each(function () {
-            var $this = $(this).find('[data-toggle="tab"].active'),
-                loadUrl = $this.attr('href'),
-                target = $this.attr('data-target'),
-                preloader = $this.closest('.section--tabs').find('.preloader--content');
+            var preloader = $(this).closest('.section--tabs').find('.preloader--content');
+
+            $(this).find('[data-toggle="tab"]').each(function () {
+                var target = $(this).attr('data-target'),
+                    hash = window.location.hash;
+
+                if ( ~array.indexOf(target) && target == hash) {
+                    var loadUrl = '../raw/' + window.location.hash.slice(1) + '.html',
+                        div = $('[data-target="' + target + '"]'),
+                        section = div.parents('.section'),
+                        num = 40; //это для воздуха
+                    target = hash;
 
 
-            if ((array.indexOf(target)) < 1 || (window.location.hash == '') ){
-                callAjaxContent(loadUrl, target, preloader);
-                // callAjaxContent('/raw/' + loadUrl, target, preloader);
+                    callAjaxContent(loadUrl,target, preloader);
 
-                $this.addClass('loaded');
-                $(target).addClass('active');
-            }
+                    $(target).parents('.tab-content').find('.tab-pane').removeClass('active');
+
+                    // $('.js-content-control-btn').removeClass('active');
+                    div.parents('ul').find('.js-content-control-btn').removeClass('active');
+                    div.addClass('active');
+                    $(target).addClass('active');
+                    setTimeout(function () {
+                        $('html,body').animate({
+                            scrollTop: section.offset().top - num
+                        }, 'slow');
+                    }, 100)
+
+                }
+                else {
+                    if ($(this).hasClass('active')) {
+                         loadUrl = $(this).attr('href');
+                            target = $(this).attr('data-target');
+                        callAjaxContent(loadUrl, target, preloader);
+                    }
+                }
+            });
         });
     });
 
@@ -887,7 +942,7 @@ $(document).ready(function() {
     });
 
 
-    //выбираем случайный фон для страницы 404, сам объект находится на странице
+    //выбираем случайный фон для страницы 404, сам объект pageNotFoundObj находится на странице
     function setRandomBackground() {
         if (typeof pageNotFoundObj != "undefined") {
             var randomNum = getRandomInt(0, pageNotFoundObj.length - 1);
@@ -901,7 +956,8 @@ $(document).ready(function() {
 
     //кнопка показать больше текста
     function btnMoreText() {
-        $(".js-more-text").on("click", function(){
+        // $(".js-more-text").on('click',  function(){
+        $(document).on('click', '.js-more-text', function () {
             $(this).prev(".js-additional-text").slideToggle(400);
             $(this).toggleClass('no-underline');
             $(this).find('.icon').toggleClass('show');
@@ -973,7 +1029,7 @@ $(document).ready(function() {
         if (html.hasAnyClass('ios', 'mobile', 'android')) {
             link.click(function (e) {
                 if ($(this).hasClass('active') == true) {
-                    return
+                    return true
                 } else {
                     e.preventDefault();
                     mapChangeColorReset();
@@ -985,7 +1041,7 @@ $(document).ready(function() {
             });
             hall.click(function (e) {
                 if ($(this).hasClass('active') == true) {
-                    return
+                    return true
                 } else {
                     e.preventDefault();
                     mapChangeColorReset();
@@ -1027,6 +1083,11 @@ $(document).ready(function() {
 
         search('raw/search.html');
 
+        notifsTop.removeClass('hidden');
+        burger.removeClass("active");
+        menu.removeClass("opened");
+
+
         console.log(val);
     });
 
@@ -1041,6 +1102,8 @@ $(document).ready(function() {
                 $(this).tab('show');
             });
             contentControl();
+
+            searchResultsMore();
             $('.search-val').html(arrResult[0]);
 
 
@@ -1056,7 +1119,31 @@ $(document).ready(function() {
     }
 
 
+    function searchResultsMore() {
+        var item = $(".search-results li"),
+            btn = $(".js-btn-more-items"),
 
+            num = 4;
+
+        if (item.length <= num) {
+            btn.hide();
+        }
+
+        item.slice(0, num).show();
+
+        var clicks = num / 2;
+
+        btn.click(function(e){
+            e.preventDefault();
+
+            clicks = clicks * 2; //
+            $(".search-results li:hidden").slice(0, clicks).show().addClass("animated slideInUp");
+            if ($(".search-results li:hidden").length == 0) {
+                $(this).hide();
+            }
+
+        });
+    };
 
 
     //правильный пересчет функций на ресайз
