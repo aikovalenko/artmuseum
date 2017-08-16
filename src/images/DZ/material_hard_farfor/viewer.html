@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+ 
+		<title>Дипзум</title>
+
+		<!--script src="openseadragon.min.js" type="text/javascript"></script-->
+		<script src="../../js/openseadragon.js" type="text/javascript"></script>
+		<link rel="stylesheet" href="../../css/single_viewer.css">
+	
+	</head>
+
+	<body>
+
+		<div id="openseadragon1"></div>
+		<div id="osd_ctrl" class="dz_toolbar">
+			<button name="ZoomIn" id="ZoomIn" value="Zoom IN" class="dz_buttons"></button>
+			<button name="ZoomOut" id="ZoomOut" value="Zoom IN" class="dz_buttons"></button>
+			<button name="Home" id="Home" value="Home" class="dz_buttons"></button>
+			<button name="FullPage" id="FullPage" value="Toggle full page" class="dz_buttons"/>
+			<button name="NextPage" id="NextPage" value="Next page" class="dz_buttons"/>
+			<button name="PreviousPage" id="PreviousPage" value="Previous page" class="dz_buttons"/>
+		</div>
+		<script type="text/javascript">
+			//localizations
+OpenSeadragon.setString("Tooltips.FullPage","Включить полностраничный режим");
+OpenSeadragon.setString("Tooltips.Home","Вернуться к первоначальному состоянию");
+OpenSeadragon.setString("Tooltips.ZoomIn","Увеличить");
+OpenSeadragon.setString("Tooltips.ZoomOut","Уменьшить");
+OpenSeadragon.setString("Tooltips.NextPage","Следующая страница");
+OpenSeadragon.setString("Tooltips.PreviousPage","Предыдущая страница");
+OpenSeadragon.setString("Tooltips.RotateLeft","Повернуть налево");
+OpenSeadragon.setString("Tooltips.RotateRight","Повернуть направо");
+OpenSeadragon.setString("Errors.Dzc","Извините, библиотека не поддерживает коллекции пирамидальных изображений!");
+OpenSeadragon.setString("Errors.Dzi","Хмм, это не похоже на корректное пирамидальное изображение.");
+OpenSeadragon.setString("Errors.Xml","Хмм, это не похоже на xml корректного пирамидального изображения");
+OpenSeadragon.setString("Errors.ImageFormat","Извините, библиотека не поддерживает {0}-based пирамидальные изображения.");
+OpenSeadragon.setString("Errors.Security","Выглядит так, что ограничения безопасности мешают загрузить пирамидальное изображение.");
+OpenSeadragon.setString("Errors.Status","Это пространство непреднамеренно оставлено пустым ({0} {1})");
+OpenSeadragon.setString("Errors.OpenFailed","Невозможно открыть {0}: {1}");
+			
+
+			var viewer = OpenSeadragon({
+				id: "openseadragon1",
+				//prefixUrl: "images/",
+				//tileSources: "dzc_output.xml",
+				
+				//<Image TileSize="512" Overlap="1" Format="jpg" ServerFormat="Default" xmlns="http://schemas.microsoft.com/deepzoom/2009"><Size Width="4057" Height="2875" /></Image>								
+				tileSources: {
+					Image: {
+						xmlns:    "http://schemas.microsoft.com/deepzoom/2008",
+						Url:      "dzc_output_files/",
+						Format:   "jpg", 
+						Overlap:  "1", 
+						TileSize: "512",
+						Size: {
+							Height: "2875",
+							Width:  "4057"
+						}
+					}				
+				},
+				
+				defaultZoomLevel: 0,
+				minZoomImageRatio: 0.8,
+				maxZoomPixelRatio: 1,
+				
+                visibilityRatio: 1.0,
+				constrainDuringPan: true,
+                
+				zoomInButton: "ZoomIn",
+				zoomOutButton:  "ZoomOut",
+				homeButton:     "Home",
+				fullPageButton: "FullPage",
+				nextButton:     "NextPage",
+				previousButton: "PreviousPage"
+				
+			});	
+
+			// document.documentElement.onmouseout = function () {
+				// window.viewer.canvas-drag-end();
+			// }
+			
+			//viewer.setFullPage();
+		</script>
+
+	</body>
+</html>
