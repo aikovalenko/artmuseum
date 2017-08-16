@@ -198,9 +198,16 @@ $(document).ready(function() {
     //
     //
     // });
-    $('.js-call-search').click(function(e) {
-        $('.form-search input').focus();
-    });
+
+    var callSearch = document.querySelector('.js-call-search');
+    if (callSearch) {
+        callSearch.addEventListener("click", function( ) {
+            var input = document.querySelectorAll('.form-search input');
+            document.querySelector('.form-search input').focus();
+
+        });
+    }
+
     // mainControlsSectionBlock.click(function(e){
     //     e.stopPropagation();
     // });
@@ -676,7 +683,8 @@ $(document).ready(function() {
                     hash = window.location.hash;
 
                 if ( ~array.indexOf(target) && target == hash) {
-                    var loadUrl = '../raw/' + window.location.hash.slice(1) + '.html',
+                    var loadUrl = '../artmuseum/raw/' + window.location.hash.slice(1) + '.html',
+                    // var loadUrl = '../raw/' + window.location.hash.slice(1) + '.html',
                         div = $('[data-target="' + target + '"]'),
                         section = div.parents('.section'),
                         num = 40; //это для воздуха
@@ -812,14 +820,17 @@ $(document).ready(function() {
             font = $(".js-font"),
 
             contrastCookie = getCookie("contrast"),
+            imgCookie = getCookie("img"),
             fontCookie = getCookie("font");
 
+        function show() { img.show(); }
+        function hide() { img.hide(); }
 
         contrast.on('click', function () {
             html.addClass('contrast');
             $(this).addClass('active');
             normal.removeClass('active');
-            // img.hide();
+            img.hide();
             setCookie("contrast", "on");
 
             $grid.masonry();
@@ -828,34 +839,34 @@ $(document).ready(function() {
             html.removeClass('contrast');
             $(this).addClass('active');
             contrast.removeClass('active');
-            // img.show();
+            img.show();
             setCookie("contrast", "off");
 
             $grid.masonry();
         });
-        font.on('click', function (e) {
-            e.preventDefault();
-            if ($(this).hasClass('active')) {
-                setCookie("font", "normal");
-            }
-            html.toggleClass('big-font');
-            font.toggleClass('active');
-            setCookie("font", "big");
-
-
-        });
+        // font.on('click', function (e) {
+        //     e.preventDefault();
+        //     if ($(this).hasClass('active')) {
+        //         setCookie("font", "normal");
+        //     }
+        //     html.toggleClass('big-font');
+        //     font.toggleClass('active');
+        //     setCookie("font", "big");
+        //
+        //
+        // });
 
         if (contrastCookie == 'on') {
             contrast.addClass('active');
             normal.removeClass('active');
             html.addClass('contrast');
-            // img.hide();
+            img.hide();
             $grid.masonry();
         } else {
             contrast.removeClass('active');
             normal.addClass('active');
             html.removeClass('contrast');
-            // img.show();
+            img.show();
             $grid.masonry();
         }
 
@@ -1003,19 +1014,20 @@ $(document).ready(function() {
     function mapFloors() {
         var hall = $('.map-hall'),
             link = $('.map-link'),
+            num = $('.num-link'),
             linksBlock = $('.map-links'),
             hallsBlock = $('.map-svg'),
             html = $('html');
 
         function linkChangeColor(id, $this) {
-            console.log(id);
-            hallsBlock.find('#' + id).addClass('hover').addClass('active');
+            console.log('[data-hall="'+ id +'"]');
+            $('.map-hall[data-hall="'+ id +'"]').addClass('hover').addClass('active');
             $this.addClass('hover');
             $this.addClass('active');
         }
 
         function hallChangeColor(id, $this) {
-            console.log(id);
+            // console.log(id);
             linksBlock.find('#' + id).addClass('hover').addClass('active');
             $this.addClass('hover');
             $this.addClass('active');
@@ -1046,7 +1058,7 @@ $(document).ready(function() {
                     e.preventDefault();
                     mapChangeColorReset();
                     var $this = $(this),
-                        id = $this.attr('id');
+                        id = $this.attr('data-hall');
 
                     hallChangeColor(id, $this);
                 }
@@ -1058,14 +1070,27 @@ $(document).ready(function() {
                         id = $this.attr('id');
 
                     linkChangeColor(id, $this);
+                    console.log(id);
                 }, function () {
                     mapChangeColorReset();
+                }
+            );
+            num.hover(
+                function () {
+                    var $this = $(this),
+                        id = $this.attr('data-num');
+
+                    $('#' + id).addClass('hover');
+
+                    linkChangeColor(id, $this);
+                }, function () {
+
                 }
             );
             hall.hover(
                 function () {
                     var $this = $(this),
-                        id = $this.attr('id');
+                        id = $this.attr('data-hall');
                     hallChangeColor(id, $this);
                 }, function () {
                     mapChangeColorReset();
@@ -1073,6 +1098,69 @@ $(document).ready(function() {
             );
         }
     }
+
+
+
+
+
+    //логика работы с кварталом, объект objQuarter на странице
+    function mapQuarter() {
+        var building = $('.quarter-building'),
+            svg = $('.quarter-map'),
+            popup = $('.quarter-popup'),
+            name = $('.quarter-popup__name'),
+            description = $('.quarter-popup__desc'),
+            html = $('html');
+
+
+        if (html.hasAnyClass('ios', 'mobile', 'android')) {
+            building.click(function (e) {
+                if ($(this).hasClass('active') == true) {
+                    return true
+                } else {
+                    building.removeClass('active').removeClass('filled');
+                    e.preventDefault();
+                    var $this = $(this),
+                        svgOffsetTop = svg.offset().top,
+                        id = $this.attr('data-quarter');
+                    var offsetLeft = $this.position().left;
+                    var offsetTop = $this.position().top;
+                    console.log(objQuarter[id].name, $this);
+                    $this.addClass('filled');
+                    name.html(objQuarter[id].name);
+                    description.html(objQuarter[id].description);
+                    var height = popup.innerHeight();
+                    popup.css({"top": offsetTop - svgOffsetTop - height + 50, "left":offsetLeft - 150}).addClass('visible');
+
+                    $this.addClass('active');
+                }
+            });
+        } else {
+            building.hover(
+                function () {
+                    var $this = $(this),
+                        svgOffsetTop = svg.offset().top,
+                        id = $this.attr('data-quarter');
+
+                    // linkChangeColor(id, $this);
+                    var offsetLeft = $this.position().left;
+                    var offsetTop = $this.position().top;
+                    console.log(objQuarter[id].name, $this);
+                    $this.addClass('filled');
+                    name.html(objQuarter[id].name);
+                    description.html(objQuarter[id].description);
+                    var height = popup.innerHeight();
+                    popup.css({"top": offsetTop - svgOffsetTop - height + 50, "left":offsetLeft - 150}).addClass('visible');
+
+                }, function () {
+                    popup.removeClass('visible');
+                    building.removeClass('filled');
+                }
+            );
+        }
+    }
+    mapQuarter();
+
 
     var arrResult = [];
     $('.form-search').on('submit', function (e) {

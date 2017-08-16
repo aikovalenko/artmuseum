@@ -142,14 +142,22 @@
     }
     &__halls {
       padding-right: 0;
+      margin-bottom: 41px;
+      text-align: center;
+      svg {
+        max-width: 534px;
+      }
     }
     &__links {
+
       padding-left: 0;
     }
   }
 
 
   .map-links {
+    padding-left: 44px;
+    padding-right: 44px;
 
     ul {
       columns: 3 260px;
@@ -206,11 +214,9 @@
     }
   }
   .logo {
-    &--mobile {
-      display: block;
-    }
-    &--desktop {
-      display: none;
+    img {
+      width: 162px;
+      height: 122px;
     }
   }
   .main-controls-section {
@@ -221,6 +227,14 @@
   }
 
   .footer {
+
+    .logo {
+      img {
+        width: 153px;
+        height: 99px;
+      }
+    }
+
     &__inner {
       padding-top: 40px;
       padding-right: 24px;
@@ -891,10 +905,28 @@
   }
 
   .map-links {
+    padding-left: 0;
+    padding-right: 0;
 
     ul {
       width: 830px;
       margin-left: 24px;
+    }
+  }
+  .plan-floor {
+    flex-wrap: wrap;
+
+    &__halls, &__links {
+      width: 100%;
+    }
+    &__halls {
+      padding-right: 16px;
+      padding-left: 16px;
+      margin-bottom: 39px;
+      text-align: center;
+      svg {
+        max-width: 534px;
+      }
     }
   }
   .search--section {
@@ -913,6 +945,12 @@
     }
     .btn--more {
       margin-top: 43px;
+    }
+  }
+
+  .section--quarter {
+    .padding {
+      padding: 0;
     }
   }
 }
@@ -1017,7 +1055,6 @@
   .menu-mobile {
     display: none;
   }
-
 
 
 }
