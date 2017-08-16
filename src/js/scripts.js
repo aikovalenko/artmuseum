@@ -471,6 +471,7 @@ $(document).ready(function() {
                     $(this).parent().removeClass('active');
                 });
                 checkIfFirstIsActive();
+                $grid.masonry();
             });
 
             function checkIfFirstIsActive() {
@@ -683,8 +684,8 @@ $(document).ready(function() {
                     hash = window.location.hash;
 
                 if ( ~array.indexOf(target) && target == hash) {
-                    var loadUrl = '../artmuseum/raw/' + window.location.hash.slice(1) + '.html',
-                    // var loadUrl = '../raw/' + window.location.hash.slice(1) + '.html',
+                    // var loadUrl = '../artmuseum/raw/' + window.location.hash.slice(1) + '.html',
+                    var loadUrl = '../raw/' + window.location.hash.slice(1) + '.html',
                         div = $('[data-target="' + target + '"]'),
                         section = div.parents('.section'),
                         num = 40; //это для воздуха
@@ -1012,91 +1013,93 @@ $(document).ready(function() {
 
     //логика работы с картой этажей
     function mapFloors() {
-        var hall = $('.map-hall'),
-            link = $('.map-link'),
-            num = $('.num-link'),
-            linksBlock = $('.map-links'),
-            hallsBlock = $('.map-svg'),
-            html = $('html');
+        $('.floor-map').each(function() {
+            var hall = $('.map-hall'),
+                link = $('.map-link'),
+                num = $('.num-link'),
+                linksBlock = $('.map-links'),
+                hallsBlock = $('.map-svg'),
+                html = $('html');
 
-        function linkChangeColor(id, $this) {
-            console.log('[data-hall="'+ id +'"]');
-            $('.map-hall[data-hall="'+ id +'"]').addClass('hover').addClass('active');
-            $this.addClass('hover');
-            $this.addClass('active');
-        }
+            function linkChangeColor(id, $this) {
+                console.log('[data-hall="' + id + '"]');
+                $('.map-hall[data-hall="' + id + '"]').addClass('hover').addClass('active');
+                $this.addClass('hover');
+                $this.addClass('active');
+            }
 
-        function hallChangeColor(id, $this) {
-            // console.log(id);
-            linksBlock.find('#' + id).addClass('hover').addClass('active');
-            $this.addClass('hover');
-            $this.addClass('active');
-        }
+            function hallChangeColor(id, $this) {
+                // console.log(id);
+                linksBlock.find('#' + id).addClass('hover').addClass('active');
+                $this.addClass('hover');
+                $this.addClass('active');
+            }
 
-        function mapChangeColorReset() {
-            hall.removeClass('hover').removeClass('active');
-            link.removeClass('hover').removeClass('active');
-        }
+            function mapChangeColorReset() {
+                hall.removeClass('hover').removeClass('active');
+                link.removeClass('hover').removeClass('active');
+            }
 
-        if (html.hasAnyClass('ios', 'mobile', 'android')) {
-            link.click(function (e) {
-                if ($(this).hasClass('active') == true) {
-                    return true
-                } else {
-                    e.preventDefault();
-                    mapChangeColorReset();
-                    var $this = $(this),
-                        id = $this.attr('id');
+            if (html.hasAnyClass('ios', 'mobile', 'android')) {
+                link.click(function (e) {
+                    if ($(this).hasClass('active') == true) {
+                        return true
+                    } else {
+                        e.preventDefault();
+                        mapChangeColorReset();
+                        var $this = $(this),
+                            id = $this.attr('id');
 
-                    linkChangeColor(id, $this);
-                }
-            });
-            hall.click(function (e) {
-                if ($(this).hasClass('active') == true) {
-                    return true
-                } else {
-                    e.preventDefault();
-                    mapChangeColorReset();
-                    var $this = $(this),
-                        id = $this.attr('data-hall');
+                        linkChangeColor(id, $this);
+                    }
+                });
+                hall.click(function (e) {
+                    if ($(this).hasClass('active') == true) {
+                        return true
+                    } else {
+                        e.preventDefault();
+                        mapChangeColorReset();
+                        var $this = $(this),
+                            id = $this.attr('data-hall');
 
-                    hallChangeColor(id, $this);
-                }
-            });
-        } else {
-            link.hover(
-                function () {
-                    var $this = $(this),
-                        id = $this.attr('id');
+                        hallChangeColor(id, $this);
+                    }
+                });
+            } else {
+                link.hover(
+                    function () {
+                        var $this = $(this),
+                            id = $this.attr('id');
 
-                    linkChangeColor(id, $this);
-                    console.log(id);
-                }, function () {
-                    mapChangeColorReset();
-                }
-            );
-            num.hover(
-                function () {
-                    var $this = $(this),
-                        id = $this.attr('data-num');
+                        linkChangeColor(id, $this);
+                        console.log(id);
+                    }, function () {
+                        mapChangeColorReset();
+                    }
+                );
+                num.hover(
+                    function () {
+                        var $this = $(this),
+                            id = $this.attr('data-num');
 
-                    $('#' + id).addClass('hover');
+                        $('#' + id).addClass('hover');
 
-                    linkChangeColor(id, $this);
-                }, function () {
+                        linkChangeColor(id, $this);
+                    }, function () {
 
-                }
-            );
-            hall.hover(
-                function () {
-                    var $this = $(this),
-                        id = $this.attr('data-hall');
-                    hallChangeColor(id, $this);
-                }, function () {
-                    mapChangeColorReset();
-                }
-            );
-        }
+                    }
+                );
+                hall.hover(
+                    function () {
+                        var $this = $(this),
+                            id = $this.attr('data-hall');
+                        hallChangeColor(id, $this);
+                    }, function () {
+                        mapChangeColorReset();
+                    }
+                );
+            }
+        })
     }
 
 

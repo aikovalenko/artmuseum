@@ -2993,11 +2993,16 @@ h1 {
     column-gap: 24px;
     white-space: normal;
   }
+
+  li {
+    display: inline-block;
+    break-inside: avoid;
+  }
 }
 .map-link {
   display: flex;
   font-weight: 500;
-  @include fontSize(14px);
+  @include fontSize(16px);
   line-height: 131%;
   transition: $transition;
 
