@@ -7,6 +7,7 @@
 @import "partials/fonts";
 @import "partials/header";
 @import "partials/footer";
+@import "partials/footer";
 
 
 @include fontFace('GMText','../fonts/GMTextItalic', 400, italic);
@@ -777,7 +778,8 @@ ul {
     left: -48px;
     transition: $transition;
     input {
-      width: 360px;
+      //width: 360px;
+      width: 515px;
       opacity: 1;
       transition: $transition;
     }
@@ -1426,6 +1428,9 @@ ul {
 
   }
 }
+.item--old {
+  opacity: .5;
+}
 .item--card--bigger {
   .desc {
     p {
@@ -1472,6 +1477,10 @@ ul {
   }
   &--shop {
     margin-bottom: 72px;
+
+    &--extended {
+      margin-bottom: 111px;
+    }
   }
   &--extra {
     margin-bottom: 111px;
@@ -1540,6 +1549,8 @@ ul {
   &__header {
     text-align: center;
 
+
+
     h2 {
       margin: 0;
       margin-bottom: 44px;
@@ -1596,6 +1607,13 @@ ul {
           padding-left: 24px;
           padding-right: 24px;
         }
+      }
+    }
+
+    &--item {
+      margin-bottom: 66px;
+      h2 {
+        margin-bottom: 16px;
       }
     }
   }

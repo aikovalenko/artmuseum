@@ -658,6 +658,7 @@ $(document).ready(function() {
             // btnMoreText();
             masonryForDesktop();
             mapFloors();
+            blindVersion();
 
 
         }).done(function() {
@@ -685,7 +686,7 @@ $(document).ready(function() {
 
                 if ( ~array.indexOf(target) && target == hash) {
                     // var loadUrl = '../artmuseum/raw/' + window.location.hash.slice(1) + '.html',
-                    var loadUrl = '../raw/' + window.location.hash.slice(1) + '.html',
+                    var loadUrl = './raw/' + window.location.hash.slice(1) + '.html',
                         div = $('[data-target="' + target + '"]'),
                         section = div.parents('.section'),
                         num = 40; //это для воздуха
@@ -811,7 +812,7 @@ $(document).ready(function() {
     masonryForDesktop();
 
 
-    $(function() {
+    function blindVersion() {
         var html = $("html"),
             body = $("body"),
             img = $("img"),
@@ -824,14 +825,14 @@ $(document).ready(function() {
             imgCookie = getCookie("img"),
             fontCookie = getCookie("font");
 
-        function show() { img.show(); }
-        function hide() { img.hide(); }
+        function show() { $("img").show(); $("svg").show(); $(".video-container").show(); }
+        function hide() { $("svg").hide(); $("img").hide();  $(".video-container").hide(); }
 
         contrast.on('click', function () {
             html.addClass('contrast');
             $(this).addClass('active');
             normal.removeClass('active');
-            img.hide();
+            hide();
             setCookie("contrast", "on");
 
             $grid.masonry();
@@ -840,38 +841,29 @@ $(document).ready(function() {
             html.removeClass('contrast');
             $(this).addClass('active');
             contrast.removeClass('active');
-            img.show();
+            show();
             setCookie("contrast", "off");
 
             $grid.masonry();
         });
-        // font.on('click', function (e) {
-        //     e.preventDefault();
-        //     if ($(this).hasClass('active')) {
-        //         setCookie("font", "normal");
-        //     }
-        //     html.toggleClass('big-font');
-        //     font.toggleClass('active');
-        //     setCookie("font", "big");
-        //
-        //
-        // });
 
         if (contrastCookie == 'on') {
             contrast.addClass('active');
             normal.removeClass('active');
             html.addClass('contrast');
-            img.hide();
+            // img.hide();
+            hide();
             $grid.masonry();
         } else {
             contrast.removeClass('active');
             normal.addClass('active');
             html.removeClass('contrast');
-            img.show();
+            show();
             $grid.masonry();
         }
 
-    });
+    };
+    blindVersion();
 
     function adaptiveText() {
         var textAdditional = $('.text-additional'),

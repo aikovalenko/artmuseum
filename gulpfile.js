@@ -16,8 +16,9 @@ var gulp = require('gulp'),
 	include = require('gulp-file-include'),
 	cleanCSS = require('gulp-clean-css'),
     csscomb = require('gulp-csscomb'),
-    uglify = require('gulp-uglify');
-	cache = require('gulp-cache');
+    uglify = require('gulp-uglify'),
+	cache = require('gulp-cache'),
+	svgSprite = require("gulp-svg-sprites");
    
 
 var path = {
@@ -78,6 +79,14 @@ var config = {
 	}
 };
 
+gulp.task('sprites', function () {
+    return gulp.src('src/images/svg/*.svg')
+        .pipe(svgSprite({
+            cssFile: "scss/_sprite.scss"
+        }))
+        .pipe(gulp.dest("src/css/sprites"));
+});
+
 gulp.task('html:build', function () {
 	gulp.src(path.src.html)
 		.pipe(plumber())
@@ -126,12 +135,12 @@ gulp.task('style:dist', function () {
 
 gulp.task('image:build', function () {
     return gulp.src(path.src.img)
-        .pipe(imagemin([
+        .pipe(cache(imagemin([
             imagemin.gifsicle({interlaced: true}),
             imagemin.jpegtran({progressive: true}),
             imagemin.optipng({optimizationLevel: 5}),
             imagemin.svgo({plugins: [{removeViewBox: true}]})
-        ]))
+        ])))
         .pipe(gulp.dest(path.build.img))
         .on('end', function () {
             browserSync.reload();

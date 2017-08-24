@@ -37,6 +37,7 @@
   },
   "homepage": "https://github.com/aikovalenko/artmuseum#readme",
   "devDependencies": {
-    "gulp-sass": "^3.1.0"
+    "gulp-sass": "^3.1.0",
+    "gulp-svg-sprites": "^4.1.2"
   }
 }
