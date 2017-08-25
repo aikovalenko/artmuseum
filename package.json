@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "main": "gulpfile.js",
-  "dependencies": {
+  "devDependencies": {
     "browser-sync": "^2.18.8",
     "gulp-bump": "^2.7.0",
     "gulp-cache": "^0.4.6",
@@ -11,6 +11,8 @@
     "gulp-csscomb": "^3.0.8",
     "gulp-file-include": "^1.0.0",
     "gulp-imagemin": "^3.1.1",
+    "gulp-sass": "^3.1.0",
+    "gulp-svg-sprites": "^4.1.2"
     "gulp-plumber": "^1.1.0",
     "gulp-rigger": "^0.5.8",
     "gulp-sourcemaps": "^2.4.1",
@@ -35,9 +37,5 @@
   "bugs": {
     "url": "https://github.com/aikovalenko/artmuseum/issues"
   },
-  "homepage": "https://github.com/aikovalenko/artmuseum#readme",
-  "devDependencies": {
-    "gulp-sass": "^3.1.0",
-    "gulp-svg-sprites": "^4.1.2"
-  }
+  "homepage": "https://github.com/aikovalenko/artmuseum#readme"
 }
