@@ -70,4 +70,13 @@
     }
   }
 
+  .main-navigation__inner {
+    display: block;
+    column-count: 4;
+
+    li {
+      margin-bottom: 10px;
+    }
+  }
+
 }
