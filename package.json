@@ -12,7 +12,7 @@
     "gulp-file-include": "^1.0.0",
     "gulp-imagemin": "^3.1.1",
     "gulp-sass": "^3.1.0",
-    "gulp-svg-sprites": "^4.1.2"
+    "gulp-svg-sprites": "^4.1.2",
     "gulp-plumber": "^1.1.0",
     "gulp-rigger": "^0.5.8",
     "gulp-sourcemaps": "^2.4.1",

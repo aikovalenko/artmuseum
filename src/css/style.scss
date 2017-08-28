@@ -560,6 +560,9 @@ ul {
     .icon-arrow-down {
       margin-left: calculateRem(8px);
     }
+    .icon-status-ok {
+      @include fontSize(15px);
+    }
     .notifications-badge {
       align-self: center;
       width: calculateRem(15px);
@@ -900,6 +903,13 @@ ul {
     }
   }
 
+  &__head {
+    &--social {
+      margin-top: 24px;
+      margin-bottom: 5px;
+    }
+  }
+
 }
 .mobile-settings {
   &__primary {
@@ -1061,29 +1071,75 @@ ul {
     }
   }
 
-  .social-buttons {
-    float: left;
-    max-width: 300px;
-    margin-top: 6px;
-    font-size: 0;
 
-    li {
-      display: inline-block;
-      margin-bottom: 24px;
-      margin-right: 24px;
-
-      .icon {
-        @include fontSize(40px);
-        color: inherit;
-      }
-    }
-  }
   .quality-estimation {
     float: left;
     margin-top: 6.5px;
   }
 }
+.social-buttons {
+  float: left;
+  max-width: 300px;
+  margin-top: 6px;
+  font-size: 0;
 
+  li {
+    display: inline-block;
+    margin-bottom: 24px;
+    margin-right: 24px;
+
+    .icon {
+      @include fontSize(40px);
+      color: inherit;
+    }
+    a {
+      transition: $transition;
+
+      &:hover {
+        color: $white-two;
+        transition: $transition;
+      }
+    }
+  }
+
+  &--menu {
+    margin-bottom: -24px;
+
+    li {
+      margin-bottom: 20px;
+      margin-right: 20px;
+
+      .icon {
+        @include fontSize(40px);
+        color: #a4a4a5;
+        transition: $transition;
+      }
+      a {
+
+        &:hover {
+          .icon {
+            transition: $transition;
+            color: #515151;
+          }
+
+        }
+      }
+    }
+  }
+
+  &--mobile-menu {
+    margin-top: 24px;
+    max-width: 100%;
+
+    li {
+      a {
+        display: block;
+        height: 40px;
+      }
+    }
+  }
+
+}
 .column-3-container {
   display: flex;
   width: 100%;
@@ -2890,6 +2946,7 @@ h1 {
 
 .program-block {
   //max-width: 350px;
+  display: block;
   height: 190px;
   margin: 0 12px;
   margin-bottom: 24px;

@@ -15,81 +15,85 @@
 
 .slick-next {
   &:before {
-    content: "\e90b";
+    content: "\e906";
   }
 }
 .slick-prev {
   &:before {
-    content: "\e90a";
+    content: "\e905";
   }
 }
 .select2-selection__arrow {
   &:before {
-    content: "\e90c";
+    content: "\e907";
   }
 }
 
 .lg-actions .lg-prev:after {
-  content: "\e90a";
+  content: "\e905";
 }
 .lg-actions .lg-next:before {
-  content: "\e90b";
+  content: "\e906";
 }
 
+.icon-zoomout:before {
+  content: "\e900";
+}
+.icon-zoom:before {
+  content: "\e901";
+}
+.icon-status-ok:before {
+  content: "\e902";
+}
 .icon-search:before {
-  content: "\e908";
+  content: "\e903";
 }
 .icon-share:before {
-  content: "\e909";
+  content: "\e904";
 }
 .icon-arrow-left:before {
-  content: "\e90a";
-  color: #f9f9fb;
+  content: "\e905";
 }
 .icon-arrow-right:before {
-  content: "\e90b";
-  color: #f9f9fb;
+  content: "\e906";
 }
 .icon-arrow-down:before {
-  content: "\e90c";
+  content: "\e907";
 }
 .icon-thumbup:before {
-  content: "\e92a";
+  content: "\e908";
 }
 .icon-thumbdown:before {
-  content: "\e92b";
+  content: "\e909";
 }
 .icon-ta:before {
-  content: "\e92c";
+  content: "\e90a";
 }
 .icon-ok:before {
-  content: "\e92d";
+  content: "\e90b";
 }
 .icon-vk:before {
-  content: "\e92e";
+  content: "\e90c";
 }
 .icon-tg:before {
-  content: "\e92f";
+  content: "\e90d";
 }
 .icon-inst:before {
-  content: "\e930";
+  content: "\e90e";
 }
 .icon-yb:before {
-  content: "\e931";
+  content: "\e90f";
 }
 .icon-tw:before {
-  content: "\e932";
+  content: "\e910";
 }
 .icon-fb:before {
-  content: "\e933";
+  content: "\e911";
 }
 .icon-play:before {
-  content: "\e934";
-  color: #f9f9fb;
+  content: "\e912";
 }
 .icon-wr:before {
-  content: "\e935";
+  content: "\e913";
 }
-
-
 

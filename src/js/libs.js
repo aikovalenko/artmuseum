@@ -9,3 +9,4 @@
 //= ../libs/masonry/dist/masonry.pkgd.min.js
 //= ../libs/masonry/dist/imagesloaded.pkgd.min.js
 //= ../libs/lightgallery/dist/js/lightgallery-all.min.js
+//= ../libs/picturefill/dist/picturefill.min.js
