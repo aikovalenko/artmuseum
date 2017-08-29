@@ -10,3 +10,4 @@
 //= ../libs/masonry/dist/imagesloaded.pkgd.min.js
 //= ../libs/lightgallery/dist/js/lightgallery-all.min.js
 //= ../libs/picturefill/dist/picturefill.min.js
+//= ../libs/lazysizes.js
