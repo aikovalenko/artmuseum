@@ -24,16 +24,16 @@ var gulp = require('gulp'),
 var path = {
 	bump: ['./bower.json', './package.json'],
 	zip: {
-		source: 'dist/*',
+		source: 'docs/*',
 		dest: ''
 	},
-	dist: {
-		html: 'dist/',
-		js: 'dist/js/',
-		css: 'dist/css/',
-		img: 'dist/images/',
-		fonts: 'dist/fonts/',
-		raw: 'dist/raw'
+	docs: {
+		html: 'docs/',
+		js: 'docs/js/',
+		css: 'docs/css/',
+		img: 'docs/images/',
+		fonts: 'docs/fonts/',
+		raw: 'docs/raw'
 	},
 	build: {
 		html: 'build/',
@@ -63,7 +63,7 @@ var path = {
 	},
 	clean: {
 		build: './build',
-		dist: './dist'
+		docs: './docs'
 	}
 };
 
@@ -98,11 +98,11 @@ gulp.task('html:build', function () {
     });
 });
 
-gulp.task('html:dist', function () {
+gulp.task('html:docs', function () {
 	gulp.src(path.src.html)
 		.pipe(include({cache: false, indent: true}))
 //		.pipe(hamlc())
-		.pipe(gulp.dest(path.dist.html));
+		.pipe(gulp.dest(path.docs.html));
 });
 
 gulp.task('style:build', function () {
@@ -118,19 +118,19 @@ gulp.task('style:build', function () {
     });
 });
 
-gulp.task('style:dist', function () {
+gulp.task('style:docs', function () {
 	gulp.src(path.src.style)
 		.pipe(sass())
 		.pipe(prefixer(['last 15 versions', '> 1%', 'ie 8', 'ie 7'], { cascade: true }))
 		// .pipe(cleanCSS())
         .pipe(csscomb())
-		.pipe(gulp.dest(path.dist.css));
+		.pipe(gulp.dest(path.docs.css));
     gulp.src(path.src.styleLibs)
         .pipe(sass())
         .pipe(prefixer(['last 15 versions', '> 1%', 'ie 8', 'ie 7'], { cascade: true }))
         .pipe(cleanCSS())
         // .pipe(csscomb())
-        .pipe(gulp.dest(path.dist.css));
+        .pipe(gulp.dest(path.docs.css));
 });
 
 gulp.task('image:build', function () {
@@ -147,7 +147,7 @@ gulp.task('image:build', function () {
         });
 });
 
-gulp.task('image:dist', function () {
+gulp.task('image:docs', function () {
     return gulp.src(path.src.img)
         .pipe(imagemin([
             imagemin.gifsicle({interlaced: true}),
@@ -155,7 +155,7 @@ gulp.task('image:dist', function () {
             imagemin.optipng({optimizationLevel: 5}),
             imagemin.svgo({plugins: [{removeViewBox: true}]})
         ]))
-        .pipe(gulp.dest(path.dist.img));
+        .pipe(gulp.dest(path.docs.img));
 });
 
 gulp.task('fonts:build', function () {
@@ -166,9 +166,9 @@ gulp.task('fonts:build', function () {
     });
 });
 
-gulp.task('fonts:dist', function () {
+gulp.task('fonts:docs', function () {
 	gulp.src(path.src.fonts)
-		.pipe(gulp.dest(path.dist.fonts));
+		.pipe(gulp.dest(path.docs.fonts));
 });
 
 gulp.task('raw:build', function () {
@@ -178,9 +178,9 @@ gulp.task('raw:build', function () {
             browserSync.reload();
         });
 });
-gulp.task('raw:dist', function () {
+gulp.task('raw:docs', function () {
     gulp.src(path.src.raw)
-        .pipe(gulp.dest(path.dist.raw));
+        .pipe(gulp.dest(path.docs.raw));
 });
 
 gulp.task('js:build', function () {
@@ -192,60 +192,60 @@ gulp.task('js:build', function () {
     });
 });
 
-gulp.task('js:dist', function () {
+gulp.task('js:docs', function () {
 	gulp.src(path.src.js)
 		.pipe(rigger())
-		.pipe(gulp.dest(path.dist.js));
+		.pipe(gulp.dest(path.docs.js));
 	gulp.src(path.src.jsLibs)
 		.pipe(rigger())
         .pipe(uglify())
-		.pipe(gulp.dest(path.dist.js));
+		.pipe(gulp.dest(path.docs.js));
 });
 
 gulp.task('build', ['clean:build'], function() {
 	gulp.start('project:build');
 });
 
-gulp.task('dist:major', ['clean:dist'], function() {
-	gulp.start('project:dist');
+gulp.task('docs:major', ['clean:docs'], function() {
+	gulp.start('project:docs');
 	gulp.src(path.bump)
 		.pipe(bump({type: 'major'}))
 		.pipe(gulp.dest('./'));
 });
 
-gulp.task('dist:minor', ['clean:dist'], function() {
-	gulp.start('project:dist');
+gulp.task('docs:minor', ['clean:docs'], function() {
+	gulp.start('project:docs');
 	gulp.src(path.bump)
 		.pipe(bump({type: 'minor'}))
 		.pipe(gulp.dest('./'));
 });
 
-gulp.task('dist:patch', ['clean:dist'], function() {
-	gulp.start('project:dist');
+gulp.task('docs:patch', ['clean:docs'], function() {
+	gulp.start('project:docs');
 	gulp.src(path.bump)
 		.pipe(bump())
 		.pipe(gulp.dest('./'));
 });
 
-gulp.task('dist:prerelease', ['clean:dist'], function() {
-	gulp.start('project:dist');
+gulp.task('docs:prerelease', ['clean:docs'], function() {
+	gulp.start('project:docs');
 	gulp.src(path.bump)
 		.pipe(bump({type: 'prerelease'}))
 		.pipe(gulp.dest('./'));
 });
 
-gulp.task('dist', ['clean:dist'], function() {
-	gulp.start('project:dist');
+gulp.task('docs', ['clean:docs'], function() {
+	gulp.start('project:docs');
 });
 
 gulp.task('project:build', ['html:build', 'style:build', 'image:build', 'fonts:build', 'js:build', 'raw:build']);
 
-gulp.task('project:dist', ['html:dist', 'style:dist', 'image:dist', 'fonts:dist', 'js:dist', 'raw:dist']);
+gulp.task('project:docs', ['html:docs', 'style:docs', 'image:docs', 'fonts:docs', 'js:docs', 'raw:docs']);
 
 /* Настроить автоматическую подготовку архива */
-gulp.task('zip', ['dist'], function() {
+gulp.task('zip', ['docs'], function() {
 	gulp.src(path.zip.source)
-		.pipe(zip('dist.zip'))
+		.pipe(zip('docs.zip'))
 		.pipe(gulp.dest(path.zip.dest));
 });
 
@@ -267,8 +267,8 @@ gulp.task('clean:build', function (cb) {
 	rimraf(path.clean.build, cb);
 });
 
-gulp.task('clean:dist', function (cb) {
-	rimraf(path.clean.dist, cb);
+gulp.task('clean:docs', function (cb) {
+	rimraf(path.clean.docs, cb);
 });
 
 gulp.task('default', ['webserver', 'watch']);
