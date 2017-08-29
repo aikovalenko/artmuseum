@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+  <head>
+      <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <title>ГМИИ</title>
+      <link rel='stylesheet' href='css/libs.css'>
+      <link rel='stylesheet' href='css/style.css'>
+  </head>
+  <body class="bg-primary" style="padding: 50px;">
+    <div class="logo">
+      <a class="" href="index.html" title="Государственный музей изобразительных искусств имени А. С. Пушкина">
+        <picture>
+          <source media="(max-width: 1023px)" srcset="images/svg/logo_gmii_mobile.svg">
+          <img src="images/svg/logo_gmii.svg" alt="Государственный музей изобразительных искусств имени А. С. Пушкина">
+        </picture>
+      </a>
+    </div>
+    <div class="" style="margin-top: 50px;">
+      <ol style="line-height: 200%;">
+        <li><a href="main.html">Главная страница</a></li>
+        <li>
+          <a href="afisha.html">Выставки и экспозиции (бывшая Афиша)</a>
+          <ol>
+            <li><a href="afisha_exibition.html">Страница выставки</a></li>
+          </ol>
+        </li>
+        <li>
+          <a href="collection.html">Главная коллекции</a>
+          <ol>
+            <li><a href="collection-with-filters.html">Главная коллекции c выбранным разделом и фильтрами</a></li>
+            <li><a href="collection_section.html">Страница коллекции (на примере живописи)</a></li>
+            <li><a href="collection_item.html">Предмет коллекции</a></li>
+          </ol>
+        </li>
+        <li>
+          <a href="museum.html">Страница музея</a>
+          <ol>
+            <li><a href="museum-main.html">Страница главного здания</a></li>
+          </ol>
+        </li>
+        <li><a href="page-not-found.html">Ошибка 404</a></li>
+        <li><a href="text-page.html">Типовая текстовая страница</a></li>
+      </ol>
+    </div>
+    <div class="font-gmtext" style="margin-top: 40px;margin-left: 25px">
+      <h5 style="margin-bottom: 10px">Некоторые особенности верстки</h5>
+      <ul style="list-style: circle; margin-top: 5px; font-size: 14px">
+        <li>На странице 404 можно случайным образом выбирать фоновую картинку</li>
+        <li>На странице предмета коллекции высота слайдера и дипзума определяется высотою экрана. Так же происходит подскролливание этой зоны к верху (чтобы красиво вписать все в высоту экрана).</li>
+        <li>Из-за отказа открывать дипзум в попапе, отключена возможность скролла дипзума (так как нам нужно еще скроллить остальную часть страницы).
+        Также пришлось подключить дополнительную библиотеку openseadragon для реализации вышеописанного, вследствии чего на <u>macOS в Chrome</u> (пока только там) наблюдается заторможенность
+          при скролле поверх дипзума.
+        </li>
+        <li>При переключении табов изменяется путь, по нему же можно открыть необходимый таб.</li>
+      </ul>
+    </div>
+  <script src='js/libs.js'></script>
+  <script src='js/scripts.js'></script>
+  </body>
+</html>
