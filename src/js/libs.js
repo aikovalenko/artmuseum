@@ -11,3 +11,4 @@
 //= ../libs/lightgallery/dist/js/lightgallery-all.min.js
 //= ../libs/picturefill/dist/picturefill.min.js
 //= ../libs/lazysizes.js
+//= ../libs/jquery.marquee.min.js

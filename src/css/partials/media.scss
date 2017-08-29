@@ -691,8 +691,20 @@
     }
 
   }
-  .columns-2-section {
+  .text-section {
     margin-bottom: 80px;
+
+    h1 {
+      @include fontSize(38px);
+      line-height: 105%;
+      margin-bottom: 15px;
+    }
+    .video-container {
+      display: none;
+    }
+  }
+  .columns-2-section {
+
 
     &__inner {
       &__left {
@@ -703,14 +715,7 @@
         display: none;
       }
     }
-    h1 {
-      @include fontSize(38px);
-      line-height: 105%;
-      margin-bottom: 15px;
-    }
-    .video-container {
-      display: none;
-    }
+
   }
   .mobile--view {
     display: block;

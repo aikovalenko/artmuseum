@@ -686,7 +686,7 @@ $(document).ready(function() {
 
                 if ( ~array.indexOf(target) && target == hash) {
                     // var loadUrl = '../artmuseum/raw/' + window.location.hash.slice(1) + '.html',
-                    var loadUrl = './raw/' + window.location.hash.slice(1) + '.html',
+                    var loadUrl = '/raw/' + window.location.hash.slice(1) + '.html',
                         div = $('[data-target="' + target + '"]'),
                         section = div.parents('.section'),
                         num = 40; //это для воздуха
@@ -1164,7 +1164,7 @@ $(document).ready(function() {
 
         arrResult.push(val);
 
-        search('raw/search.html');
+        search('/raw/search.html');
 
         notifsTop.removeClass('hidden');
         burger.removeClass("active");
@@ -1227,6 +1227,32 @@ $(document).ready(function() {
 
         });
     };
+
+    $(function() {
+        var wrap = $('.js-marquee-wrap'),
+            block = $('.js-marquee'),
+            blockWidth = block.width(),
+            wrapWidth = wrap.width();
+        console.log(blockWidth, wrapWidth);
+        if (blockWidth >= wrapWidth) {
+            console.log('ads');
+            wrap.addClass('marquee-on');
+            block.marquee({
+                //speed in milliseconds of the marquee
+                duration: 30000,
+                //gap in pixels between the tickers
+                gap: 400,
+                //time in milliseconds before the marquee will start animating
+                delayBeforeStart: 500,
+                //'left' or 'right'
+                direction: 'left',
+                pauseOnHover: true,
+                startVisible: true,
+                //true or false - should the marquee be duplicated to show an effect of continues flow
+                duplicated: true
+            });
+        }
+    });
 
 
     //правильный пересчет функций на ресайз
