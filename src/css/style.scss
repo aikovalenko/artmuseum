@@ -198,6 +198,10 @@ button {
   }
 }
 
+.margin-bottom-regular {
+
+  margin-bottom: calculateRem(50px);
+}
 .btn {
   display: inline-block;
   padding: 12px 15px;
@@ -1556,6 +1560,10 @@ ul {
 
 .section {
 
+  &--with-margin-top {
+    margin-top: calculateRem(50px);
+  }
+
   &--collection {
     margin-bottom: 94px;
   }
@@ -1735,6 +1743,11 @@ ul {
     &--full-width {
       width: 100%;
       max-width: 100%;
+    }
+
+    &--stand-alone {
+      margin-top: 0;
+      margin-bottom: calculateRem(50px);
     }
 
     p {
