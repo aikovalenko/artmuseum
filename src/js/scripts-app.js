@@ -221,14 +221,25 @@ $(document).ready(function() {
     var burger = $('.js-burger'),
         menu = $('.menu-mobile'),
         close = $('.js-notifs-close'),
+        overlay = $('.overlay'),
         notifsTop = $('.header__notifications__inner');
+
+    function menuToogle() {
+        menu.toggleClass("opened");
+        overlay.toggleClass("overlay--on");
+        $('html').toggleClass('overflowHidden');
+        burger.toggleClass("active");
+    }
 
 
     burger.click(function () {
-        notifsTop.toggleClass('hidden');
-        burger.toggleClass("active");
-        menu.toggleClass("opened");
+        menuToogle();
     });
+
+    $(document).on('click', '.overlay--on', function () {
+        menuToogle();
+    });
+
     close.click(function() {
         notifsTop.addClass('closed');
     });
@@ -240,6 +251,7 @@ $(document).ready(function() {
         var panels = $('.menu-mobile__panels'),
             list = $('.menu-mobile__list'),
             panelsBlock = $('.menu-mobile__panels__block'),
+            menuBottom = $('.menu-mobile__bottom'),
             copyright = $('.menu-mobile__copyright');
 
         $(this).toggleClass("active");
@@ -260,15 +272,73 @@ $(document).ready(function() {
         if (mobileMenu.hasClass('active')) {
             list.addClass('hide');
             panels.removeClass('hide');
-            copyright.addClass("absolute");
+
+            if ( $(window).width() < 767 || $(window).height() < 665) {
+                menuBottom.addClass('hide');
+            }
+            if ( $(window).width() > 767) {
+                menuBottom.addClass('absolute');
+            }
+
+            // copyright.addClass("absolute");
 
         } else {
             list.removeClass('hide');
             panels.addClass('hide');
-            copyright.removeClass("absolute");
+
+            if ( $(window).width() < 767 || $(window).height() < 665) {
+                menuBottom.removeClass('hide');
+            }
+            if ( $(window).width() > 767) {
+                menuBottom.removeClass('absolute');
+            }
+            // menuBottom.removeClass('absolute');
+            // copyright.removeClass("absolute");
         }
     });
 
+    function adaptiveMenu() {
+        var logo = $('.logo--mobile-menu'),
+            list = $('.menu-mobile__list'),
+            bottom = $('.menu-mobile__bottom'),
+            inner = $('.menu-mobile__inner'),
+            controls = $('.main-controls--mobile'),
+            social = $('.social-buttons-wrap'),
+            menu = $('.menu-mobile'),
+            menuWidth = $('.menu-mobile').width(),
+            windowHeight = $(window).height(),
+            listHeight = $('.menu-mobile__list').outerHeight(true),
+            bottomHeight = $('.menu-mobile__bottom').height(),
+            logoHeight = $('.logo--mobile-menu').outerHeight(true),
+            innerHeight = $('.menu-mobile__inner').height(),
+            innerPadding = windowHeight - innerHeight,
+
+            sum = listHeight + logoHeight + bottomHeight + 35;
+
+        // console.log(windowHeight, 'logo' + logoHeight, 'list' + listHeight, 'bottom' + bottomHeight);
+        social.css('width', menuWidth);
+        // console.log(windowHeight , sum);
+        bottom.css('margin-top', '0');
+        if (windowHeight > sum) {
+            bottom.css('margin-top', windowHeight - sum);
+
+
+        } else {
+            bottom.css('margin-top', '0');
+        }
+    }
+    adaptiveMenu();
+
+
+    $(window).on('orientationchange', function() {
+
+        $('html').css('opacity', '0');
+        setTimeout(function () {
+            adaptiveMenu();
+            $('html').css('opacity', '1');
+        }, 1000);
+
+    });
 
     //пункт Внимание в мобильной версии /можно заменить на аккордеон/
     $('.js-call-notifs').click(function(e) {
@@ -304,46 +374,27 @@ $(document).ready(function() {
 
     //слайдер на главной странице
     /*
-    у ссылки в слайдере на событие есть data-ticket, который тянется к кнопке Купить под слайдером
+     у ссылки в слайдере на событие есть data-ticket, который тянется к кнопке Купить под слайдером
      */
     var mainSliderSets = {
         infinite: true,
         slidesToShow: 1,
         slidesToScroll: 1,
         centerMode: true,
-        variableWidth: true,
+        variableWidth: false,
         dots: true,
         arrows: false,
-        responsive: [
-            {
-                breakpoint: 848,
-                settings: {
-                    variableWidth: false,
-                    centerMode: true,
-                    centerPadding: '0px'
-                }
-            }
-        ]
+        centerPadding: '0px'
     };
     var sliderWithArrowsSets = {
         infinite: true,
         slidesToShow: 1,
         slidesToScroll: 1,
         centerMode: true,
-        variableWidth: true,
+        variableWidth: false,
         dots: true,
         arrows: true,
-        responsive: [
-            {
-                breakpoint: 848,
-                settings: {
-                    variableWidth: false,
-                    centerMode: true,
-                    centerPadding: '0px',
-                    arrows: false
-                }
-            }
-        ]
+        centerPadding: '0px'
     };
     var sliderWithCollectionItem = {
         infinite: true,
@@ -658,7 +709,6 @@ $(document).ready(function() {
             // btnMoreText();
             masonryForDesktop();
             mapFloors();
-            blindVersion();
 
 
         }).done(function() {
@@ -710,8 +760,8 @@ $(document).ready(function() {
                 }
                 else {
                     if ($(this).hasClass('active')) {
-                         loadUrl = $(this).attr('href');
-                            target = $(this).attr('data-target');
+                        loadUrl = $(this).attr('href');
+                        target = $(this).attr('data-target');
                         callAjaxContent(loadUrl, target, preloader);
                     }
                 }
@@ -752,7 +802,7 @@ $(document).ready(function() {
 
         menu.on("mouseenter", function() {
             var $this = $(this),
-                 num  = $this.attr('data-dropdown');
+                num  = $this.attr('data-dropdown');
 
             if (num != undefined) {
                 var width = $this.offset(),
@@ -804,7 +854,7 @@ $(document).ready(function() {
                 columnWidth: '.grid-sizer'
             });
 
-            if ($(window).width() < 1024) {
+            if ($(window).width() < 768) {
                 $gridDesktop.masonry('destroy');
             } else $gridDesktop
         });
@@ -812,58 +862,7 @@ $(document).ready(function() {
     masonryForDesktop();
 
 
-    function blindVersion() {
-        var html = $("html"),
-            body = $("body"),
-            img = $("img"),
 
-            contrast = $(".js-contrast-version"),
-            normal = $(".js-normal-version"),
-            font = $(".js-font"),
-
-            contrastCookie = getCookie("contrast"),
-            imgCookie = getCookie("img"),
-            fontCookie = getCookie("font");
-
-        function show() { $("img").show(); $("svg").show(); $(".video-container").show(); }
-        function hide() { $("svg").hide(); $("img").hide();  $(".video-container").hide(); }
-
-        contrast.on('click', function () {
-            html.addClass('contrast');
-            $(this).addClass('active');
-            normal.removeClass('active');
-            hide();
-            setCookie("contrast", "on");
-
-            $grid.masonry();
-        });
-        normal.on('click', function () {
-            html.removeClass('contrast');
-            $(this).addClass('active');
-            contrast.removeClass('active');
-            show();
-            setCookie("contrast", "off");
-
-            $grid.masonry();
-        });
-
-        if (contrastCookie == 'on') {
-            contrast.addClass('active');
-            normal.removeClass('active');
-            html.addClass('contrast');
-            // img.hide();
-            hide();
-            $grid.masonry();
-        } else {
-            contrast.removeClass('active');
-            normal.addClass('active');
-            html.removeClass('contrast');
-            show();
-            $grid.masonry();
-        }
-
-    };
-    blindVersion();
 
     function adaptiveText() {
         var textAdditional = $('.text-additional'),
@@ -871,7 +870,7 @@ $(document).ready(function() {
             textMain = $('.js-text-main'),
             textMainHtml = textMain.html();
 
-        if ($(window).width() < 1024) {
+        if ($(window).width() < 768) {
             if ($('.add').length < 1 ) {
                 textMain.append('<div class="add">' + textAdditionalHtml + '</div>');
                 textMain.children('p,div').not(':first-child').wrapAll('<div class="wrapit" />');
@@ -882,7 +881,7 @@ $(document).ready(function() {
                 $(this).addClass('hide');
             });
         }
-        if ($(window).width() >= 1024) {
+        if ($(window).width() >= 768) {
             textMain.children('.wrapit').children().unwrap();
             $('.add').remove();
             $('.js-btn-more-text').remove();
@@ -1032,65 +1031,30 @@ $(document).ready(function() {
                 link.removeClass('hover').removeClass('active');
             }
 
-            if (html.hasAnyClass('ios', 'mobile', 'android')) {
-                link.click(function (e) {
-                    if ($(this).hasClass('active') == true) {
-                        return true
-                    } else {
-                        e.preventDefault();
-                        mapChangeColorReset();
-                        var $this = $(this),
-                            id = $this.attr('id');
+            link.click(function (e) {
+                if ($(this).hasClass('active') == true) {
+                    return true
+                } else {
+                    e.preventDefault();
+                    mapChangeColorReset();
+                    var $this = $(this),
+                        id = $this.attr('id');
 
-                        linkChangeColor(id, $this);
-                    }
-                });
-                hall.click(function (e) {
-                    if ($(this).hasClass('active') == true) {
-                        return true
-                    } else {
-                        e.preventDefault();
-                        mapChangeColorReset();
-                        var $this = $(this),
-                            id = $this.attr('data-hall');
+                    linkChangeColor(id, $this);
+                }
+            });
+            hall.click(function (e) {
+                if ($(this).hasClass('active') == true) {
+                    return true
+                } else {
+                    e.preventDefault();
+                    mapChangeColorReset();
+                    var $this = $(this),
+                        id = $this.attr('data-hall');
 
-                        hallChangeColor(id, $this);
-                    }
-                });
-            } else {
-                link.hover(
-                    function () {
-                        var $this = $(this),
-                            id = $this.attr('id');
-
-                        linkChangeColor(id, $this);
-                        console.log(id);
-                    }, function () {
-                        mapChangeColorReset();
-                    }
-                );
-                num.hover(
-                    function () {
-                        var $this = $(this),
-                            id = $this.attr('data-num');
-
-                        $('#' + id).addClass('hover');
-
-                        linkChangeColor(id, $this);
-                    }, function () {
-
-                    }
-                );
-                hall.hover(
-                    function () {
-                        var $this = $(this),
-                            id = $this.attr('data-hall');
-                        hallChangeColor(id, $this);
-                    }, function () {
-                        mapChangeColorReset();
-                    }
-                );
-            }
+                    hallChangeColor(id, $this);
+                }
+            });
         })
     }
 
@@ -1170,6 +1134,8 @@ $(document).ready(function() {
         burger.removeClass("active");
         menu.removeClass("opened");
 
+        overlay.toggleClass("overlay--on");
+        $('html').toggleClass('overflowHidden');
 
         console.log(val);
     });
@@ -1254,9 +1220,7 @@ $(document).ready(function() {
         }
     });
 
-    $('.ya-share2__item_service_facebook .ya-share2__title').html('Поделиться в Facebook');
-    $('.ya-share2__item_service_vkontakte .ya-share2__title').html('Поделиться в Vk.com');
-    $('.ya-share2__item_service_twitter .ya-share2__title').html('Твитнуть в Twitter');
+
 
 
     //правильный пересчет функций на ресайз
@@ -1268,6 +1232,7 @@ $(document).ready(function() {
     }, 300);
 
     $(window).on("resize", resizeFn);
+
 
 });
 

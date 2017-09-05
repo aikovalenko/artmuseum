@@ -1,44 +1,14 @@
 
 //от 1024 до 1279
 @media screen and (max-width: em(1279px, 16px)) {
-  .header {
-    &__notifications {
-      padding: 0 44px;
-      &__inner {
-        height: calculateRem(40px);
-        max-height: calculateRem(40px);
-        line-height: calculateRem(40px);
-      }
-    }
-    &__controls {
-      padding-right: 44px;
-      padding-left: 88px;
-    }
-    &__menu {
-      max-width: 848px;
-    }
-    .main-menu-under {
-      .dropdown {
-        line-height: 167%;
-        @include fontSize(24px);
-      }
-    }
-  }
-
-  .footer {
-    &__inner {
-      padding-right: 44px;
-      padding-left: 44px;
-    }
-  }
 
   .main-slider .slick-slide {
-    width: 848px;
-    height: 523.95px;
+    //width: 848px;
+    //height: 523.95px;
   }
 
   .main-slider-info {
-    width: 848px;
+    //width: 848px;
   }
 
   .section--4-column {
@@ -47,59 +17,14 @@
       //padding-right: 44px;
     }
   }
-  .padding {
-    padding-left: 44px;
-    padding-right: 44px;
-  }
 
-
-  .section--ratio {
-
-    .section__inner {
-      padding-left: 44px;
-      padding-right: 44px;
-    }
-  }
-  .block-buildings {
-    padding: 0;
-
-    .column-wrap {
-      width: 1148px;
-    }
-    .column {
-      width: 286px;
-      padding: 0 12px;
-    }
-    .scroller-wrap {
-      overflow: hidden;
-    }
-    .scroller {
-      display: block;
-      overflow-x: scroll;
-      overflow-y: hidden;
-      white-space: nowrap;
-      margin-bottom: -30px;
-      padding-bottom: 30px;
-      -webkit-overflow-scrolling: touch;
-
-      padding-left: 44px;
-    }
-  }
 
   .section--shop {
     .section__inner {
-      padding-left: 36px;
-      padding-right: 36px;
+
     }
     &__wrapper {
-      &__item {
-        width: 33.333%;
-      }
-    }
-    .item--shop {
-      &:last-child {
-        display: none;
-      }
+
     }
   }
   .grid--4-columns {
@@ -120,14 +45,7 @@
       }
     }
   }
-  .section--partners {
 
-    .column-wrap {
-      .column {
-        width: 33.33333%;
-      }
-    }
-  }
   .full-page-background {
     &__title {
       left: 44px;
@@ -170,12 +88,13 @@
 }
 
 //от 760 до 1023 для ипад меню
-@media screen and (max-width: em(1024px, 16px)) and (min-width: em(760px, 16px)) {
+@media screen and (min-width: em(767px, 16px)) {
   .menu-mobile {
     right: 0;
     left: auto;
     width: 50%;
     transform: translateX(100%);
+    opacity: 1;
 
     &.opened {
       transform: translateX(0);
@@ -186,31 +105,47 @@
       .logo {
         min-height: 124px;
         img {
-          display: none !important;
+          display: none;
         }
       }
     }
     &__copyright {
-      position: absolute;
-      bottom: 0;
+      //position: absolute;
+      //bottom: 0;
     }
   }
 }
 
+@media screen and (min-width: em(767px, 16px)) {
+  .mobile-search {
+    input {
+      padding-bottom: 0;
+      @include fontSize(32px);
+      line-height: 188%;
 
-//от 0 до 1023
-@media screen and (max-width: em(1023px, 16px)) {
-  .header {
-    &__notifications {
-      padding: 0 24px;
+      @include placeholder {
+        @include fontSize(32px);
+        line-height: 188%;
+      }
     }
+
+    .close {
+      top: 22px;
+    }
+  }
+  .mobile-language, .mobile-share {
+    @include fontSize(32px);
+    line-height: 188%;
+  }
+}
+
+//от 0 до 767
+@media screen and (max-width: em(767px, 16px)) {
+  .header {
     &__controls {
       padding-right: 24px;
       padding-left: 24px;
       margin-bottom: 48px;
-    }
-    &__menu {
-      display: none;
     }
   }
   .logo {
@@ -224,47 +159,9 @@
   }
   .main-menu-burger {
     display: block;
-  }
 
-  .footer {
-
-    .logo {
-      img {
-        width: 153px;
-        height: 99px;
-      }
-    }
-
-    &__inner {
-      padding-top: 40px;
-      padding-right: 24px;
-      padding-left: 24px;
-
-      &__bottom {
-        padding-top: 37.4px;
-
-        .copyright, .rules {
-          width: 100%;
-        }
-      }
-      &__list {
-        li {
-          margin-bottom: 20px;
-          line-height: 147%;
-        }
-      }
-    }
-    .social-buttons {
-      li {
-
-        &:nth-child(4n) {
-          margin-right: 0;
-        }
-
-        .icon {
-          @include fontSize(48px);
-        }
-      }
+    &.active {
+      right: 24px;
     }
   }
 
@@ -285,24 +182,13 @@
 
 
   .main-slider {
+    margin-bottom: 80px;
 
     .slick-slide {
       .desc {
         top: 24px;
         padding-left: 24px;
         padding-right: 24px;
-
-        &__name {
-          @include fontSize(38px);
-          line-height: 105%;
-        }
-
-
-        &__date,
-        &__place {
-          @include fontSize(19px);
-          line-height: 147%;
-        }
       }
     }
   }
@@ -348,8 +234,17 @@
 
   .section--4-column {
     .section__inner {
-      //padding-left: 24px;
-      //padding-right: 24px;
+    }
+    .column-wrap {
+      display: block;
+    }
+    .column {
+      width: 100%;
+      margin: 0;
+    }
+  }
+  .section--3-column {
+    .section__inner {
     }
     .column-wrap {
       display: block;
@@ -379,9 +274,6 @@
         margin-bottom: 39px;
       }
 
-      &__controls {
-        display: none;
-      }
 
     }
     .section__inner {
@@ -445,7 +337,6 @@
     &__content {
       padding-bottom: 5px;
       line-height: 131%;
-      color: $warm-grey-two;
 
       p {
         margin-bottom: 1rem;
@@ -606,10 +497,12 @@
         margin-bottom: 45px;
       }
     }
-    .section__inner {
-      padding-left: 0;
-      padding-right: 0;
+    &__wrapper {
+      margin: 0 -4px;
 
+      &__item {
+        padding: 0 4px;
+      }
     }
     .item--shop {
       width: 272px;
@@ -620,7 +513,7 @@
 
       &:last-child {
         display: inline-block;
-        margin-right: 24px;
+        margin-right: 20px;
       }
     }
     .btn {
@@ -629,13 +522,7 @@
   }
   .item--shop {
     .desc {
-      color: $greyish-brown-two;
 
-      &__type {
-        span {
-          border-bottom: solid 1px $greyish-brown-two;
-        }
-      }
       .btn {
         margin-top: 25px;
       }
@@ -700,7 +587,7 @@
       margin-bottom: 15px;
     }
     .video-container {
-      display: none !important;
+      display: none;
     }
   }
   .columns-2-section {
@@ -801,19 +688,7 @@
 
   }
 
-  .page-404 {
-    h1 {
-      color: inherit;
-      @include fontSize(34px);
-      font-weight: 500;
-      line-height: 118%;
-    }
-    .btn--go-back {
-      margin-top: 25px;
-      padding-left: 16px;
-      padding-right: 16px;
-    }
-  }
+
   .full-page-background {
     justify-content: flex-start;
 
@@ -841,7 +716,7 @@
       border: none;
 
       img {
-        display: none !important;
+        display: none;
       }
 
       &.active {
@@ -967,42 +842,112 @@
       padding: 0;
     }
   }
+
+  .menu-mobile {
+
+    &__list {
+      @include fontSize(19px);
+      line-height: 253%;
+    }
+    &__inner {
+
+      padding-left: 24px;
+    }
+    &__panels {
+      padding-right: 24px;
+    }
+  }
+  .main-controls {
+
+    &--mobile {
+      right: 24px;
+    }
+  }
+
+  .social-buttons {
+
+    &-wrap {
+      margin-left: -24px;
+    }
+
+    &--menu {
+      padding-left: 24px;
+
+      li {
+        &:last-child {
+          margin-right: 24px;
+        }
+      }
+    }
+
+  }
+  .section--scroll {
+
+    &__wrapper {
+      font-size: 0;
+      //margin: 0 -12px;
+    }
+
+    .btn-centered {
+      margin-top: 72px;
+    }
+
+    &__item {
+      width: 216px;
+      white-space: normal;
+      margin: 0 2px;
+
+      img {
+        width: 100%;
+      }
+      &:first-child {
+        margin-left: 24px;
+      }
+      &:last-child {
+        margin-right: 24px;
+      }
+    }
+  }
+
+  .section--partners {
+
+    .column-wrap {
+      .column {
+        text-align: left;
+      }
+    }
+  }
 }
 
 //тут ховеры для > 1024
 @media screen and (min-width: em(1024px, 16px)) {
   .item--card {
-    .grayscale-filter {
-      filter: grayscale(100%);
-    }
+
     &:hover, &.active {
       .grayscale-filter {
-        transition: $transition;
-        filter: grayscale(0);
       }
       .desc {
-        color: $greyish-brown-two;
         transition: $transition;
 
         &__type {
-          color: $violet-blue;
+
 
           span {
-            border-bottom: solid 1px $violet-blue;
+
             transition: $transition;
           }
         }
         &__place {
 
           span {
-            border-bottom: solid 1px rgba(38, 38, 38, 0.8);
+
           }
         }
         &__link {
-          color: $violet-blue;
+
 
           span {
-            border-bottom: solid 1px $violet-blue;
+
             transition: $transition;
           }
         }
@@ -1016,7 +961,7 @@
         transition: $transition;
       }
       &.hover-white {
-        background-color: #fff;
+
         transition: $transition;
       }
     }
@@ -1041,24 +986,7 @@
   }
   .item--shop {
 
-    &:hover {
-      .desc {
-        color: $warm-grey;
 
-        &__type {
-          color: $violet-blue;
-          transition: $transition;
-
-          span {
-            border-bottom: solid 1px $violet-blue;
-          }
-        }
-        .btn {
-          background-color: $pale-grey;
-          color: $pinkish-grey;
-        }
-      }
-    }
   }
   .section--grid {
     .item:hover {
@@ -1066,10 +994,6 @@
       transition: $transition;
     }
   }
-  .menu-mobile {
-    display: none;
-  }
-
 
 }
 
@@ -1078,8 +1002,8 @@
 //от 0 до 848 для слайдера на главном экране
 @media screen and (max-width: em(848px, 16px)) {
   .main-slider .slick-slide {
-    height: auto;
-    width: auto;
+    //height: auto;
+    //width: auto;
   }
 }
 
