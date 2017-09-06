@@ -176,6 +176,7 @@
     left: auto;
     width: 50%;
     transform: translateX(100%);
+    opacity: 1;
 
     &.opened {
       transform: translateX(0);
@@ -966,6 +967,10 @@
     .padding {
       padding: 0;
     }
+  }
+
+  .description--item, .underline-text, .link {
+    line-height: 150%;
   }
 }
 

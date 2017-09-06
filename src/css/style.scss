@@ -192,6 +192,7 @@ button {
 }
 
 .links-container {
+  margin-bottom: 72px;
   margin-top: 24px;
   li {
     margin-bottom: 12px;
@@ -252,6 +253,10 @@ button {
       padding-bottom: 4px;
       border-color: #939393;
     }
+  }
+
+  &--share {
+    color: $greyish-brown-two;
   }
 }
 
@@ -994,6 +999,43 @@ ul {
       color: $greyish-brown-two;
     }
   }
+
+  &--inside-text {
+
+  }
+}
+
+.sharing-inside-text {
+  display: inline;
+  position: relative;
+  z-index: 1;
+
+  .share-block {
+    position: absolute;
+    top: 0;
+    left: -14px;
+    z-index: -1;
+    visibility: hidden;
+    border: 1px solid #929292;
+
+
+    &.open {
+      visibility: visible;
+
+    }
+
+    ul {
+      margin-top: 44px;
+    }
+  }
+
+  .icon-share {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    @include fontSize(12px);
+    color: $greyish-brown;
+  }
 }
 
 .menu-mobile {
@@ -1006,10 +1048,11 @@ ul {
 
   overflow: hidden;
   transition: all .5s ease-out;
-  opacity: 0;
 
-  z-index: -1;
-  //visibility: hidden;
+  z-index: 1000;
+  opacity: 0;
+  transform: scale(2);
+  visibility: hidden;
   box-sizing: border-box;
 
   &__inner {
@@ -1051,7 +1094,8 @@ ul {
   &.opened {
     //visibility: visible;
     z-index: 1000;
-    //transition: all .4s ease-in;
+    visibility: visible;
+    transform: scale(1);
     opacity: 1;
   }
 
@@ -1067,7 +1111,22 @@ ul {
   overflow: hidden;
 }
 
+.overlay {
 
+  &--on {
+
+    &:after {
+      background: rgba(0,0,0,0.3);
+      content: '';
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      z-index: 10;
+    }
+  }
+}
 
 
 .footer {
@@ -2381,6 +2440,8 @@ ul {
     }
   }
   .btn-wrap {
+    display: flex;
+    flex-wrap: wrap;
     margin-bottom: 31px;
     font-size: 0;
 

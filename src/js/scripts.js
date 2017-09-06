@@ -171,6 +171,7 @@ $(document).ready(function() {
         for (var i = 0; i < callControl.length; i++) {
             document.querySelectorAll('.main-controls__button')[i].classList.remove('active');
             document.querySelectorAll('.main-controls-section-block')[i].classList.remove('opened');
+            document.querySelectorAll('.js-btn-share-block')[i].classList.remove('open');
         }
     });
 
@@ -221,18 +222,30 @@ $(document).ready(function() {
     var burger = $('.js-burger'),
         menu = $('.menu-mobile'),
         close = $('.js-notifs-close'),
+        overlay = $('.overlay'),
         notifsTop = $('.header__notifications__inner');
 
 
-    burger.click(function () {
+    function menuToogle() {
         notifsTop.toggleClass('hidden');
-        burger.toggleClass("active");
         menu.toggleClass("opened");
+        overlay.toggleClass("overlay--on");
+        $('html').toggleClass('overflowHidden');
+        burger.toggleClass("active");
+    }
+
+
+    burger.click(function () {
+        menuToogle();
     });
+
+    $(document).on('click', '.overlay--on', function () {
+        menuToogle();
+    });
+
     close.click(function() {
         notifsTop.addClass('closed');
     });
-
 
     //мобильная версия панели-настроек
     var mobileMenu = $('.js-mobile-menu');
@@ -1170,6 +1183,8 @@ $(document).ready(function() {
         burger.removeClass("active");
         menu.removeClass("opened");
 
+        overlay.toggleClass("overlay--on");
+
 
         console.log(val);
     });
@@ -1257,6 +1272,12 @@ $(document).ready(function() {
     $('.ya-share2__item_service_facebook .ya-share2__title').html('Поделиться в Facebook');
     $('.ya-share2__item_service_vkontakte .ya-share2__title').html('Поделиться в Vk.com');
     $('.ya-share2__item_service_twitter .ya-share2__title').html('Твитнуть в Twitter');
+
+    $('.js-btn-share').click(function (e) {
+        e.stopPropagation();
+        $(this).next('.js-btn-share-block').toggleClass('open');
+        $(this).toggleClass('color-greyish-brown');
+    });
 
 
     //правильный пересчет функций на ресайз
