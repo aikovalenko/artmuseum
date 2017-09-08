@@ -142,65 +142,38 @@ $(document).ready(function() {
     htmlTag.className += (' ' + platform.name.toLowerCase() + ' ' + platform.os.family.toLowerCase());
 
 
+
+
+
     //десктоп панель настроек
-    var callControl = document.getElementsByClassName('js-call-control'),
-        mainControlsSectionBlock = document.querySelectorAll('.main-controls-section-block');
+    var callControl = $('.js-call-control'),
+        mainControlsSectionBlock = $('.main-controls-section-block');
 
-    function callControlClick() {
-        [].forEach.call(callControl, function(el, i, els) {
-            el.addEventListener('click', function() {
-                [].forEach.call(els, function(el) {
-                    event.stopPropagation();
+    callControl.click(function(e) {
 
-                    var btn = this.querySelectorAll(".main-controls__button"),
-                        mainControlsSectionBlock = this.querySelectorAll(".main-controls-section-block");
+        e.stopPropagation();
 
-                    btn[0].classList.toggle('active');
-                    mainControlsSectionBlock[0].classList.toggle('opened');
-                    if(el !== this) {
-                        el.querySelectorAll(".main-controls__button")[0].classList.remove('active');
-                        el.querySelectorAll(".main-controls-section-block")[0].classList.remove('opened');
-                    }
-                }, this);
-            });
+        $(this).find(mainControlsSectionBlock).toggleClass('opened');
+        $(this).find(".main-controls__button").toggleClass('active');
+
+        callControl.not(this).each(function () {
+            $(this).find(mainControlsSectionBlock).removeClass('opened');
+            $(this).find(".main-controls__button").removeClass('active');
         });
-    }
-    callControlClick();
 
-    document.addEventListener("click", function( ) {
-        for (var i = 0; i < callControl.length; i++) {
-            document.querySelectorAll('.main-controls-section-block')[i].classList.remove('opened');
-            document.querySelectorAll('.main-controls__button')[i + 1].classList.remove('active');
 
-        }
-        if (document.querySelectorAll('.js-btn-share').length != 0) {
-            document.querySelectorAll('.js-btn-share-block')[0].classList.remove('open');
-        }
     });
-
-
-    function callControlInnerClick() {
-        for (var i = 0; i < mainControlsSectionBlock.length; i++) {
-            mainControlsSectionBlock[i].addEventListener("click", function (event) {
-                event.stopPropagation();
-            });
-        }
-    }
-    callControlInnerClick();
-
-
-
-    var callSearch = document.querySelector('.js-call-search');
-    if (callSearch) {
-        callSearch.addEventListener("click", function( ) {
-            var input = document.querySelectorAll('.form-search input');
-            document.querySelector('.form-search input').focus();
-
-        });
-    }
-
-
-
+    $('.js-call-search').click(function(e) {
+        $('.form-search input').focus();
+    });
+    mainControlsSectionBlock.click(function(e){
+        e.stopPropagation();
+    });
+    $(document).click(function() {
+        callControl.find(mainControlsSectionBlock).removeClass('opened');
+        callControl.find(".main-controls__button").removeClass('active');
+        $(".js-btn-share-block").removeClass('open');
+    });
 
 
     //меню-бургер
