@@ -178,9 +178,6 @@ $(document).ready(function() {
         }
     });
 
-    // $(document).click(function() {
-    //     $('.js-call-control').find(".main-controls__button").removeClass('active');
-    // });
 
     function callControlInnerClick() {
         for (var i = 0; i < mainControlsSectionBlock.length; i++) {
@@ -192,20 +189,6 @@ $(document).ready(function() {
     callControlInnerClick();
 
 
-    // callControl.click(function(e) {
-    //
-    //     e.stopPropagation();
-    //
-    //     $(this).find(mainControlsSectionBlock).toggleClass('opened');
-    //     $(this).find(".main-controls__button").toggleClass('active');
-    //
-    //     callControl.not(this).each(function () {
-    //         $(this).find(mainControlsSectionBlock).removeClass('opened');
-    //         $(this).find(".main-controls__button").removeClass('active');
-    //     });
-    //
-    //
-    // });
 
     var callSearch = document.querySelector('.js-call-search');
     if (callSearch) {
@@ -216,13 +199,8 @@ $(document).ready(function() {
         });
     }
 
-    // mainControlsSectionBlock.click(function(e){
-    //     e.stopPropagation();
-    // });
-    // $(document).click(function() {
-    //     callControl.find(mainControlsSectionBlock).removeClass('opened');
-    //     callControl.find(".main-controls__button").removeClass('active');
-    // });
+
+
 
 
     //меню-бургер
