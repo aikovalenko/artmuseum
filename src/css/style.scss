@@ -181,6 +181,14 @@ button {
     padding-bottom: 1px;
   }
 
+  .icon-download {
+    display: inline-block;
+    height: 13px;
+    vertical-align: bottom;
+    border-bottom: none !important;
+    margin-right: 9px;
+  }
+
   &:hover {
     color: $violet-blue;
     transition: $transition;

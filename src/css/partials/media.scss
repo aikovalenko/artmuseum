@@ -972,6 +972,12 @@
   .description--item, .underline-text, .link {
     line-height: 150%;
   }
+
+  .link {
+    .icon-download {
+      height: 16px;
+    }
+  }
 }
 
 //тут ховеры для > 1024

@@ -169,11 +169,18 @@ $(document).ready(function() {
 
     document.addEventListener("click", function( ) {
         for (var i = 0; i < callControl.length; i++) {
-            document.querySelectorAll('.main-controls__button')[i].classList.remove('active');
             document.querySelectorAll('.main-controls-section-block')[i].classList.remove('opened');
-            document.querySelectorAll('.js-btn-share-block')[i].classList.remove('open');
+            document.querySelectorAll('.main-controls__button')[i + 1].classList.remove('active');
+
+        }
+        if (document.querySelectorAll('.js-btn-share').length != 0) {
+            document.querySelectorAll('.js-btn-share-block')[0].classList.remove('open');
         }
     });
+
+    // $(document).click(function() {
+    //     $('.js-call-control').find(".main-controls__button").removeClass('active');
+    // });
 
     function callControlInnerClick() {
         for (var i = 0; i < mainControlsSectionBlock.length; i++) {
