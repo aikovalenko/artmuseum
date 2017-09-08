@@ -148,9 +148,10 @@ $(document).ready(function() {
 
     function callControlClick() {
         [].forEach.call(callControl, function(el, i, els) {
-            el.addEventListener('click', function() {
+            el.addEventListener('click', function(event) {
+                event.stopPropagation();
                 [].forEach.call(els, function(el) {
-                    event.stopPropagation();
+
 
                     var btn = this.querySelectorAll(".main-controls__button"),
                         mainControlsSectionBlock = this.querySelectorAll(".main-controls-section-block");
@@ -170,7 +171,7 @@ $(document).ready(function() {
     document.addEventListener("click", function( ) {
         for (var i = 0; i < callControl.length; i++) {
             document.querySelectorAll('.main-controls-section-block')[i].classList.remove('opened');
-            document.querySelectorAll('.main-controls__button')[i + 1].classList.remove('active');
+            document.querySelectorAll('.main-controls__button')[i].classList.remove('active');
 
         }
         if (document.querySelectorAll('.js-btn-share').length != 0) {
@@ -178,9 +179,6 @@ $(document).ready(function() {
         }
     });
 
-    // $(document).click(function() {
-    //     $('.js-call-control').find(".main-controls__button").removeClass('active');
-    // });
 
     function callControlInnerClick() {
         for (var i = 0; i < mainControlsSectionBlock.length; i++) {
@@ -192,20 +190,6 @@ $(document).ready(function() {
     callControlInnerClick();
 
 
-    // callControl.click(function(e) {
-    //
-    //     e.stopPropagation();
-    //
-    //     $(this).find(mainControlsSectionBlock).toggleClass('opened');
-    //     $(this).find(".main-controls__button").toggleClass('active');
-    //
-    //     callControl.not(this).each(function () {
-    //         $(this).find(mainControlsSectionBlock).removeClass('opened');
-    //         $(this).find(".main-controls__button").removeClass('active');
-    //     });
-    //
-    //
-    // });
 
     var callSearch = document.querySelector('.js-call-search');
     if (callSearch) {
@@ -216,13 +200,8 @@ $(document).ready(function() {
         });
     }
 
-    // mainControlsSectionBlock.click(function(e){
-    //     e.stopPropagation();
-    // });
-    // $(document).click(function() {
-    //     callControl.find(mainControlsSectionBlock).removeClass('opened');
-    //     callControl.find(".main-controls__button").removeClass('active');
-    // });
+
+
 
 
     //меню-бургер
