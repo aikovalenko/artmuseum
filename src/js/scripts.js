@@ -1238,6 +1238,16 @@ $(document).ready(function() {
     });
 
 
+    //определяем размеры картинок лого партнеров
+    $('.js-pics-count').each(function() {
+        var $this = $(this).find('.logo-partner');
+
+        if ($this.length > 1) {
+            $this.addClass('logo-partner--several');
+        }
+    });
+
+
     //правильный пересчет функций на ресайз
     var resizeFn = debounce(function() {
         accordion();

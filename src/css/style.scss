@@ -915,7 +915,7 @@ ul {
 .language-block {
   left: -15px;
   width: calculateRem(82px);
-  padding-right: calculateRem(35px);
+  //padding-right: calculateRem(35px);
   padding-top: calculateRem(40px);
   padding-bottom: calculateRem(20px);
   padding-left: calculateRem(14px);
@@ -1696,9 +1696,6 @@ ul {
             &:last-child {
               margin-right: 0;
             }
-          }
-          img {
-            max-width: 100%;
           }
         }
       }
@@ -3388,7 +3385,31 @@ h1 {
   display: inline-block;
 }
 
+.pics {
+  font-size: 0;
+}
 
+.logo-partner {
+  position: relative;
+  width: 160px;
+  height: 100px;
+  font-size: 0;
+
+  &--several {
+    width: 72px;
+    height: 45px;
+  }
+
+  img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    max-width: 100%;
+    max-height: 100%;
+  }
+}
 
 
 @import "partials/ya-share";
