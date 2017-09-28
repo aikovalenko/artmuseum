@@ -1,0 +1,100 @@
+.constellation {
+  background-color: #282828;
+  font-size: 0;
+
+  &__inner {
+    position: relative;
+    width: 1000px;
+    height: 500px;
+    padding: 40px;
+  }
+
+  &-item {
+    position: absolute;
+    color: #fff;
+
+    &--1 {
+      top: 100px;
+      left: 500px;
+
+      .building-link {
+        top: 34px;
+        left: 31px;
+        width: 225px;
+        height: 183px;
+        transform: rotate(49deg) skewX(-10deg) skewY(-5deg);
+      }
+
+      .building-name {
+        bottom: -40px;
+        right: -170px;
+      }
+    }
+    &--2 {
+      top: 250px;
+      left: 400px;
+
+      .building-link {
+        top: 13px;
+        left: 2px;
+        width: 103px;
+        height: 105px;
+        transform: rotate(49deg) skewX(-13deg) skewY(-8deg);
+      }
+
+      .building-name {
+        bottom: -65px;
+        right: -114px;
+      }
+    }
+
+    .building-link {
+      position: absolute;
+      display: block;
+      border: 1px solid red;
+    }
+
+    .building-name {
+      position: absolute;
+      font-size: 16px;
+      text-transform: uppercase;
+    }
+  }
+}
+
+
+@media screen and (max-width: em(767px, 16px)) {
+  .constellation {
+
+    &__inner {
+      width: auto;
+      height: 300px;
+    }
+
+    &-item {
+      position: static;
+      display: inline-block;
+      vertical-align: bottom;
+
+      width: 300px;
+
+      &__inner {
+        position: relative;
+      }
+
+
+      .building-link {
+
+        transform: rotate(0deg) skewX(0deg) skewY(0deg);
+      }
+
+      .building-name {
+        position: absolute;
+        height: 56px;
+
+        bottom: -65px;
+        left: 0;
+      }
+    }
+  }
+}
