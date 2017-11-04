@@ -189,6 +189,11 @@ button {
     margin-right: 9px;
   }
 
+  &--bigger {
+    @include fontSize(24px);
+    margin-bottom: 10px;
+  }
+
   &:hover {
     color: $violet-blue;
     transition: $transition;
@@ -2211,6 +2216,11 @@ ul {
   }
 }
 
+.item-styles.building-closed .building-path {
+  fill: #f9f9fb;
+  opacity: 0.3;
+}
+
 .block-buildings {
   padding-left: 72px;
   padding-right: 72px;
@@ -3411,6 +3421,11 @@ h1 {
   }
 }
 
+.closed {
+  .building-path {
+    fill: #000;
+  }
+}
 
 @import "partials/ya-share";
 @import "partials/contrast";
