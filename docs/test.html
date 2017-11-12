@@ -1,0 +1,801 @@
+<?php include $_SERVER['DOCUMENT_ROOT'] . '/inc/config/config.php'; ?>
+<?php include $_SERVER['DOCUMENT_ROOT'] . '/inc/config/langs.php'; ?>
+<?php //include $_SERVER['DOCUMENT_ROOT'].'/inc/config/langconstants.php';?>
+<?php include $_SERVER['DOCUMENT_ROOT'] . '/inc/utils/functions.php'; ?>
+
+<? /**<?php include $_SERVER['DOCUMENT_ROOT'].'/inc/config/define_lang.php'; ?>**/ ?>
+<? /**<?php include $_SERVER['DOCUMENT_ROOT'].'/inc/config/langconstants.php';?>**/ ?>
+
+<?php
+
+mb_internal_encoding('UTF-8');
+$myphp_code = "";
+$navsep = $locsettings['navsep'];
+$myphp_code .= '$navsep = "' . $navsep . '";';
+
+$SQL = "SELECT * FROM $tbl_main WHERE m_id=$m_id AND (m_del=0 OR m_del IS NULL) AND (m_hide=0)";
+$rs = $db->Execute($SQL);
+$cur = $rs->FetchRow();
+
+$data = to_default(xml2array($cur));
+$data['mainpage'] = to_default(xml2array($cur));
+if (!empty($data['events'])) {
+$data['events'] = make_link((int)$data['events']['id01']);
+}
+
+$SQL = "SELECT *,IFNULL(NULLIF(date_format(m_link8,'%d / %m / %Y'), '00 / 00 / 0000'), '') as date_start FROM $tbl_main WHERE m_ct_id=1036 AND (m_del=0 OR m_del IS NULL) AND (m_hide=0) ORDER BY m_sort";
+$rs = $db->Execute($SQL);
+$data['slides'] = array();
+while ($row = $rs->FetchRow()) {
+$slide = to_default(xml2array($row));
+$slide['event'] = array();
+$slide['date_start'] = $row['date_start'];
+
+if(!empty($slide['place'])) {
+$placeId = reset($slide['place']);
+$placeIdSql = 'm_id = ' . $placeId;
+$SQL_place = "SELECT * FROM $tbl_main WHERE (m_del=0 OR m_del IS NULL) AND (m_hide=0) AND ($placeId)";
+$rs_place = $db->Execute($SQL_place);
+$slide['place'] = to_default(xml2array($rs_place->FetchRow(), array('name')));
+}
+
+if(!empty($slide['head'])) {
+$SQL_event = "SELECT *, IFNULL(NULLIF(date_format(m_link8,'%d / %m / %Y'), '00 / 00 / 0000'), '') as date_start, IFNULL(NULLIF(date_format(m_link13,'%d / %m / %Y'), '00 / 00 / 0000'), '') as date_end
+FROM $tbl_main WHERE m_id=" . end($slide['head']) . " AND (m_del=0 OR m_del IS NULL) AND (m_hide=0)";
+$rs_event = $db->Execute($SQL_event);
+if($row_event = $rs_event->FetchRow()) {
+$event = to_default(xml2array($row_event));
+$event['date_start'] = $row_event['date_start'];
+$event['date_end'] = $row_event['date_end'];
+$galleryIds = array();
+foreach ($event['gallery'] as $galleryId) {
+$galleryIds[] = 'm_id = ' . $galleryId;
+}
+$galleryIdsSql = implode(' OR ', $galleryIds);
+
+$SQL_gallery = "SELECT * FROM $tbl_main WHERE (m_del=0 OR m_del IS NULL) AND (m_hide=0) AND ($galleryIdsSql)";
+$rs_gallery = $db->Execute($SQL_gallery);
+$galleries = array();
+while ($row_gallery = $rs_gallery->FetchRow()) {
+$galleries[] = to_default(xml2array($row_gallery, array('name')));
+}
+$event['galleries'] = $galleries;
+
+$slide['event'] = $event;
+}
+}
+
+$data['slides'][] = $slide;
+//echo '<pre>'; print_r($slide); echo '</pre>';
+}
+
+
+$ref = Array();
+global $ref;
+$ref['gallery'] = Array();
+$ref['type'] = Array();
+
+$SQL_ref="SELECT * FROM $tbl_main WHERE m_ct_id=840 AND (m_del=0 OR m_del IS NULL) AND (m_hide=0)";
+$rs_ref = $db->Execute($SQL_ref);
+while($row_ref = $rs_ref->FetchRow()) {
+$one_ref = xml2array($row_ref, Array('name'));
+$ref['gallery'][$row_ref['m_id']] = $one_ref;
+}
+$SQL_ref="SELECT * FROM $tbl_main WHERE m_ct_id=905 AND (m_del=0 OR m_del IS NULL) AND (m_hide=0)";
+$rs_ref = $db->Execute($SQL_ref);
+while($row_ref = $rs_ref->FetchRow()) {
+$one_ref = xml2array($row_ref, Array('name'));
+$ref['type'][$row_ref['m_id']] = $one_ref;
+}
+
+$data['ref_gallery'] = $ref['gallery'];
+$data['ref_type'] = $ref['type'];
+
+$myphp_code .= '$data = ' . var_export($data, true) . ';';
+
+echo '<?php ' . $myphp_code . ' ?>';
+
+?>
+
+<? /**<?php /* */
+require_once ($_SERVER['DOCUMENT_ROOT'].'/cms_cp58/krn_conf_s.php');
+include_once $_SERVER['DOCUMENT_ROOT'].'/inc/utils/functions.php';
+
+if (!function_exists('events')) {
+   function events ($SQL, $out = Array()) {
+      global $db, $langs, $data, $contxt;
+      $rs = $db->Execute($SQL);
+while ($row = $rs->FetchRow()) {
+$event = to_default(xml2array($row, Array('name', 'anons', 'circimg', 'type', 'gallery', 'place', 'date')));
+
+if(!is_array($event['circimg'])) {
+$circimgStr = !empty($event['circimg']) ? $event['circimg'] : 'http://via.placeholder.com/600x420/ffffff/ffffff';
+$event['circimg'] = array();
+$event['circimg']['id01'] = $circimgStr;
+$event['circimg']['id02'] = $circimgStr;
+$event['circimg']['id03'] = $circimgStr;
+}
+
+foreach ($langs as $l) {
+if (empty($event['date_'.$l])) {
+$begindate = make_date_from_dashed($row['begindate'], $contxt['month'], $l);
+$enddate = make_date_from_dashed($row['enddate'], $contxt['month'], $l);
+$event['date_'.$l] = make_date($begindate, $enddate, ' - ');
+}
+}
+
+if (!empty($event['type'])) {
+foreach ($event['type'] as $id => $type) {
+unset($event['type'][$id]);
+$type = $data['ref_type'][$type];//xml2array((int)$type, Array('name'));
+foreach ($langs as $l) {
+$event['type'][$l][] = $type['name_'.$l];
+}
+}
+} else {
+$event['type'] = Array();
+foreach ($langs as $l) {
+$event['type'][$l] = Array();
+}
+}
+if (!empty($event['gallery'])) {
+foreach ($event['gallery'] as $id => $gallery) {
+unset($event['gallery'][$id]);
+$gallery = $data['ref_gallery'][$gallery];//xml2array((int)$gallery, Array('name'));
+foreach ($langs as $l) {
+$event['gallery'][$l][] = '<a href="'.$gallery['m_link'][$l].'" class="event-place">'.$gallery['name_'.$l].'</a>';
+}
+}
+} else {
+$event['gallery'] = Array();
+foreach ($langs as $l) {
+$event['gallery'][$l] = Array();
+}
+}
+$out[] = $event;
+}
+return $out;
+}
+}
+
+if (!function_exists('events_days')) {
+function events_days ($SQL, $out = Array()) {
+global $db, $langs, $data, $contxt;
+$rs = $db->Execute($SQL);
+while ($row = $rs->FetchRow()) {
+$event = to_default(xml2array($row, Array('name', 'anons', 'circimg', 'type', 'gallery', 'place', 'date')));
+foreach ($langs as $l) {
+if (empty($event['date_'.$l])) {
+$begindate = make_date_with_month($row['begindate'], $contxt['month'], $l);
+$enddate = make_date_with_month($row['enddate'], $contxt['month'], $l);
+$event['date_'.$l] = make_date($begindate, $enddate, ' - ');
+}
+}
+
+if (!empty($event['type'])) {
+foreach ($event['type'] as $id => $type) {
+unset($event['type'][$id]);
+$type = $data['ref_type'][$type];//xml2array((int)$type, Array('name'));
+foreach ($langs as $l) {
+$event['type'][$l][] = $type['name_'.$l];
+}
+}
+} else {
+$event['type'] = Array();
+foreach ($langs as $l) {
+$event['type'][$l] = Array();
+}
+}
+if (!empty($event['gallery'])) {
+foreach ($event['gallery'] as $id => $gallery) {
+unset($event['gallery'][$id]);
+$gallery = $data['ref_gallery'][$gallery];//xml2array((int)$gallery, Array('name'));
+foreach ($langs as $l) {
+$event['gallery'][$l][] = '<a href="'.$gallery['m_link'][$l].'" class="event-place">'.$gallery['name_'.$l].'</a>';
+}
+}
+} else {
+$event['gallery'] = Array();
+foreach ($langs as $l) {
+$event['gallery'][$l] = Array();
+}
+}
+$out[$row['m_link8']][] = $event;
+}
+return $out;
+}
+}
+
+if (!function_exists('events_slider')) {
+function events_slider ($SQL, $out = Array()) {
+global $db, $langs, $data, $contxt;
+$rs = $db->Execute($SQL);
+while ($row = $rs->FetchRow()) {
+$event = to_default(xml2array($row, Array('name', 'img', 'gallery', 'date')));
+$event['m_link14'] = $row['m_link14'];
+$event['m_link3'] = $row['m_link3'];
+foreach ($langs as $l) {
+if (empty($event['date_'.$l])) {
+$begindate = make_date_with_month($row['begindate'], $contxt['month'], $l);
+$enddate = make_date_with_month($row['enddate'], $contxt['month'], $l);
+$event['date_'.$l] = make_date($begindate, $enddate, ' - ');
+}
+}
+
+if (!empty($event['gallery'])) {
+foreach ($event['gallery'] as $id => $gallery) {
+unset($event['gallery'][$id]);
+$gallery = $data['ref_gallery'][$gallery];//xml2array((int)$gallery, Array('name'));
+foreach ($langs as $l) {
+$event['gallery'][$l][] = '<a href="'.$gallery['m_link'][$l].'" class="event-place">'.$gallery['name_'.$l].'</a>';
+}
+}
+} else {
+$event['gallery'] = Array();
+foreach ($langs as $l) {
+$event['gallery'][$l] = Array();
+}
+}
+$out[] = $event;
+}
+return $out;
+}
+}
+
+
+//События
+$mainpage = $data['mainpage'];
+$limit = !empty($mainpage['m_link1']) ? $mainpage['m_link1'] : 10;
+$cat1 = !empty($mainpage['cat1']['id01']) ? $mainpage['cat1']['id01'] : 0;
+$cat2 = !empty($mainpage['cat2']['id01']) ? $mainpage['cat2']['id01'] : 0;
+
+
+$SQL_six = "SELECT *,
+m_link8 as begindate,
+m_link13 as enddate
+FROM $tbl_main WHERE m_ct_id=744 AND (m_link10=1) AND (m_del=0 OR m_del IS NULL) AND (m_hide=0)
+ORDER BY m_link8 DESC, m_link13 DESC
+LIMIT 0,$limit";
+$data['six_events'] = events($SQL_six);
+
+
+$SQL_types = "SELECT * FROM $tbl_main WHERE m_ct_id=905 AND (m_del=0 OR m_del IS NULL) AND (m_hide=0)";
+$rs_types = $db->Execute($SQL_types);
+$data['types']=Array();
+while ($cur_types = $rs_types->FetchRow()) {
+$data['types'][$cur_types['m_id']] = to_default(xml2array($cur_types));
+}
+
+$SQL_cat1 ="SELECT *,
+date_format(m_link8,'%d.%m.%Y') as begindate,
+date_format(m_link13,'%d.%m.%Y') as enddate
+FROM $tbl_main WHERE m_ct_id=744 AND (m_main_content LIKE '%type%id___".$cat1."__id__%type%') AND (m_del=0 OR m_del IS NULL) AND (m_hide=0)
+ORDER BY m_link8 DESC, m_link13 DESC
+LIMIT 0,$limit";
+$data['cat1'] = events($SQL_cat1);
+
+$SQL_cat2 = "SELECT *,
+date_format(m_link8,'%d.%m.%Y') as begindate,
+date_format(m_link13,'%d.%m.%Y') as enddate
+FROM $tbl_main WHERE m_ct_id=744 AND (m_main_content LIKE '%type%id___$cat2__id__%type%') AND (m_del=0 OR m_del IS NULL) AND (m_hide=0)
+ORDER BY m_link8 DESC, m_link13 DESC
+LIMIT 0,$limit";
+$data['cat2'] = events($SQL_cat2);
+
+$SQL_big = "SELECT *,
+date_format(m_link8,'%d.%m.%Y') as begindate,
+date_format(m_link13,'%d.%m.%Y') as enddate
+FROM $tbl_main WHERE m_ct_id=744 AND (m_link7=1) AND (m_del=0 OR m_del IS NULL) AND (m_hide=0)
+ORDER BY m_link8 DESC, m_link13 DESC
+LIMIT 0,2";
+$data['big'] = events($SQL_big);
+
+$SQL_remained = "SELECT *,
+m_link8 as begindate,
+m_link13 as enddate
+FROM $tbl_main WHERE m_ct_id=744 AND (m_del=0 OR m_del IS NULL) AND (m_hide=0)
+AND (m_link10=0) AND (m_link7=0) AND (m_main_content NOT LIKE '%<type>%<id__>397</id__>%</type>%') AND (m_main_content NOT LIKE '%<type>%<id__>415</id__>%</type>%')
+ORDER BY m_link8 DESC, m_link13 DESC
+LIMIT 0,$limit";
+$data['remained'] = events($SQL_remained);
+
+$SQL_now = "SELECT *,
+date_format(m_link8,'%d.%m.%Y') as begindate,
+date_format(m_link13,'%d.%m.%Y') as enddate
+FROM $tbl_main WHERE m_ct_id=744 AND (m_del=0 OR m_del IS NULL) AND (m_hide=0)
+AND (m_link8 <= CURDATE()) AND (m_link13 >= CURDATE())
+ORDER BY m_link8 ASC, m_link13 DESC";
+$data['now'] = events($SQL_now);
+
+
+$SQL_soon = "SELECT *,
+date_format(m_link8,'%d.%m.%Y') as begindate,
+date_format(m_link13,'%d.%m.%Y') as enddate
+FROM $tbl_main WHERE m_ct_id=744 AND (m_del=0 OR m_del IS NULL) AND (m_hide=0)
+AND (m_link8 BETWEEN ADDDATE(CURDATE(),1) AND ADDDATE(CURDATE(),30))
+ORDER BY m_link8 ASC, m_link13 DESC";
+$data['soon'] = events_days($SQL_soon);
+
+$SQL_slider = "SELECT *,
+date_format(m_link8,'%d.%m.%Y') as begindate,
+date_format(m_link13,'%d.%m.%Y') as enddate
+FROM $tbl_main WHERE m_ct_id=744 AND (m_link1=1) AND (m_del=0 OR m_del IS NULL) AND (m_hide=0)
+ORDER BY m_link8 DESC, m_link13 DESC";
+$data['slider'] = events_slider($SQL_slider);
+
+?>**/ ?>
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <? /**<?php include $_SERVER['DOCUMENT_ROOT'].'/inc/head_meta.php';?>**/ ?>
+
+    <title><?/**<?php echo $mainpage["name_$lang"]; ?>**/?></title>
+</head>
+<body class="main-page">
+
+<? /**<?php include $_SERVER['DOCUMENT_ROOT'].'/inc/header.php';?>**/ ?>
+<? /**<?php include $_SERVER['DOCUMENT_ROOT'].'/inc/mainmenu.php';?>**/ ?>
+
+<div class="page-wrapper home-page">
+    <div class="inner-wrapper container-fluid">
+
+        <? /**<?php /* */
+      if (!empty($data['slides'])): ?>**/?>
+        <div class="page-carousel">
+            <div class="container-fluid">
+                <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+                    <!-- Indicators -->
+                    <ol class="carousel-indicators">
+                        <? /**<?php /* */
+                     $i = 0;
+                     foreach ($data['slides'] as $slide) {
+                        echo '<li data-target="#carousel-example-generic" data-slide-to="' . $i . '"';
+                        echo $i === 0 ? 'class="active"></li>' : '></li>';
+                        $i++;
+                        }
+                        ?>**/?>
+                    </ol>
+
+                    <!-- Wrapper for slides -->
+                    <div class="carousel-inner carousel-mainpage" role="listbox">
+                        <? /**<?php /* */
+                     $i = 0;
+                     foreach ($data['slides'] as $slide):
+                        if(!empty($slide['event'])):
+                           $event = $slide['event'];
+                           ?>**/?>
+                        <div class="item <?/**<?php echo $i === 0 ? 'active' : '' ?>**/?>">
+                            <img src="<?/**<?php echo $slide['img'] ?>**/?>" alt="<?/**<?php echo $event["name_$lang"]; ?>**/?>">
+                            <div class="item_content">
+                                <div class="item_head"><?/**<?php echo $event["name_$lang"]; ?>**/?></div>
+                                <div class="item_date">
+                                    <?/**<?php /* */
+                                    if(!empty($event["date_$lang"])) {
+                                       echo $event["date_$lang"];
+                                    } else {
+                                       echo $event['date_start'];
+                                       echo $event['date_end'] ? ' - '.$event['date_end'] : '';
+                                    }
+
+                                    ?>**/?>
+                                </div>
+                                <div class="item_place">
+                                    <?/**<?php /* */
+                                    foreach($event['galleries'] as $gallery) {
+                                       echo $gallery["name_$lang"];
+                                    }
+                                    ?>**/?>
+                                </div>
+                                <a title="<?/**<?php echo $contxt['read_more']["$lang"]; ?>**/?>" href="<?/**<?php echo $event['m_link'][$lang]; ?>**/?>" class="item_button"><?/**<?php echo $contxt['read_more']["$lang"]; ?>**/?></a>
+                            </div>
+                        </div>
+                        <? /**<?php /* */
+                        else:
+                           ?>**/?>
+                        <div class="item <?/**<?php echo $i === 0 ? 'active' : '' ?>**/?>">
+                            <img src="<?/**<?php echo $slide['img'] ?>**/?>" alt="<?/**<?php echo $slide["head_$lang"]; ?>**/?>">
+                            <div class="item_content">
+                                <div class="item_head"><?/**<?php echo $slide["head_$lang"]; ?>**/?></div>
+                                <div class="item_date">
+                                    <?/**<?php /* */
+                                    if(!empty($slide["date_$lang"])) {
+                                       echo $slide["date_$lang"];
+                                    } else {
+                                       echo $slide['date_start'];
+                                    }
+                                    ?>**/?>
+                                </div>
+                                <div class="item_place">
+                                    <?/**<?php /* */
+                                    if(!empty($slide["place_$lang"])) {
+                                       echo $slide["place_$lang"];
+                                    } else if(!empty($slide['place'])) {
+                                       echo $slide['place']["name_$lang"];
+                                    }
+                                    ?>**/?>
+                                </div>
+                                <a title="
+                              <?/**<?php /* */
+                                 if(!empty($slide["button_$lang"])) {
+                                echo $slide["button_$lang"];
+                                } else {
+                                echo $contxt['read_more']["$lang"];
+                                }
+                                ?>**/?>
+                                " href="<?/**<?php /* */ echo $slide['url'].'/?lang='.$lang; ?>**/?>" class="item_button">
+                                <?/**<?php /* */
+                                    if(!empty($slide["button_$lang"])) {
+                                       echo $slide["button_$lang"];
+                                    } else {
+                                       echo $contxt['read_more']["$lang"];
+                                    }
+                                    ?>**/?>
+                                </a>
+                            </div>
+                        </div>
+                        <? /**<?php /* */
+                        endif;
+                        $i++;
+                     endforeach;
+                     ?>**/?>
+                    </div>
+
+                    <!-- Controls -->
+                    <a title="" class="left control-carousel" href="#carousel-example-generic" role="button"
+                       data-slide="prev">
+
+                    </a>
+                    <a title="" class="right control-carousel" href="#carousel-example-generic" role="button"
+                       data-slide="next">
+
+                    </a>
+                </div>
+            </div>
+        </div>
+        <? /**<?php /* */
+      endif; ?>**/?>
+
+        <div class="inner-wrapper container-fluid">
+            <? /**<?php if (!empty($data['big'])): ?>**/
+            ?>
+            <div class="two-block-wrapper container-fluid">
+                <? /**<?php foreach ($data['big'] as $event): ?>**/
+                ?>
+                <div class="two-block_event-item col-md-6 col-sm-6 col-xs-12">
+                    <div class="event-item">
+                        <a href="<? /**<?=$event['m_link'][$lang]?>**/
+               ?>"><img class="" src="<? /**<?=$event['circimg']['id03']?>**/
+                  ?>"></a>
+                        <div class="event-type"><? /**<?=implode(' / ', $event['type'][$lang])?>**/
+                            ?></div>
+                        <a href="<? /**<?=$event['m_link'][$lang]?>**/
+               ?>" class="event-name"><? /**<?=$event['name_'.$lang]?>**/
+                            ?></a>
+                        <div class="event-description"><? /**<?=$event['anons_'.$lang]?>**/
+                            ?></div>
+                        <div class="event-date"><? /**<?=$event['date_'.$lang]?>**/
+                            ?></div>
+                    </div>
+                </div>
+                <? /**<?php endforeach; ?>**/
+                ?>
+            </div>
+            <? /**<?php endif; ?>**/
+            ?>
+
+        </div>
+
+
+
+
+        <div class="events-wrapper col-sm-7 col-xs-12">
+            <div class="events-header"><?/**<?php echo $mainpage["events_$lang"]; ?>**/?></div>
+            <div class="events-wrapper__inner">
+                <? /**<?php foreach ($data['six_events'] as $event): ?>**/ ?>
+                <div class="col-md-6 col-xs-12">
+                    <div class="event-item">
+                        <a href="<? /**<?=$event['m_link'][$lang]?>**/ ?>"><img class=""
+                                                                                src="<? /**<?=$event['circimg']['id03']?>**/ ?>"></a>
+                        <div class="event-type"><? /**<?=implode(' / ', $event['type'][$lang])?>**/ ?></div>
+                        <a href="<? /**<?=$event['m_link'][$lang]?>**/ ?>"
+                           class="event-name"><? /**<?=$event['name_'.$lang]?>**/ ?></a>
+                        <div class="event-description"><? /**<?=$event['anons_'.$lang]?>**/ ?></div>
+                        <a href="<? /**<?=$event['m_link'][$lang]?>**/ ?>"
+                           class="event-place"><? /**<?=implode(' / ', $event['gallery'][$lang])?>**/ ?></a>
+                        <div class="event-date"><? /**<?=$event['date_'.$lang]?>**/ ?></div>
+                        <a class="item_button btn-buy" href="" title="">Купить билет</a>
+                    </div>
+                </div>
+                <? /**<?php endforeach; ?>**/ ?>
+            </div>
+        </div>
+
+
+        <div class="events-side-bar col-sm-5 col-xs-12">
+            <div class="events-header"><?/**<?php echo $mainpage["calend_$lang"]; ?>**/?></div>
+            <div class="col-md-12 col-xs-12">
+                <div class="calendar-wrapper">
+
+                    <div id="calendar"></div>
+
+                </div>
+                <form class="select-event">
+                    <select class="">
+                        <option value="">Все события</option>
+                        <? /**<?php /* */
+                  foreach ($data['ref_type'] as $type) {
+                     echo '<option value="'.$type['m_link'][$lang].'">'.$type['name_'.$lang].'</option>';
+                        } ?>**/ ?>
+                    </select>
+                </form>
+                <div class="events-side-wrapper">
+                    <? /**<?php /* */
+
+               if (strtotime(key($data['now'])) <= strtotime(date('d.m.Y')) && !empty($data['now'])):
+               //echo '<pre>';print_r($data['now']);echo '</pre>';
+                    $events = $data['now'];
+                    ?>**/?>
+                    <div class="container-fluid">
+                        <div class="container-fluid">
+                            <div class="events-side_head events-side_head--today"><?/**<?php echo $mainpage["now_$lang"]; ?>**/?></div>
+                        </div>
+                        <div class="events-side-item">
+                            <div class="events-side_day">
+                        <span class="events-side_left_date"><? /**<?=date('j')?>**/
+                              ?></span>
+                                <div class="events-side_left_mounth"><? /**<?=$contxt['month'][date('m')][$lang]?>**/
+                                    ?></div>
+                                <div class="events-side_left_week"><? /**<?=$contxt['weekDay'][date('w')+1][$lang]?>**/
+                                    ?></div>
+
+                            </div>
+                            <div class="events-side_list">
+                                <? /**<?php /* */
+                        $i = -1;
+                        foreach ($events as $event):
+                        $i++;
+                        if ($i <= 2):
+                        ?>**/?>
+                                <div class="events-side_list_item">
+                                    <div class="events-side_list_item_type"><? /**<?=implode(' / ', $event['type'][$lang])?>**/
+                                        ?></div>
+                                    <a href="<? /**<?=$event['m_link'][$lang]?>**/
+                           ?>" class="events-side_list_item_name">
+                                        <? /**<?=$event['name_'.$lang]?>**/?>
+                                    </a>
+                                    <div class="events-side_list_item_description"><? /**<?=$event['date_'.$lang]?>**/
+                                        ?></div>
+                                    <a href="<? /**<?=$event['m_link'][$lang]?>**/
+                           ?>" class="events-side_list_item_place">
+                                        <? /**<?=implode(' / ', $event['gallery'][$lang])?>**/?>
+                                    </a>
+                                </div>
+                                <? /**<?php /* */ else: ?>**/?>
+                                <div class="extra_events-side_list">
+
+                                </div>
+                                <? /**<?php /* */ endif; ?>**/?>
+                                <? /**<?php /* */ endforeach; ?>**/?>
+                                <!--<div class="button-event-hide hide">Свернуть</div>
+                                <a class="more-events-button">+1 событие</a>-->
+                            </div>
+                        </div>
+                    </div>
+
+                    <? /**<?php /* */ endif; ?>**/?>
+                </div>
+                <div class="events-side-wrapper">
+
+                    <div class="container-fluid">
+                        <div class="events-side_head events-side_head--today"><?/**<?php echo $mainpage["soon_$lang"]; ?>**/?></div>
+                    </div>
+                    <? /**<?php /* */
+            //strtotime(key($data['soon'])) <= strtotime(date('d.m.Y')) &&
+               if (!empty($data['soon'])):
+               foreach(array_keys($data['soon']) as $event_day){
+                   $event_day_UNIX = mktime(0,0,0,substr($event_day,5,2),substr($event_day,8,2),substr($event_day,0,4));
+                   $events = $data['soon'][$event_day];
+               ?>**/?>
+                    <div class="container-fluid">
+
+                        <div class="events-side-item">
+                            <div class="events-side_day">
+                        <span class="events-side_left_date"><? /**<?=substr($event_day,8,2)?>**/
+                              ?></span>
+                                <div class="events-side_left_mounth"><? /**<?=$contxt['month'][substr($event_day,5,2)][$lang]?>**/
+                                    ?></div>
+                                <div class="events-side_left_week"><? /**<?=$contxt['weekDay'][date('w',$event_day_UNIX)][$lang]?>**/
+                                    ?></div>
+
+                            </div>
+                            <div class="events-side_list">
+                                <? /**<?php /* */
+                        $i = -1;
+                        foreach ($events as $event):
+                            $i++;
+                            if ($i <= 5):
+                        ?>**/?>
+                                <div class="events-side_list_item">
+                                    <div class="events-side_list_item_type"><? /**<?=implode(' / ', $event['type'][$lang])?>**/
+                                        ?></div>
+                                    <a href="<? /**<?=$event['m_link'][$lang]?>**/
+                                   ?>" class="events-side_list_item_name">
+                                        <? /**<?=$event['name_'.$lang]?>**/?>
+                                    </a>
+                                    <div class="events-side_list_item_description"><? /**<?=$event['date_'.$lang]?>**/
+                                        ?></div>
+                                    <a href="<? /**<?=$event['m_link'][$lang]?>**/
+                                   ?>" class="events-side_list_item_place">
+                                        <? /**<?=implode(' / ', $event['gallery'][$lang])?>**/?>
+                                    </a>
+                                </div>
+                                <? /**<?php /* */ else: ?>**/?>
+                                <div class="extra_events-side_list">
+
+                                </div>
+                                <? /**<?php /* */ endif; ?>**/?>
+                                <? /**<?php /* */ endforeach; ?>**/?>
+                                <!--<div class="button-event-hide hide">Свернуть</div>
+                                <a class="more-events-button">+1 событие</a>-->
+                            </div>
+                        </div>
+                        <? /**<?php /* */ }
+                  endif; ?>**/?>
+
+                    </div>
+
+                </div>
+                <div class="more-info-button">
+
+                </div>
+
+                <div class="partners-side">
+                    <? /**<?php /* */
+                  for($i = 1; $i <=10; $i++) {
+                     if(!empty($mainpage["foto_$i"])) {
+                        echo '<div class="partners-side__item">';
+                    if (!empty($mainpage["foto_$i"."_$lang"])) {
+                    echo '<a href="'.$mainpage["foto_$i"."_$lang"].'" target="_blank"><img alt="" src="'.$mainpage["foto_$i"].'"></a>';
+                    } else {
+                    echo '<img alt="" src="'.$mainpage["foto_$i"].'">';
+                    }
+                    echo '</div>';
+                }
+                }
+                ?>**/?>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!--  -->
+
+<? /**<?php if (!empty($data['cat1'])): ?>**/
+?>
+<div class="specials-wrapper">
+    <div class="inner-wrapper container-fluid">
+        <div class="container-fluid">
+            <div class="events-side_head"><? /**<?=$data['types'][$cat1]['name_'.$lang]?>**/ ?></div>
+        </div>
+        <div class="specials-slick">
+            <? /**<?php foreach ($data['cat1'] as $event): ?>**/
+            ?>
+            <div class="specials-slick_item">
+                <div class="event-item">
+                    <a href="<? /**<?=$event['m_link'][$lang]?>**/
+                          ?>"><img alt="" class=""  src="<? /**<?=$event['circimg']['id02']?>**/
+                             ?>"></a>
+                    <div class="event-type"><? /**<?=implode(' / ', $event['type'][$lang])?>**/
+                        ?></div>
+                    <a href="<? /**<?=$event['m_link'][$lang]?>**/
+                          ?>" class="event-name"><? /**<?=$event['name_'.$lang]?>**/
+                        ?></a>
+                    <div class="event-date"><? /**<?=$event['date_'.$lang]?>**/
+                        ?></div>
+                    <a href="<? /**<?=$event['m_link'][$lang]?>**/
+                          ?>" class="event-place"><? /**<?=implode(' / ', $event['gallery'][$lang])?>**/
+                        ?></a>
+                </div>
+            </div>
+            <? /**<?php endforeach; ?>**/
+            ?>
+        </div>
+    </div>
+</div>
+<? /**<?php endif; ?>**/
+?>
+
+<div class="inner-wrapper container-fluid">
+    <? /**<?php if (!empty($data['remained'])): ?>**/
+    ?>
+    <div class="other-block-wrapper">
+        <div class="events-wrapper col-md-12 col-xs-12">
+            <div class="events-wrapper__inner">
+                <? /**<?php foreach ($data['remained'] as $event): ?>**/
+                ?>
+                <div class="event-item-wrap col-md-4 col-sm-6 col-xs-12">
+                    <div class="event-item">
+                        <a href="<? /**<?=$event['m_link'][$lang]?>**/
+                         ?>"><img class="" src="<? /**<?=$event['circimg']['id03']?>**/
+                            ?>"></a>
+                        <div class="event-type"><? /**<?=implode(' / ', $event['type'][$lang])?>**/
+                            ?></div>
+                        <a href="<? /**<?=$event['m_link'][$lang]?>**/
+                         ?>" class="event-name"><? /**<?=$event['name_'.$lang]?>**/
+                            ?></a>
+                        <div class="event-description"><? /**<?=$event['anons_'.$lang]?>**/
+                            ?></div>
+                        <a href="<? /**<?=$event['m_link'][$lang]?>**/
+                         ?>" class="event-place"><? /**<?=implode(' / ', $event['gallery'][$lang])?>**/
+                            ?></a>
+                        <div class="event-date"><? /**<?=$event['date_'.$lang]?>**/
+                            ?></div>
+                    </div>
+                </div>
+                <? /**<?php endforeach; ?>**/
+                ?>
+            </div>
+        </div>
+        <div class="container-fluid">
+            <a href="<? /**<?=$data['events'][$lang]?>**/
+                ?>">
+                <div class="all-events-button"><? /**<?=$data['events_'.$lang]?>**/
+                    ?></div>
+            </a>
+        </div>
+    </div>
+    <? /**<?php endif; ?>**/
+    ?>
+</div>
+
+<? /**<?php if (!empty($data['cat2'])): ?>**/
+?>
+<div class="specials-wrapper">
+    <div class="inner-wrapper container-fluid">
+        <div class="container-fluid">
+            <div class="events-side_head"><? /**<?=$data['types'][$cat2]['name_'.$lang]?>**/ ?></div>
+        </div>
+        <div class="specials-slick">
+            <? /**<?php foreach ($data['cat2'] as $event): ?>**/
+            ?>
+            <div class="specials-slick_item">
+                <div class="event-item" style="width: 100%;">
+                    <a href="<? /**<?=$event['m_link'][$lang]?>**/
+                  ?>"><img class="" src="<? /**<?=$event['circimg']['id01']?>**/
+                     ?>"></a>
+                    <div class="event-type"><? /**<?=implode(' / ', $event['type'][$lang])?>**/
+                        ?></div>
+                    <a href="<? /**<?=$event['m_link'][$lang]?>**/
+                  ?>" class="event-name"><? /**<?=$event['name_'.$lang]?>**/
+                        ?></a>
+                    <div class="event-date"><? /**<?=$event['date_'.$lang]?>**/
+                        ?></div>
+                    <a href="<? /**<?=$event['m_link'][$lang]?>**/
+                  ?>" class="event-place"><? /**<?=implode(' / ', $event['gallery'][$lang])?>**/
+                        ?></a>
+                </div>
+            </div>
+            <? /**<?php endforeach; ?>**/
+            ?>
+        </div>
+    </div>
+</div>
+<? /**<?php endif; ?>**/
+?>
+<!-- END -->
+
+<? /**<?php include $_SERVER['DOCUMENT_ROOT'].'/inc/footer.php';?>**/?>
+
+
+<script src='/js/libs.js'></script>
+<script src='/js/bootstrap-datepicker.ru.min.js'></script>
+<script src="/js/common.js"></script>
+
+
+</body>
+</html>

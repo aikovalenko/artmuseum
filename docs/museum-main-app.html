@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>ГМИИ</title>
+    <link rel='stylesheet' href='css/libs.css'>
+    <link rel='stylesheet' href='css/style-app.css'>
+</head>
+<body class="bg-primary">
+<div class="overlay"></div>
+<header class="header">
+    <div class="wrapper">
+        <div class="header__controls">
+            <div class="logo">
+                <a class="" href="index.html" title="Государственный музей изобразительных искусств имени А. С. Пушкина">
+                    <picture>
+                        <source media="(max-width: 767px)" srcset="images/svg/logo_gmii_mobile.svg">
+                        <img src="images/svg/logo_gmii.svg" alt="Государственный музей изобразительных искусств имени А. С. Пушкина">
+                    </picture>
+                </a>
+            </div>
+            <div class="main-controls">
+                <div class="main-menu-burger js-burger ">
+                    <span class="burger"></span>
+                    <span class="notifications-badge bg-violet-blue color-pale-grey">1</span>
+                </div>
+            </div>
+        </div>
+        <div class="menu-mobile bg-primary ">
+            <div class="menu-mobile__inner">
+                <div class="logo logo--mobile-menu">
+                    <a class="" href="index.html" title="Государственный музей изобразительных искусств имени А. С. Пушкина">
+                        <img class="logo--mobile" width="162" height="122" src="images/svg/logo_gmii_mobile.svg" alt="Государственный музей изобразительных искусств имени А. С. Пушкина">
+                    </a>
+                </div>
+                <ul class="menu-mobile__list color-greyish-brown-two">
+                    <li>
+                        <a class="notifs-show js-call-notifs" href="" title="ВНИМАНИЕ">ВНИМАНИЕ <span class="color-violet-blue">1</span></a>
+                        <div class="mobile-notifs">
+                            <ul class="mobile-notifs-list">
+                                <li><a href="" title="">Отменена Лекция «Кандинский и абстракционизм»</a></li>
+                                <li><a href="" title="">Василий Кандинский и абстракционизм перенесен.</a> <span class="color-warm-grey-two">Начало в 19:00. Вход по абонементам и разовым билетам</span></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li><a class="" href="" title="Музей">Новости</a></li>
+                    <li><a class="" href="" title="Музей">Музей</a></li>
+                    <li><a class="" href="" title="Посетителям">Афиша</a></li>
+                    <li><a class="" href="" title="Выставки и события">Коллекции</a></li>
+                </ul>
+                <div class="menu-mobile__panels hide">
+                    <div class="menu-mobile__panels__inner">
+                        <div class="menu-mobile__panels__block mobile-search">
+                            <form class="form-search">
+                                <input class="form--mobile-search" type="text" placeholder="введите запрос">
+                                <span class="close close--black js-clear-search"></span>
+                            </form>
+                        </div>
+                        <div class="menu-mobile__panels__block mobile-language">
+                            <ul class="color-greyish-brown-two">
+                                <li>
+                                    <a class="" href="" title="English language">
+                                        <span>English</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="active" href="" title="Русский язык">
+                                        <span>Русский</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="" href="" title="Langue française">
+                                        <span>française</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="" href="" title="Deutsche Sprache">
+                                        <span>Deutsch</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="" href="" title="日本の">
+                                        <span>日本の</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="menu-mobile__panels__block mobile-share">
+                            <ul class="color-greyish-brown-two">
+                                <li>
+                                    <a class="" href="" title="">Facebook</a>
+                                </li>
+                                <li>
+                                    <a class="" href="" title="">Vk.com</a>
+                                </li>
+                                <li>
+                                    <a class="" href="" title="">Twitter</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="menu-mobile__bottom">
+                    <div class="menu-mobile__copyright color-greyish-brown-two">© 2009–2017<br>ГМИИ им. А. С. Пушкина</div>
+                    <div class="menu-mobile__social-head color-greyish-brown-two">Музей в соцсетях</div>
+                    <div class="scroller--always-wrap social-buttons-wrap">
+                        <div class="scroller--always">
+                            <ul class="social-buttons social-buttons--menu">
+                                <li><a href="" class="" title=""><span class="icon icon-fb"></span><span class="icon-text">Facebook</span></a></li>
+                                <li><a href="" class="" title=""><span class="icon icon-tw"></span><span class="icon-text">Twitter</span></a></li>
+                                <li><a href="" class="" title=""><span class="icon icon-yb"></span><span class="icon-text">Youtube</span></a></li>
+                                <li><a href="" class="" title=""><span class="icon icon-inst"></span><span class="icon-text">Instagram</span></a></li>
+                                <li><a href="" class="" title=""><span class="icon icon-tg"></span><span class="icon-text">Tekegram</span></a></li>
+                                <li><a href="" class="" title=""><span class="icon icon-vk"></span><span class="icon-text">ВКонтакте</span></a></li>
+                                <li><a href="" class="" title=""><span class="icon icon-ok"></span><span class="icon-text">Одноклассники</span></a></li>
+                                <li><a href="" class="" title=""><span class="icon icon-ta"></span><span class="icon-text">Tripadvisor</span></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="main-controls main-controls--mobile">
+                    <div class="main-controls-section search-wrap">
+                        <button class="main-controls__button color-black js-mobile-menu" data-name="mobile-search" title="Поиск">
+                            <span class="icon icon-search"><span>поиск</span></span>
+                        </button>
+                    </div>
+                    <div class="main-controls-section language-wrap">
+                        <button class="main-controls__button color-black js-mobile-menu" data-name="mobile-language" title="Выбор языка">
+                            <span class="button-text">EN</span>
+                        </button>
+                    </div>
+                    <div class="main-controls-section share-wrap">
+                        <button class="main-controls__button color-black js-mobile-menu" data-name="mobile-share" title="Поделиться в соц сетях">
+                            <span class="icon icon-share"><span>поделиться</span></span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<section class="search--section"></section>
+
+<main class="">
+
+  <section class="slider">
+    <div class="main-slider__inner">
+      <div class="slick-slider slick-full-width js-slider-fotos">
+        <a class="" href="" title="" data-title="">
+          <picture>
+            <source media="(max-width: 480px)" srcset="https://via.placeholder.com/480x768/ff0000/000000">
+            <img src="https://via.placeholder.com/1128x634/ff0000/000000" alt="Красный">
+          </picture>
+        </a>
+        <a class="" href="" title="" data-title="">
+          <picture>
+            <source media="(max-width: 480px)" srcset="https://via.placeholder.com/480x768/00ff00/000000">
+            <img src="https://via.placeholder.com/1128x634/00ff00/000000" alt="Зеленый">
+          </picture>
+        </a>
+        <a class="" href="" title="" data-title="">
+          <picture>
+            <source media="(max-width: 480px)" srcset="https://via.placeholder.com/480x768/0000ff/ffffff">
+            <img src="https://via.placeholder.com/1128x634/0000ff/ffffff" alt="Синий">
+          </picture>
+        </a>
+      </div>
+      <div class="main-slider-info main-slider-info--title">
+        <span class="js-slider-title"></span>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--3-column section--collection section--limited">
+    <div class="section__header">
+      <h2 class="color-greyish-brown">Главное здание</h2>
+    </div>
+
+    <div class="section__inner padding">
+      <div class="column-wrap">
+        <ul class="column item-styles accordion--mobile js-accordion--mobile">
+          <li><button class="accordion-control item-styles__header accordion-title"><span>ПРАВИЛА ПРОВЕДЕНИЯ ЭКСКУРСИИ</span></button>
+            <ul class=" accordion-content">
+              <li><div class="item-styles__content">
+                <p>Сегодня музей работает
+                  с 10 до 21</p>
+
+                <p>вт, ср, пт, сб, вс
+                  с 11:00 до 20:00
+                  касса (вход) с 11:00 до 19:00</p>
+
+                <p>чт с 11:00 до 21:00
+                  касса (вход) с 11:00 до 20:00</p>
+
+                <p>Выходной — понедельник.
+                  В понедельник производится
+                  <a href="" title=""><span>обеспыливание</span></a></p>
+              </div></li>
+            </ul>
+          </li>
+        </ul>
+        <ul class="column item-styles accordion--mobile js-accordion--mobile">
+          <li><button class="accordion-control item-styles__header accordion-title"><span>БИЛЕТЫ</span></button>
+            <ul class=" accordion-content">
+              <li>
+                <div class="item-styles__content">
+                  <p>Входной билет:
+                    300 рублей
+                    Льготный билет:
+                    150 рублей
+                    Дети до 16 лет —
+                    бесплатно</p>
+
+                  <p>Стоимость билетов на посещение с выставкой
+                    «Лев Бакст / Léon Bakst. К 150‑летию со дня рождения»</p>
+                </div>
+              </li>
+            </ul>
+          </li>
+        </ul>
+        <ul class="column item-styles accordion--mobile js-accordion--mobile">
+          <li><button class="accordion-control item-styles__header accordion-title"><span>комплексные билеты</span></button>
+            <ul class=" accordion-content">
+              <li>
+                <div class="item-styles__content">
+                  <p>Главное здание, Галерея, Отдел личных коллекций:
+                    750 ₽ / 400 ₽ — льготный</p>
+
+                  <p>Главное здание, Галерея:
+                    550 ₽ / 300 ₽ — льготный</p>
+
+                  <p>Главное здание, Отдел личных коллекций:
+                    500 ₽ / 250 ₽ — льготный</p>
+                </div>
+              </li>
+            </ul>
+          </li>
+        </ul>
+        <ul class="column item-styles accordion--mobile js-accordion--mobile">
+          <li><button class="accordion-control item-styles__header accordion-title"><span>ЭКСКУРСИИ</span></button>
+            <ul class=" accordion-content">
+              <li>
+                <div class="item-styles__content">
+                  <p>+7 (495) 697-74-12<br>
+                    <a href="" title=""><span>Все экскурсии</span></a></p>
+
+                </div>
+              </li>
+            </ul>
+          </li>
+        </ul>
+        <ul class="column item-styles accordion--mobile js-accordion--mobile">
+          <li><button class="accordion-control item-styles__header accordion-title"><span>справки по телефону</span></button>
+            <ul class=" accordion-content">
+              <li>
+                <div class="item-styles__content">
+                  <p>+7 (495) 697-95-78</p>
+
+                </div>
+              </li>
+            </ul>
+          </li>
+        </ul>
+        <ul class="column item-styles accordion--mobile js-accordion--mobile">
+          <li><button class="accordion-control item-styles__header accordion-title"><span>автоответчик</span></button>
+            <ul class=" accordion-content">
+              <li>
+                <div class="item-styles__content">
+                  <p>+7 (495) 609-95-20</p>
+
+                </div>
+              </li>
+            </ul>
+          </li>
+        </ul>
+        <ul class="column item-styles accordion--mobile js-accordion--mobile">
+          <li><button class="accordion-control item-styles__header accordion-title"><span>адрес</span></button>
+            <ul class=" accordion-content">
+              <li>
+                <div class="item-styles__content">
+                  <p>Москва, ул. Волхонка, 12</p>
+
+                </div>
+              </li>
+            </ul>
+          </li>
+        </ul>
+        <ul class="column item-styles accordion--mobile js-accordion--mobile">
+          <li><button class="accordion-control item-styles__header accordion-title"><span>проезд</span></button>
+            <ul class=" accordion-content">
+              <li>
+                <div class="item-styles__content">
+                  <p>Станции метро: Кропоткинская, Боровицкая, Библиотека им. Ленина</p>
+
+                </div>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+      <div class="btn-wrap">
+        <a class="btn bg-violet-blue color-pale-grey" href="" title="Купить билет"><span>Купить билет</span></a>
+        <a class="btn btn--np" href="" title="ПОКАЗАТЬ НА КАРТЕ"><span>ПОКАЗАТЬ НА КАРТЕ</span></a>
+      </div>
+    </div>
+
+  </section>
+
+  <section class="section section--exposition section--limited section--tabs">
+    <div class="section__header">
+      <h2 class="color-greyish-brown">ЭКСПОЗИЦИЯ</h2>
+      <div class="section__header__controls color-greyish-brown js-content-control">
+        <div class="scroller-wrap">
+          <div class="scroller scroller--p">
+            <ul class="">
+              <li><a class="btn btn-first active js-content-control-btn" href="raw/first-floor.html" title="" data-toggle="tab" data-target="#first-floor"><span>ПЕРВЫЙ ЭТАЖ</span></a></li>
+              <li><a class="btn js-content-control-btn" href="raw/second-floor.html" title="" data-toggle="tab" data-target="#second-floor"><span>ВТОРОЙ ЭТАЖ</span></a></li>
+              <li><a class="btn js-content-control-btn" href="raw/expositions.html" title="" data-toggle="tab" data-target="#expositions"><span>РАЗДЕЛЫ ЭКСПОЗИЦИИ</span></a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="section__inner">
+      <div class="tab-content">
+        <div class="tab-pane active" id="first-floor">
+          <div class="tab-pane__common-content">
+          </div>
+        </div>
+        <div class="tab-pane" id="second-floor">
+          <div class="tab-pane__common-content"></div>
+        </div>
+        <div class="tab-pane" id="expositions">
+          <div class="tab-pane__common-content padding"></div>
+        </div>
+      </div>
+      <div class="preloader preloader--content" style="display: none;">грузим</div>
+    </div>
+  </section>
+
+  <section class="section section--media section--limited">
+    <div class="section__header">
+      <h2 class="color-greyish-brown">медиа</h2>
+      <div class="section__header__controls color-greyish-brown js-content-control">
+        <div class="scroller-wrap">
+          <div class="scroller scroller--p">
+            <ul class="">
+              <li><a class="btn btn-first js-content-control-btn" href="" title="аудиогиды"><span>аудиогиды</span></a></li>
+              <li><a class="btn active js-content-control-btn" href="" title="WR"><span>WR</span></a></li>
+              <li><a class="btn js-content-control-btn" href="" title="вирутальные экскурсии"><span>вирутальные экскурсии</span></a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="section__inner padding">
+      <div class="wr-link">
+        <a class="icon-wr" href="" title="">
+          <picture>
+            <source media="(max-width: 640px)" srcset="https://via.placeholder.com/634x1128/ff0000/000000">
+            <img src="https://via.placeholder.com/1128x697/ff0000/000000" alt="Красный">
+          </picture>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--afisha section--scroll">
+    <div class="section__header">
+      <h2 class="color-greyish-brown">Афиша</h2>
+      <div class="section__header__controls color-greyish-brown js-content-control">
+        <div class="scroller-wrap">
+          <div class="scroller scroller--p">
+            <ul class="">
+              <li><a class="btn btn-first active js-content-control-btn" href="" title="сегодня"><span>сегодня</span></a></li>
+              <li><a class="btn js-content-control-btn" href="" title="завтра"><span>завтра</span></a></li>
+              <li><a class="btn js-content-control-btn" href="" title="на неделе"><span>на неделе</span></a></li>
+              <li><a class="btn js-content-control-btn" href="" title="на выходных"><span>на выходных</span></a></li>
+              <li><a class="btn js-content-control-btn" href="" title="архив"><span>архив</span></a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="section__inner ">
+      <div class="scroller--always-wrap">
+        <div class="scroller--always">
+          <div class="section--scroll__wrapper">
+              <div class="section--scroll__item item--card bg-white-two">
+                <a class="" href="" title=""><img src="https://via.placeholder.com/264x390/5100d3/ffffff" alt="" style=""></a>
+                <div class="desc">
+                  <div class="desc__date">16 сен</div>
+                  <a class="desc__type" href="" title=""><span>мастер-класс</span></a>
+                  <div class="font-gmtext">
+                    <p>Because we were both recently from <i>Henri Matisse</i> the UK, we were interested in the fact that you could buy space…</p>
+                  </div>
+                  <a class="desc__place" href="" title=""><span>дом впечатлений</span></a>
+                </div>
+              </div>
+              <div class="section--scroll__item item--card bg-white-two">
+                <a class="" href="" title=""><img  src="https://via.placeholder.com/264x260/5100d3/ffffff" alt=""></a>
+                <div class="desc">
+                  <div class="desc__date">16 сен</div>
+                  <a class="desc__type" href="" title=""><span>мастер-класс</span></a>
+                  <div class="font-gmtext">
+                    <p>Because we were both recently from <i>Henri Matisse</i> the UK, we were interested in the fact that you could buy space…</p>
+                  </div>
+                  <a class="desc__place" href="" title=""><span>дом впечатлений</span></a>
+                </div>
+              </div>
+              <div class="section--scroll__item item--card bg-white-two">
+                <a class="" href="" title=""><img src="https://via.placeholder.com/264x320/5100d3/ffffff" alt=""></a>
+                <div class="desc">
+                  <div class="desc__date">16 сен</div>
+                  <a class="desc__type" href="" title=""><span>мастер-класс</span></a>
+                  <div class="font-gmtext">
+                    <p>Because we were both recently from <i>Henri Matisse</i> the UK, we were interested in the fact that you could buy space…</p>
+                  </div>
+                  <a class="desc__place" href="" title=""><span>дом впечатлений</span></a>
+                </div>
+              </div>
+              <div class="section--scroll__item item--card bg-white-two">
+                <a class="" href="" title=""><img src="https://via.placeholder.com/264x280/5100d3/ffffff"  alt=""></a>
+                <div class="desc">
+                  <div class="desc__date">16 сен</div>
+                  <a class="desc__type" href="" title=""><span>мастер-класс</span></a>
+                  <div class="font-gmtext">
+                    <p>Because we were both recently from <i>Henri Matisse</i> the UK, we were interested in the fact that you could buy space…</p>
+                  </div>
+                  <a class="desc__place" href="" title=""><span>дом впечатлений</span></a>
+                </div>
+              </div>
+              <div class="section--scroll__item item--card bg-white-two">
+                <a class="" href="" title=""><img src="https://via.placeholder.com/264x320/5100d3/ffffff"  alt=""></a>
+                <div class="desc">
+                  <div class="desc__date">16 сен</div>
+                  <a class="desc__type" href="" title=""><span>мастер-класс</span></a>
+                  <div class="font-gmtext">
+                    <p>Because we were both recently from <i>Henri Matisse</i> the UK, we were interested in the fact that you could buy space…</p>
+                  </div>
+                  <a class="desc__place" href="" title=""><span>дом впечатлений</span></a>
+                </div>
+              </div>
+              <div class="section--scroll__item item--card bg-white-two">
+                <a class="" href="" title=""><img src="https://via.placeholder.com/264x380/5100d3/ffffff"  alt=""></a>
+                <div class="desc">
+                  <div class="desc__date">16 сен</div>
+                  <a class="desc__type" href="" title=""><span>мастер-класс</span></a>
+                  <div class="font-gmtext">
+                    <p>Because we were both recently from <i>Henri Matisse</i> the UK, we were interested in the fact that you could buy space…</p>
+                  </div>
+                  <a class="desc__place" href="" title=""><span>дом впечатлений</span></a>
+                </div>
+              </div>
+              <div class="section--scroll__item item--card bg-white-two">
+                <a class="" href="" title=""><img src="https://via.placeholder.com/264x260/5100d3/ffffff"  alt=""></a>
+                <div class="desc">
+                  <div class="desc__date">16 сен</div>
+                  <a class="desc__type" href="" title=""><span>мастер-класс</span></a>
+                  <div class="font-gmtext">
+                    <p>Because we were both recently from <i>Henri Matisse</i> the UK, we were interested in the fact that you could buy space…</p>
+                  </div>
+                  <a class="desc__place" href="" title=""><span>дом впечатлений</span></a>
+                </div>
+              </div>
+              <div class="section--scroll__item item--card bg-white-two">
+                <a class="" href="" title=""><img src="https://via.placeholder.com/264x250/5100d3/ffffff"   alt=""></a>
+                <div class="desc">
+                  <div class="desc__date">16 сен</div>
+                  <a class="desc__type" href="" title=""><span>мастер-класс</span></a>
+                  <div class="font-gmtext">
+                    <p>Because we were both recently from <i>Henri Matisse</i> the UK, we were interested in the fact that you could buy space…</p>
+                  </div>
+                  <a class="desc__place" href="" title=""><span>дом впечатлений</span></a>
+                </div>
+              </div>
+              <div class="section--scroll__item item--card bg-white-two">
+                <a class="" href="" title=""><img src="https://via.placeholder.com/264x320/5100d3/ffffff" alt=""></a>
+                <div class="desc">
+                  <div class="desc__date">16 сен</div>
+                  <a class="desc__type" href="" title=""><span>мастер-класс</span></a>
+                  <div class="font-gmtext">
+                    <p>Because we were both recently from <i>Henri Matisse</i> the UK, we were interested in the fact that you could buy space…</p>
+                  </div>
+                  <a class="desc__place" href="" title=""><span>дом впечатлений</span></a>
+                </div>
+              </div>
+              <div class="section--scroll__item item--card bg-white-two">
+                <a class="" href="" title=""><img src="https://via.placeholder.com/264x370/5100d3/ffffff" alt=""></a>
+                <div class="desc">
+                  <div class="desc__date">16 сен</div>
+                  <a class="desc__type" href="" title=""><span>мастер-класс</span></a>
+                  <div class="font-gmtext">
+                    <p>Because we were both recently from <i>Henri Matisse</i> the UK, we were interested in the fact that you could buy space…</p>
+                  </div>
+                  <a class="desc__place" href="" title=""><span>дом впечатлений</span></a>
+                </div>
+              </div>
+              <div class="section--scroll__item item--card bg-white-two">
+                <a class="" href="" title=""><img src="https://via.placeholder.com/264x300/5100d3/ffffff" alt=""></a>
+                <div class="desc">
+                  <div class="desc__date">16 сен</div>
+                  <a class="desc__type" href="" title=""><span>мастер-класс</span></a>
+                  <div class="font-gmtext">
+                    <p>Because we were both recently from <i>Henri Matisse</i> the UK, we were interested in the fact that you could buy space…</p>
+                  </div>
+                  <a class="desc__place" href="" title=""><span>дом впечатлений</span></a>
+                </div>
+              </div>
+              <div class="section--scroll__item item--card bg-white-two">
+                <a class="" href="" title=""><img src="https://via.placeholder.com/264x310/5100d3/ffffff"  alt=""></a>
+                <div class="desc">
+                  <div class="desc__date">16 сен</div>
+                  <a class="desc__type" href="" title=""><span>мастер-класс</span></a>
+                  <div class="font-gmtext">
+                    <p>Because we were both recently from <i>Henri Matisse</i> the UK, we were interested in the fact that you could buy space…</p>
+                  </div>
+                  <a class="desc__place" href="" title=""><span>дом впечатлений</span></a>
+                </div>
+              </div>
+          </div>
+        </div>
+      </div>
+      <div class="btn-centered">
+        <a class="btn btn--common bg-violet-blue color-pale-grey" href="" title="перейти в магазин"><span>Купить билет</span></a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<script src='js/libs.js'></script>
+<script src='js/scripts-app.js'></script>
+</body>
+</html>
