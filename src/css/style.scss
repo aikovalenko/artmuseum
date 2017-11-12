@@ -2447,6 +2447,13 @@ ul {
   box-sizing: border-box;
   margin-bottom: 110px;
 
+  &--low-margin {
+    margin-bottom: 3.124rem;
+  }
+  &--no-margin {
+    margin-bottom: 0;
+  }
+
   .font-gmtext {
     p {
       @include fontSize(24px);
