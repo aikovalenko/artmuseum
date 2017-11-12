@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="ru">
-@@include('partials/head.html')
+@@include('partials/head-app.html')
 <body class="bg-primary">
-@@include('partials/header.html')
+@@include('partials/header-app.html')
 
 <main class="">
 
-  <section class="slider section--limited padding padding--mobile-no-p">
+  <section class="slider">
     <div class="main-slider__inner">
       <div class="slick-slider slick-full-width js-slider-fotos">
         <a class="" href="" title="" data-title="">
@@ -15,13 +15,13 @@
             <img src="https://via.placeholder.com/1128x634/ff0000/000000" alt="Красный">
           </picture>
         </a>
-        <a class="" href="" title="" data-title="test2">
+        <a class="" href="" title="" data-title="">
           <picture>
             <source media="(max-width: 480px)" srcset="https://via.placeholder.com/480x768/00ff00/000000">
             <img src="https://via.placeholder.com/1128x634/00ff00/000000" alt="Зеленый">
           </picture>
         </a>
-        <a class="" href="" title="" data-title="test3">
+        <a class="" href="" title="" data-title="">
           <picture>
             <source media="(max-width: 480px)" srcset="https://via.placeholder.com/480x768/0000ff/ffffff">
             <img src="https://via.placeholder.com/1128x634/0000ff/ffffff" alt="Синий">
@@ -34,25 +34,12 @@
     </div>
   </section>
 
-  <section class="section section--4-column section--collection section--limited section--tabs">
+  <section class="section section--3-column section--collection section--limited">
     <div class="section__header">
       <h2 class="color-greyish-brown">Главное здание</h2>
     </div>
 
     <div class="section__inner padding">
-
-      <div class="section__description col-8 color-greyish-brown-two">
-        <div class="color-greyish-brown">
-          <p>ГМИИ им. А.С. Пушкина — музейный комплекс, обладающий одним из крупнейших в России художественных собраний зарубежного искусства. Сегодня в его коллекции находится около 700 тысяч произведений разных эпох,
-            начиная с Древнего Египта и античной Греции и заканчивая началом XXI века. К исключительным...</p>
-          <div class="additional-text js-additional-text" style="display:none;">
-            <p>ГМИИ им. А.С. Пушкина — музейный комплекс, обладающий одним из крупнейших в России художественных собраний зарубежного искусства. Сегодня в его коллекции находится около 700 тысяч произведений разных эпох,
-              начиная с Древнего Египта и античной Греции и заканчивая началом XXI века. К исключительным...</p>
-          </div>
-          <div class="btn--more-text underline-text js-more-text" rel="Свернуть"><span class="text">БОЛЬШЕ ИНФОРМАЦИИ</span><span class="icon icon-arrow-down"></span></div>
-        </div>
-      </div>
-
       <div class="column-wrap">
         <ul class="column item-styles accordion--mobile js-accordion--mobile">
           <li><button class="accordion-control item-styles__header accordion-title"><span>ПРАВИЛА ПРОВЕДЕНИЯ ЭКСКУРСИИ</span></button>
@@ -182,24 +169,6 @@
 
   </section>
 
-  <section class="section section--info section--limited">
-    <div class="section__header">
-    </div>
-    <div class="section__inner padding">
-      <div class="section__description col-8 color-greyish-brown-two">
-        <div class="color-greyish-brown">
-          <p>ГМИИ им. А.С. Пушкина — музейный комплекс, обладающий одним из крупнейших в России художественных собраний зарубежного искусства. Сегодня в его коллекции находится около 700 тысяч произведений разных эпох,
-            начиная с Древнего Египта и античной Греции и заканчивая началом XXI века. К исключительным...</p>
-          <div class="additional-text js-additional-text" style="display:none;">
-            <p>ГМИИ им. А.С. Пушкина — музейный комплекс, обладающий одним из крупнейших в России художественных собраний зарубежного искусства. Сегодня в его коллекции находится около 700 тысяч произведений разных эпох,
-              начиная с Древнего Египта и античной Греции и заканчивая началом XXI века. К исключительным...</p>
-          </div>
-          <div class="btn--more-text underline-text js-more-text" rel="Свернуть"><span class="text">БОЛЬШЕ ИНФОРМАЦИИ</span><span class="icon icon-arrow-down"></span></div>
-        </div>
-      </div>
-    </div>
-  </section>
-
   <section class="section section--exposition section--limited section--tabs">
     <div class="section__header">
       <h2 class="color-greyish-brown">ЭКСПОЗИЦИЯ</h2>
@@ -232,7 +201,7 @@
     </div>
   </section>
 
-  <section class="section section--ratio section--media section--limited">
+  <section class="section section--media section--limited">
     <div class="section__header">
       <h2 class="color-greyish-brown">медиа</h2>
       <div class="section__header__controls color-greyish-brown js-content-control">
@@ -247,7 +216,7 @@
         </div>
       </div>
     </div>
-    <div class="section__inner">
+    <div class="section__inner padding">
       <div class="wr-link">
         <a class="icon-wr" href="" title="">
           <picture>
@@ -259,7 +228,7 @@
     </div>
   </section>
 
-  <section class="section section--afisha section--with-filters">
+  <section class="section section--afisha section--scroll">
     <div class="section__header">
       <h2 class="color-greyish-brown">Афиша</h2>
       <div class="section__header__controls color-greyish-brown js-content-control">
@@ -271,228 +240,159 @@
               <li><a class="btn js-content-control-btn" href="" title="на неделе"><span>на неделе</span></a></li>
               <li><a class="btn js-content-control-btn" href="" title="на выходных"><span>на выходных</span></a></li>
               <li><a class="btn js-content-control-btn" href="" title="архив"><span>архив</span></a></li>
-              <li><a class="btn js-content-control-btn js-call-filter" href="" title="выбрать дату"><span>выбрать дату</span></a></li>
             </ul>
           </div>
         </div>
       </div>
-      <div class="section--with-filters__filter js-hidden-filter">
-        <div class="section--with-filters__filter__inner">
-          <div class="select">
-            <select class="js-select" style="width: 100%">
-              <option value="">12 СБ</option>
-              <option value="">12 СБ</option>
-              <option value="">12 СБ</option>
-              <option value="">12 СБ</option>
-            </select>
-          </div>
-          <div class="select">
-            <select class="js-select" style="width: 100%">
-              <option value="">Май</option>
-              <option value="">Май</option>
-              <option value="">Май</option>
-              <option value="">Май</option>
-            </select>
-          </div>
-          <div class="select">
-            <select class="js-select" style="width: 100%">
-              <option value="">2017</option>
-              <option value="">2017</option>
-              <option value="">2017</option>
-              <option value="">2017</option>
-            </select>
+    </div>
+    <div class="section__inner ">
+      <div class="scroller--always-wrap">
+        <div class="scroller--always">
+          <div class="section--scroll__wrapper">
+              <div class="section--scroll__item item--card bg-white-two">
+                <a class="" href="" title=""><img src="https://via.placeholder.com/264x390/5100d3/ffffff" alt="" style=""></a>
+                <div class="desc">
+                  <div class="desc__date">16 сен</div>
+                  <a class="desc__type" href="" title=""><span>мастер-класс</span></a>
+                  <div class="font-gmtext">
+                    <p>Because we were both recently from <i>Henri Matisse</i> the UK, we were interested in the fact that you could buy space…</p>
+                  </div>
+                  <a class="desc__place" href="" title=""><span>дом впечатлений</span></a>
+                </div>
+              </div>
+              <div class="section--scroll__item item--card bg-white-two">
+                <a class="" href="" title=""><img  src="https://via.placeholder.com/264x260/5100d3/ffffff" alt=""></a>
+                <div class="desc">
+                  <div class="desc__date">16 сен</div>
+                  <a class="desc__type" href="" title=""><span>мастер-класс</span></a>
+                  <div class="font-gmtext">
+                    <p>Because we were both recently from <i>Henri Matisse</i> the UK, we were interested in the fact that you could buy space…</p>
+                  </div>
+                  <a class="desc__place" href="" title=""><span>дом впечатлений</span></a>
+                </div>
+              </div>
+              <div class="section--scroll__item item--card bg-white-two">
+                <a class="" href="" title=""><img src="https://via.placeholder.com/264x320/5100d3/ffffff" alt=""></a>
+                <div class="desc">
+                  <div class="desc__date">16 сен</div>
+                  <a class="desc__type" href="" title=""><span>мастер-класс</span></a>
+                  <div class="font-gmtext">
+                    <p>Because we were both recently from <i>Henri Matisse</i> the UK, we were interested in the fact that you could buy space…</p>
+                  </div>
+                  <a class="desc__place" href="" title=""><span>дом впечатлений</span></a>
+                </div>
+              </div>
+              <div class="section--scroll__item item--card bg-white-two">
+                <a class="" href="" title=""><img src="https://via.placeholder.com/264x280/5100d3/ffffff"  alt=""></a>
+                <div class="desc">
+                  <div class="desc__date">16 сен</div>
+                  <a class="desc__type" href="" title=""><span>мастер-класс</span></a>
+                  <div class="font-gmtext">
+                    <p>Because we were both recently from <i>Henri Matisse</i> the UK, we were interested in the fact that you could buy space…</p>
+                  </div>
+                  <a class="desc__place" href="" title=""><span>дом впечатлений</span></a>
+                </div>
+              </div>
+              <div class="section--scroll__item item--card bg-white-two">
+                <a class="" href="" title=""><img src="https://via.placeholder.com/264x320/5100d3/ffffff"  alt=""></a>
+                <div class="desc">
+                  <div class="desc__date">16 сен</div>
+                  <a class="desc__type" href="" title=""><span>мастер-класс</span></a>
+                  <div class="font-gmtext">
+                    <p>Because we were both recently from <i>Henri Matisse</i> the UK, we were interested in the fact that you could buy space…</p>
+                  </div>
+                  <a class="desc__place" href="" title=""><span>дом впечатлений</span></a>
+                </div>
+              </div>
+              <div class="section--scroll__item item--card bg-white-two">
+                <a class="" href="" title=""><img src="https://via.placeholder.com/264x380/5100d3/ffffff"  alt=""></a>
+                <div class="desc">
+                  <div class="desc__date">16 сен</div>
+                  <a class="desc__type" href="" title=""><span>мастер-класс</span></a>
+                  <div class="font-gmtext">
+                    <p>Because we were both recently from <i>Henri Matisse</i> the UK, we were interested in the fact that you could buy space…</p>
+                  </div>
+                  <a class="desc__place" href="" title=""><span>дом впечатлений</span></a>
+                </div>
+              </div>
+              <div class="section--scroll__item item--card bg-white-two">
+                <a class="" href="" title=""><img src="https://via.placeholder.com/264x260/5100d3/ffffff"  alt=""></a>
+                <div class="desc">
+                  <div class="desc__date">16 сен</div>
+                  <a class="desc__type" href="" title=""><span>мастер-класс</span></a>
+                  <div class="font-gmtext">
+                    <p>Because we were both recently from <i>Henri Matisse</i> the UK, we were interested in the fact that you could buy space…</p>
+                  </div>
+                  <a class="desc__place" href="" title=""><span>дом впечатлений</span></a>
+                </div>
+              </div>
+              <div class="section--scroll__item item--card bg-white-two">
+                <a class="" href="" title=""><img src="https://via.placeholder.com/264x250/5100d3/ffffff"   alt=""></a>
+                <div class="desc">
+                  <div class="desc__date">16 сен</div>
+                  <a class="desc__type" href="" title=""><span>мастер-класс</span></a>
+                  <div class="font-gmtext">
+                    <p>Because we were both recently from <i>Henri Matisse</i> the UK, we were interested in the fact that you could buy space…</p>
+                  </div>
+                  <a class="desc__place" href="" title=""><span>дом впечатлений</span></a>
+                </div>
+              </div>
+              <div class="section--scroll__item item--card bg-white-two">
+                <a class="" href="" title=""><img src="https://via.placeholder.com/264x320/5100d3/ffffff" alt=""></a>
+                <div class="desc">
+                  <div class="desc__date">16 сен</div>
+                  <a class="desc__type" href="" title=""><span>мастер-класс</span></a>
+                  <div class="font-gmtext">
+                    <p>Because we were both recently from <i>Henri Matisse</i> the UK, we were interested in the fact that you could buy space…</p>
+                  </div>
+                  <a class="desc__place" href="" title=""><span>дом впечатлений</span></a>
+                </div>
+              </div>
+              <div class="section--scroll__item item--card bg-white-two">
+                <a class="" href="" title=""><img src="https://via.placeholder.com/264x370/5100d3/ffffff" alt=""></a>
+                <div class="desc">
+                  <div class="desc__date">16 сен</div>
+                  <a class="desc__type" href="" title=""><span>мастер-класс</span></a>
+                  <div class="font-gmtext">
+                    <p>Because we were both recently from <i>Henri Matisse</i> the UK, we were interested in the fact that you could buy space…</p>
+                  </div>
+                  <a class="desc__place" href="" title=""><span>дом впечатлений</span></a>
+                </div>
+              </div>
+              <div class="section--scroll__item item--card bg-white-two">
+                <a class="" href="" title=""><img src="https://via.placeholder.com/264x300/5100d3/ffffff" alt=""></a>
+                <div class="desc">
+                  <div class="desc__date">16 сен</div>
+                  <a class="desc__type" href="" title=""><span>мастер-класс</span></a>
+                  <div class="font-gmtext">
+                    <p>Because we were both recently from <i>Henri Matisse</i> the UK, we were interested in the fact that you could buy space…</p>
+                  </div>
+                  <a class="desc__place" href="" title=""><span>дом впечатлений</span></a>
+                </div>
+              </div>
+              <div class="section--scroll__item item--card bg-white-two">
+                <a class="" href="" title=""><img src="https://via.placeholder.com/264x310/5100d3/ffffff"  alt=""></a>
+                <div class="desc">
+                  <div class="desc__date">16 сен</div>
+                  <a class="desc__type" href="" title=""><span>мастер-класс</span></a>
+                  <div class="font-gmtext">
+                    <p>Because we were both recently from <i>Henri Matisse</i> the UK, we were interested in the fact that you could buy space…</p>
+                  </div>
+                  <a class="desc__place" href="" title=""><span>дом впечатлений</span></a>
+                </div>
+              </div>
           </div>
         </div>
       </div>
-    </div>
-    <div class="section__inner">
-      <div class="scroller-wrap">
-        <div class="scroller">
-          <div class="slick-slider multiple-items-slider js-multiple-items-slider">
-            <div class="slide">
-              <div class="item item--card bg-white-two">
-                <a class="" href="" title=""><img class="grayscale-filter lazyload" data-src="https://via.placeholder.com/264x390/5100d3/ffffff" width="264" height="390" alt="" style=""></a>
-                <div class="desc">
-                  <div class="desc__date">16 сен</div>
-                  <a class="desc__type" href="" title=""><span>мастер-класс</span></a>
-                  <div class="font-gmtext">
-                    <p>Because we were both recently from <i>Henri Matisse</i> the UK, we were interested in the fact that you could buy space…</p>
-                  </div>
-                  <a class="desc__place" href="" title=""><span>дом впечатлений</span></a>
-                  <div class="btn-centered">
-                    <a class="btn color-warm-grey-two" href="" title="Купить билет"><span>Купить билет</span></a>
-                  </div>
-                </div>
-              </div>
-              <div class="item item--card bg-white-two">
-                <a class="" href="" title=""><img class="grayscale-filter lazyload" data-src="https://via.placeholder.com/264x260/5100d3/ffffff" width="264" height="260" alt=""></a>
-                <div class="desc">
-                  <div class="desc__date">16 сен</div>
-                  <a class="desc__type" href="" title=""><span>мастер-класс</span></a>
-                  <div class="font-gmtext">
-                    <p>Because we were both recently from <i>Henri Matisse</i> the UK, we were interested in the fact that you could buy space…</p>
-                  </div>
-                  <a class="desc__place" href="" title=""><span>дом впечатлений</span></a>
-                  <div class="btn-centered">
-                    <a class="btn color-warm-grey-two" href="" title="Купить билет"><span>Купить билет</span></a>
-                  </div>
-                </div>
-              </div>
-              <div class="item item--card bg-white-two">
-                <a class="" href="" title=""><img class="grayscale-filter lazyload" data-src="https://via.placeholder.com/264x320/5100d3/ffffff" width="264" height="320" alt=""></a>
-                <div class="desc">
-                  <div class="desc__date">16 сен</div>
-                  <a class="desc__type" href="" title=""><span>мастер-класс</span></a>
-                  <div class="font-gmtext">
-                    <p>Because we were both recently from <i>Henri Matisse</i> the UK, we were interested in the fact that you could buy space…</p>
-                  </div>
-                  <a class="desc__place" href="" title=""><span>дом впечатлений</span></a>
-                  <div class="btn-centered">
-                    <a class="btn color-warm-grey-two" href="" title="Купить билет"><span>Купить билет</span></a>
-                  </div>
-                </div>
-              </div>
-              <div class="item item--card bg-white-two">
-                <a class="" href="" title=""><img class="grayscale-filter lazyload" data-src="https://via.placeholder.com/264x280/5100d3/ffffff" width="264" height="280"  alt=""></a>
-                <div class="desc">
-                  <div class="desc__date">16 сен</div>
-                  <a class="desc__type" href="" title=""><span>мастер-класс</span></a>
-                  <div class="font-gmtext">
-                    <p>Because we were both recently from <i>Henri Matisse</i> the UK, we were interested in the fact that you could buy space…</p>
-                  </div>
-                  <a class="desc__place" href="" title=""><span>дом впечатлений</span></a>
-                  <div class="btn-centered">
-                    <a class="btn color-warm-grey-two" href="" title="Купить билет"><span>Купить билет</span></a>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="slide">
-              <div class="item item--card bg-white-two">
-                <a class="" href="" title=""><img class="grayscale-filter lazyload" data-src="https://via.placeholder.com/264x320/5100d3/ffffff" width="264" height="320"  alt=""></a>
-                <div class="desc">
-                  <div class="desc__date">16 сен</div>
-                  <a class="desc__type" href="" title=""><span>мастер-класс</span></a>
-                  <div class="font-gmtext">
-                    <p>Because we were both recently from <i>Henri Matisse</i> the UK, we were interested in the fact that you could buy space…</p>
-                  </div>
-                  <a class="desc__place" href="" title=""><span>дом впечатлений</span></a>
-                  <div class="btn-centered">
-                    <a class="btn color-warm-grey-two" href="" title="Купить билет"><span>Купить билет</span></a>
-                  </div>
-                </div>
-              </div>
-              <div class="item item--card bg-white-two">
-                <a class="" href="" title=""><img class="grayscale-filter lazyload" data-src="https://via.placeholder.com/264x380/5100d3/ffffff" width="264" height="380"  alt=""></a>
-                <div class="desc">
-                  <div class="desc__date">16 сен</div>
-                  <a class="desc__type" href="" title=""><span>мастер-класс</span></a>
-                  <div class="font-gmtext">
-                    <p>Because we were both recently from <i>Henri Matisse</i> the UK, we were interested in the fact that you could buy space…</p>
-                  </div>
-                  <a class="desc__place" href="" title=""><span>дом впечатлений</span></a>
-                  <div class="btn-centered">
-                    <a class="btn color-warm-grey-two" href="" title="Купить билет"><span>Купить билет</span></a>
-                  </div>
-                </div>
-              </div>
-              <div class="item item--card bg-white-two">
-                <a class="" href="" title=""><img class="grayscale-filter lazyload" data-src="https://via.placeholder.com/264x260/5100d3/ffffff" width="264" height="260"  alt=""></a>
-                <div class="desc">
-                  <div class="desc__date">16 сен</div>
-                  <a class="desc__type" href="" title=""><span>мастер-класс</span></a>
-                  <div class="font-gmtext">
-                    <p>Because we were both recently from <i>Henri Matisse</i> the UK, we were interested in the fact that you could buy space…</p>
-                  </div>
-                  <a class="desc__place" href="" title=""><span>дом впечатлений</span></a>
-                  <div class="btn-centered">
-                    <a class="btn color-warm-grey-two" href="" title="Купить билет"><span>Купить билет</span></a>
-                  </div>
-                </div>
-              </div>
-              <div class="item item--card bg-white-two">
-                <a class="" href="" title=""><img class="grayscale-filter lazyload" data-src="https://via.placeholder.com/264x250/5100d3/ffffff" width="264" height="250"  alt=""></a>
-                <div class="desc">
-                  <div class="desc__date">16 сен</div>
-                  <a class="desc__type" href="" title=""><span>мастер-класс</span></a>
-                  <div class="font-gmtext">
-                    <p>Because we were both recently from <i>Henri Matisse</i> the UK, we were interested in the fact that you could buy space…</p>
-                  </div>
-                  <a class="desc__place" href="" title=""><span>дом впечатлений</span></a>
-                  <div class="btn-centered">
-                    <a class="btn color-warm-grey-two" href="" title="Купить билет"><span>Купить билет</span></a>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="slide">
-              <div class="item item--card bg-white-two">
-                <a class="" href="" title=""><img class="grayscale-filter lazyload" data-src="https://via.placeholder.com/264x320/5100d3/ffffff" width="264" height="320"  alt=""></a>
-                <div class="desc">
-                  <div class="desc__date">16 сен</div>
-                  <a class="desc__type" href="" title=""><span>мастер-класс</span></a>
-                  <div class="font-gmtext">
-                    <p>Because we were both recently from <i>Henri Matisse</i> the UK, we were interested in the fact that you could buy space…</p>
-                  </div>
-                  <a class="desc__place" href="" title=""><span>дом впечатлений</span></a>
-                  <div class="btn-centered">
-                    <a class="btn color-warm-grey-two" href="" title="Купить билет"><span>Купить билет</span></a>
-                  </div>
-                </div>
-              </div>
-              <div class="item item--card bg-white-two">
-                <a class="" href="" title=""><img class="grayscale-filter lazyload" data-src="https://via.placeholder.com/264x370/5100d3/ffffff" width="264" height="370"  alt=""></a>
-                <div class="desc">
-                  <div class="desc__date">16 сен</div>
-                  <a class="desc__type" href="" title=""><span>мастер-класс</span></a>
-                  <div class="font-gmtext">
-                    <p>Because we were both recently from <i>Henri Matisse</i> the UK, we were interested in the fact that you could buy space…</p>
-                  </div>
-                  <a class="desc__place" href="" title=""><span>дом впечатлений</span></a>
-                  <div class="btn-centered">
-                    <a class="btn color-warm-grey-two" href="" title="Купить билет"><span>Купить билет</span></a>
-                  </div>
-                </div>
-              </div>
-              <div class="item item--card bg-white-two">
-                <a class="" href="" title=""><img class="grayscale-filter lazyload" data-src="https://via.placeholder.com/264x300/5100d3/ffffff" width="264" height="300"  alt=""></a>
-                <div class="desc">
-                  <div class="desc__date">16 сен</div>
-                  <a class="desc__type" href="" title=""><span>мастер-класс</span></a>
-                  <div class="font-gmtext">
-                    <p>Because we were both recently from <i>Henri Matisse</i> the UK, we were interested in the fact that you could buy space…</p>
-                  </div>
-                  <a class="desc__place" href="" title=""><span>дом впечатлений</span></a>
-                  <div class="btn-centered">
-                    <a class="btn color-warm-grey-two" href="" title="Купить билет"><span>Купить билет</span></a>
-                  </div>
-                </div>
-              </div>
-              <div class="item item--card bg-white-two">
-                <a class="" href="" title=""><img class="grayscale-filter lazyload" data-src="https://via.placeholder.com/264x310/5100d3/ffffff" width="264" height="310"  alt=""></a>
-                <div class="desc">
-                  <div class="desc__date">16 сен</div>
-                  <a class="desc__type" href="" title=""><span>мастер-класс</span></a>
-                  <div class="font-gmtext">
-                    <p>Because we were both recently from <i>Henri Matisse</i> the UK, we were interested in the fact that you could buy space…</p>
-                  </div>
-                  <a class="desc__place" href="" title=""><span>дом впечатлений</span></a>
-                  <div class="btn-centered">
-                    <a class="btn color-warm-grey-two" href="" title="Купить билет"><span>Купить билет</span></a>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+      <div class="btn-centered">
+        <a class="btn btn--common bg-violet-blue color-pale-grey" href="" title="перейти в магазин"><span>Купить билет</span></a>
       </div>
     </div>
   </section>
 
 </main>
 
-@@include('partials/footer.html')
 <script src='js/libs.js'></script>
-<script src='js/scripts.js'></script>
+<script src='js/scripts-app.js'></script>
 </body>
 </html>

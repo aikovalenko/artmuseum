@@ -1,0 +1,25 @@
+.ya-share2__badge {
+  display: none !important;
+}
+
+.ya-share2__title {
+  display: block !important;
+  margin-left: 0 !important;
+  font-family: 'GMTypewriter', Arial, sans-serif !important;
+  font-size: 16px !important;
+  color: $warm-grey-two !important;
+  line-height: 131% !important;
+
+  &:hover {
+    color: $greyish-brown-two !important;
+  }
+}
+
+.mobile-share {
+  .ya-share2__title {
+    font-size: 19px !important;
+    line-height: 253% !important;
+    text-transform: uppercase !important;
+    color: $greyish-brown-two !important;
+  }
+}
