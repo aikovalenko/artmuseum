@@ -7,8 +7,12 @@
       <title>ГМИИ</title>
       <link rel='stylesheet' href='css/libs.css'>
       <link rel='stylesheet' href='css/style.css'>
+
+      <script src="//yastatic.net/es5-shims/0.0.2/es5-shims.min.js"></script>
+      <script src="//yastatic.net/share2/share.js"></script>
   </head>
   <body class="bg-primary">
+    <div class="overlay"></div>
     <header class="header">
         <div class="header__notifications bg-violet-blue">
             <div class="wrapper section--limited">
@@ -29,8 +33,8 @@
                 <div class="logo">
                     <a class="" href="index.html" title="Государственный музей изобразительных искусств имени А. С. Пушкина">
                         <picture>
-                            <source media="(max-width: 1023px)" srcset="/images/svg/logo_gmii_mobile.svg">
-                            <img src="/images/svg/logo_gmii.svg" alt="Государственный музей изобразительных искусств имени А. С. Пушкина">
+                            <source media="(max-width: 1023px)" srcset="./images/svg/logo_gmii_mobile.svg">
+                            <img src="./images/svg/logo_gmii.svg" alt="Государственный музей изобразительных искусств имени А. С. Пушкина">
                         </picture>
                     </a>
                 </div>
@@ -136,17 +140,8 @@
                         </button>
                         <div class="main-controls-section-block share-block bg-white">
                             <div class="settings-block__head color-black">Поделиться</div>
-                            <ul class="color-warm-grey-two">
-                                <li>
-                                    <a class="" href="" title="">Поделиться в Facebook</a>
-                                </li>
-                                <li>
-                                    <a class="" href="" title="">Поделиться в Vk.com</a>
-                                </li>
-                                <li>
-                                    <a class="" href="" title="">Твитнуть в Twitter</a>
-                                </li>
-                            </ul>
+                            <div class="ya-share2 color-warm-grey-two" data-services="facebook,vkontakte,twitter" ></div>
+
                             <div class="settings-block__head settings-block__head--social color-black">Музей в соцсетях</div>
                             <ul class="social-buttons social-buttons--menu">
                                 <li><a href="" class="" title=""><span class="icon icon-fb"></span><span class="icon-text">Facebook</span></a></li>
@@ -170,7 +165,7 @@
                 <div class="menu-mobile__inner">
                     <div class="logo">
                         <a class="" href="index.html" title="Государственный музей изобразительных искусств имени А. С. Пушкина">
-                            <img class="logo--mobile" width="162" height="122" src="/images/svg/logo_gmii_mobile.svg" alt="Государственный музей изобразительных искусств имени А. С. Пушкина">
+                            <img class="logo--mobile" width="162" height="122" src="./images/svg/logo_gmii_mobile.svg" alt="Государственный музей изобразительных искусств имени А. С. Пушкина">
                         </a>
                     </div>
                     <ul class="menu-mobile__list color-greyish-brown-two">
@@ -240,17 +235,9 @@
                                 </ul>
                             </div>
                             <div class="menu-mobile__panels__block mobile-share">
-                                <ul class="color-greyish-brown-two">
-                                    <li>
-                                        <a class="" href="" title="">Поделиться в Facebook</a>
-                                    </li>
-                                    <li>
-                                        <a class="" href="" title="">Поделиться в Vk.com</a>
-                                    </li>
-                                    <li>
-                                        <a class="" href="" title="">Твитнуть в Twitter</a>
-                                    </li>
-                                </ul>
+
+                                <div class="ya-share2 color-warm-grey-two" data-services="facebook,vkontakte,twitter" ></div>
+
                                 <ul class="social-buttons social-buttons--menu social-buttons--mobile-menu">
                                     <li><a href="" class="" title=""><span class="icon icon-fb"></span><span class="icon-text">Facebook</span></a></li>
                                     <li><a href="" class="" title=""><span class="icon icon-tw"></span><span class="icon-text">Twitter</span></a></li>
@@ -552,8 +539,8 @@
                 <div class="footer__inner__middle logo">
                     <a class="" href="index.html" title="Государственный музей изобразительных искусств имени А. С. Пушкина">
                         <picture>
-                            <source media="(max-width: 1023px)" srcset="/images/svg/logo_gmii_footer_mobile.svg">
-                            <img src="/images/svg/logo_gmii_footer.svg" alt="Государственный музей изобразительных искусств имени А. С. Пушкина">
+                            <source media="(max-width: 1023px)" srcset="./images/svg/logo_gmii_footer_mobile.svg">
+                            <img src="./images/svg/logo_gmii_footer.svg" alt="Государственный музей изобразительных искусств имени А. С. Пушкина">
                         </picture>
                     </a>
                 </div>

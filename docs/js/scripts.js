@@ -142,97 +142,68 @@ $(document).ready(function() {
     htmlTag.className += (' ' + platform.name.toLowerCase() + ' ' + platform.os.family.toLowerCase());
 
 
+
+
+
     //десктоп панель настроек
-    var callControl = document.getElementsByClassName('js-call-control'),
-        mainControlsSectionBlock = document.querySelectorAll('.main-controls-section-block');
+    var callControl = $('.js-call-control'),
+        mainControlsSectionBlock = $('.main-controls-section-block');
 
-    function callControlClick() {
-        [].forEach.call(callControl, function(el, i, els) {
-            el.addEventListener('click', function() {
-                [].forEach.call(els, function(el) {
-                    event.stopPropagation();
+    callControl.click(function(e) {
 
-                    var btn = this.querySelectorAll(".main-controls__button"),
-                        mainControlsSectionBlock = this.querySelectorAll(".main-controls-section-block");
+        e.stopPropagation();
 
-                    btn[0].classList.toggle('active');
-                    mainControlsSectionBlock[0].classList.toggle('opened');
-                    if(el !== this) {
-                        el.querySelectorAll(".main-controls__button")[0].classList.remove('active');
-                        el.querySelectorAll(".main-controls-section-block")[0].classList.remove('opened');
-                    }
-                }, this);
-            });
+        $(this).find(mainControlsSectionBlock).toggleClass('opened');
+        $(this).find(".main-controls__button").toggleClass('active');
+
+        callControl.not(this).each(function () {
+            $(this).find(mainControlsSectionBlock).removeClass('opened');
+            $(this).find(".main-controls__button").removeClass('active');
         });
-    }
-    callControlClick();
 
-    document.addEventListener("click", function( ) {
-        for (var i = 0; i < callControl.length; i++) {
-            document.querySelectorAll('.main-controls__button')[i].classList.remove('active');
-            document.querySelectorAll('.main-controls-section-block')[i].classList.remove('opened');
-        }
+
     });
-
-    function callControlInnerClick() {
-        for (var i = 0; i < mainControlsSectionBlock.length; i++) {
-            mainControlsSectionBlock[i].addEventListener("click", function (event) {
-                event.stopPropagation();
-            });
-        }
-    }
-    callControlInnerClick();
-
-
-    // callControl.click(function(e) {
-    //
-    //     e.stopPropagation();
-    //
-    //     $(this).find(mainControlsSectionBlock).toggleClass('opened');
-    //     $(this).find(".main-controls__button").toggleClass('active');
-    //
-    //     callControl.not(this).each(function () {
-    //         $(this).find(mainControlsSectionBlock).removeClass('opened');
-    //         $(this).find(".main-controls__button").removeClass('active');
-    //     });
-    //
-    //
-    // });
-
-    var callSearch = document.querySelector('.js-call-search');
-    if (callSearch) {
-        callSearch.addEventListener("click", function( ) {
-            var input = document.querySelectorAll('.form-search input');
-            document.querySelector('.form-search input').focus();
-
-        });
-    }
-
-    // mainControlsSectionBlock.click(function(e){
-    //     e.stopPropagation();
-    // });
-    // $(document).click(function() {
-    //     callControl.find(mainControlsSectionBlock).removeClass('opened');
-    //     callControl.find(".main-controls__button").removeClass('active');
-    // });
+    $('.js-call-search').click(function(e) {
+        $('.form-search input').focus();
+    });
+    mainControlsSectionBlock.click(function(e){
+        e.stopPropagation();
+    });
+    $(document).click(function() {
+        callControl.find(mainControlsSectionBlock).removeClass('opened');
+        callControl.find(".main-controls__button").removeClass('active');
+        $(".js-btn-share-block").removeClass('open');
+    });
 
 
     //меню-бургер
     var burger = $('.js-burger'),
         menu = $('.menu-mobile'),
         close = $('.js-notifs-close'),
+        overlay = $('.overlay'),
         notifsTop = $('.header__notifications__inner');
 
 
-    burger.click(function () {
+    function menuToogle() {
         notifsTop.toggleClass('hidden');
-        burger.toggleClass("active");
         menu.toggleClass("opened");
+        overlay.toggleClass("overlay--on");
+        $('html').toggleClass('overflowHidden');
+        burger.toggleClass("active");
+    }
+
+
+    burger.click(function () {
+        menuToogle();
     });
+
+    $(document).on('click', '.overlay--on', function () {
+        menuToogle();
+    });
+
     close.click(function() {
         notifsTop.addClass('closed');
     });
-
 
     //мобильная версия панели-настроек
     var mobileMenu = $('.js-mobile-menu');
@@ -1170,6 +1141,8 @@ $(document).ready(function() {
         burger.removeClass("active");
         menu.removeClass("opened");
 
+        overlay.toggleClass("overlay--on");
+
 
         console.log(val);
     });
@@ -1251,6 +1224,26 @@ $(document).ready(function() {
                 //true or false - should the marquee be duplicated to show an effect of continues flow
                 duplicated: true
             });
+        }
+    });
+
+    $('.ya-share2__item_service_facebook .ya-share2__title').html('Поделиться в Facebook');
+    $('.ya-share2__item_service_vkontakte .ya-share2__title').html('Поделиться в Vk.com');
+    $('.ya-share2__item_service_twitter .ya-share2__title').html('Твитнуть в Twitter');
+
+    $('.js-btn-share').click(function (e) {
+        e.stopPropagation();
+        $(this).next('.js-btn-share-block').toggleClass('open');
+        $(this).toggleClass('color-greyish-brown');
+    });
+
+
+    //определяем размеры картинок лого партнеров
+    $('.js-pics-count').each(function() {
+        var $this = $(this).find('.logo-partner');
+
+        if ($this.length > 1) {
+            $this.addClass('logo-partner--several');
         }
     });
 

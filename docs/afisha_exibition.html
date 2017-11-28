@@ -7,8 +7,12 @@
       <title>ГМИИ</title>
       <link rel='stylesheet' href='css/libs.css'>
       <link rel='stylesheet' href='css/style.css'>
+
+      <script src="//yastatic.net/es5-shims/0.0.2/es5-shims.min.js"></script>
+      <script src="//yastatic.net/share2/share.js"></script>
   </head>
   <body class="bg-primary afisha-exhibition-page">
+    <div class="overlay"></div>
     <header class="header">
         <div class="header__notifications bg-violet-blue">
             <div class="wrapper section--limited">
@@ -29,8 +33,8 @@
                 <div class="logo">
                     <a class="" href="index.html" title="Государственный музей изобразительных искусств имени А. С. Пушкина">
                         <picture>
-                            <source media="(max-width: 1023px)" srcset="/images/svg/logo_gmii_mobile.svg">
-                            <img src="/images/svg/logo_gmii.svg" alt="Государственный музей изобразительных искусств имени А. С. Пушкина">
+                            <source media="(max-width: 1023px)" srcset="./images/svg/logo_gmii_mobile.svg">
+                            <img src="./images/svg/logo_gmii.svg" alt="Государственный музей изобразительных искусств имени А. С. Пушкина">
                         </picture>
                     </a>
                 </div>
@@ -136,17 +140,8 @@
                         </button>
                         <div class="main-controls-section-block share-block bg-white">
                             <div class="settings-block__head color-black">Поделиться</div>
-                            <ul class="color-warm-grey-two">
-                                <li>
-                                    <a class="" href="" title="">Поделиться в Facebook</a>
-                                </li>
-                                <li>
-                                    <a class="" href="" title="">Поделиться в Vk.com</a>
-                                </li>
-                                <li>
-                                    <a class="" href="" title="">Твитнуть в Twitter</a>
-                                </li>
-                            </ul>
+                            <div class="ya-share2 color-warm-grey-two" data-services="facebook,vkontakte,twitter" ></div>
+
                             <div class="settings-block__head settings-block__head--social color-black">Музей в соцсетях</div>
                             <ul class="social-buttons social-buttons--menu">
                                 <li><a href="" class="" title=""><span class="icon icon-fb"></span><span class="icon-text">Facebook</span></a></li>
@@ -170,7 +165,7 @@
                 <div class="menu-mobile__inner">
                     <div class="logo">
                         <a class="" href="index.html" title="Государственный музей изобразительных искусств имени А. С. Пушкина">
-                            <img class="logo--mobile" width="162" height="122" src="/images/svg/logo_gmii_mobile.svg" alt="Государственный музей изобразительных искусств имени А. С. Пушкина">
+                            <img class="logo--mobile" width="162" height="122" src="./images/svg/logo_gmii_mobile.svg" alt="Государственный музей изобразительных искусств имени А. С. Пушкина">
                         </a>
                     </div>
                     <ul class="menu-mobile__list color-greyish-brown-two">
@@ -240,17 +235,9 @@
                                 </ul>
                             </div>
                             <div class="menu-mobile__panels__block mobile-share">
-                                <ul class="color-greyish-brown-two">
-                                    <li>
-                                        <a class="" href="" title="">Поделиться в Facebook</a>
-                                    </li>
-                                    <li>
-                                        <a class="" href="" title="">Поделиться в Vk.com</a>
-                                    </li>
-                                    <li>
-                                        <a class="" href="" title="">Твитнуть в Twitter</a>
-                                    </li>
-                                </ul>
+
+                                <div class="ya-share2 color-warm-grey-two" data-services="facebook,vkontakte,twitter" ></div>
+
                                 <ul class="social-buttons social-buttons--menu social-buttons--mobile-menu">
                                     <li><a href="" class="" title=""><span class="icon icon-fb"></span><span class="icon-text">Facebook</span></a></li>
                                     <li><a href="" class="" title=""><span class="icon icon-tw"></span><span class="icon-text">Twitter</span></a></li>
@@ -387,7 +374,17 @@
               </div>
               <div class="btn-wrap">
                 <a class="btn bg-violet-blue color-pale-grey" href="" title=""><span>Купить билет</span></a>
-                <a class="btn btn--np" href="" title=""><span>Поделиться</span></a>
+
+                <div class="sharing-inside-text">
+                  <button class="btn btn--np btn--share js-btn-share">
+                    <span>Поделиться</span>
+                  </button>
+                  <div class="share-block bg-white js-btn-share-block">
+                    <div class="settings-block__head color-black">Поделиться</div>
+                    <div class="ya-share2 color-warm-grey-two" data-services="facebook,vkontakte,twitter" ></div>
+                  </div>
+                </div>
+
               </div>
               <div class="font-gmtext color-greyish-brown-two text-main js-text-main">
                 <p>
@@ -497,6 +494,14 @@
             </video>
           </div>
           <div class="mobile--view">
+            <ul class="links-container">
+              <li>
+                <a href="" target="_blank" class="link"><span class="icon icon-download"><span class="icon-text">скачать</span></span></span><span class="">Это ссылка ведет на внешний источник в новом окне</span></a>
+              </li>
+              <li>
+                <a href="" class="link"><span class="icon icon-download"><span class="icon-text">Скачать</span></span><span class="">Это ссылка ведет на страницу в этом окне</span></a>
+              </li>
+            </ul>
             <div class="item--shop">
               <div class="item--shop__inner bg-white-three">
                 <a class="" href="" title=""><img class="lazyload" data-src="https://via.placeholder.com/208x300/5100d3/ffffff" width="208" height="300" alt=""></a>
@@ -523,28 +528,35 @@
               <div class="column-wrap bg-white-two">
                 <div class="column">
                   <div class="head text-6">Official partner</div>
-                  <div class="pics"><a class="" href="" title=""><img class="lazyload" data-src="https://via.placeholder.com/207x66/5100d3/ffffff" width="207" height="66" alt=""></a></div>
+                  <div class="pics js-pics-count">
+                    <a class="logo-partner" href="" title=""><img class="lazyload" data-src="http://www.arts-museum.ru/data/partners/vtb/16269_logoev_ru.jpg" alt=""></a>
+                  </div>
                 </div>
                 <div class="column">
                   <div class="head text-6">Special informational partner of the exhibition</div>
-                  <div class="pics"><a class="" href="" title=""><img class="lazyload" data-src="https://via.placeholder.com/170x46/5100d3/ffffff" width="170" height="46" alt=""></a></div>
+                  <div class="pics js-pics-count"><a class="logo-partner" href="" title=""><img class="lazyload" data-src="http://www.arts-museum.ru/data/partners/mondomostre/20928_logoev_ru.jpg" alt=""></a></div>
                 </div>
                 <div class="column">
                   <div class="head text-6">Radiopartner</div>
-                  <div class="pics"><a class="" href="" title=""><img class="lazyload" data-src="https://via.placeholder.com/64x75/5100d3/ffffff" width="64" height="75" alt=""></a>
-                  <a class="" href="" title=""><img class="lazyload" data-src="https://via.placeholder.com/82x78/5100d3/ffffff" width="82" height="78" alt=""></a></div>
+                  <div class="pics js-pics-count">
+                    <a class="logo-partner" href="" title=""><img class="lazyload" data-src="http://www.arts-museum.ru/data/partners/italy_embassy/20637_logoev_ru.jpg" alt=""></a>
+                    <a class="logo-partner" href="" title=""><img class="lazyload" data-src="http://www.arts-museum.ru/data/partners/italy_ministr/20929_logoev_ru.jpg" alt=""></a>
+                  </div>
                 </div>
                 <div class="column">
                   <div class="head text-6">Informational partners</div>
-                  <div class="pics"><a class="" href="" title=""><img class="lazyload" data-src="https://via.placeholder.com/138x55/5100d3/ffffff" width="138" height="55" alt=""></a></div>
+                  <div class="pics js-pics-count"><a class="logo-partner" href="" title=""><img class="lazyload" data-src="http://www.arts-museum.ru/data/partners/silver_rain/18619_logoev_ru.png" alt=""></a></div>
                 </div>
                 <div class="column">
                   <div class="head text-6">Участник</div>
-                  <div class="pics"><a class="" href="" title=""><img class="lazyload" data-src="https://via.placeholder.com/82x98/5100d3/ffffff" width="82" height="98" alt=""></a></div>
+                  <div class="pics js-pics-count">
+                    <a class="logo-partner" href="" title=""><img class="lazyload" data-src="http://www.arts-museum.ru/data/partners/itartass/391_logoev_ru.jpg" alt=""></a>
+                    <a class="logo-partner" href="" title=""><img class="lazyload" data-src="http://www.arts-museum.ru/data/partners/lentaru/19143_logoev_ru.jpg" alt=""></a>
+                  </div>
                 </div>
                 <div class="column">
                   <div class="head text-6">Профессиональный информационный партнер</div>
-                  <div class="pics"><a class="" href="" title=""><img class="lazyload" data-src="https://via.placeholder.com/250x40/5100d3/ffffff" width="250" height="40" alt=""></a></div>
+                  <div class="pics js-pics-count"><a class="logo-partner" href="" title=""><img class="lazyload" data-src="http://www.arts-museum.ru/data/partners/theartnewspaper/20300_logoev_ru.jpg" alt=""></a></div>
                 </div>
 
               </div>
@@ -1043,8 +1055,8 @@
                 <div class="footer__inner__middle logo">
                     <a class="" href="index.html" title="Государственный музей изобразительных искусств имени А. С. Пушкина">
                         <picture>
-                            <source media="(max-width: 1023px)" srcset="/images/svg/logo_gmii_footer_mobile.svg">
-                            <img src="/images/svg/logo_gmii_footer.svg" alt="Государственный музей изобразительных искусств имени А. С. Пушкина">
+                            <source media="(max-width: 1023px)" srcset="./images/svg/logo_gmii_footer_mobile.svg">
+                            <img src="./images/svg/logo_gmii_footer.svg" alt="Государственный музей изобразительных искусств имени А. С. Пушкина">
                         </picture>
                     </a>
                 </div>
