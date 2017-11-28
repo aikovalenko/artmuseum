@@ -13,6 +13,12 @@
     position: absolute;
     color: #fff;
 
+    //visibility: hidden;
+    //
+    //&.show {
+    //  visibility: visible;
+    //}
+
     &--1 {
       top: 100px;
       left: 500px;
@@ -40,6 +46,120 @@
         width: 103px;
         height: 105px;
         transform: rotate(49deg) skewX(-13deg) skewY(-8deg);
+      }
+
+      .building-name {
+        bottom: -65px;
+        right: -114px;
+      }
+    }
+    &--3 {
+      top: 250px;
+      left: 100px;
+
+      .building-link {
+        top: 33px;
+        left: -12px;
+        width: 198px;
+        height: 118px;
+        transform: rotate(52deg) skewX(-10deg) skewY(-8deg);
+      }
+
+      .building-name {
+        bottom: -65px;
+        right: -114px;
+      }
+    }
+    &--4 {
+      top: 350px;
+      left: 100px;
+
+      .building-link {
+        top: -15px;
+        left: 54px;
+        width: 113px;
+        height: 194px;
+        transform: rotate(49deg) skewX(-13deg) skewY(-8deg);
+      }
+
+      .building-name {
+        bottom: -65px;
+        right: -114px;
+      }
+    }
+    &--5 {
+      top: 150px;
+      left: 200px;
+
+      .building-link {
+        top: -4px;
+        left: -3px;
+        width: 169px;
+        height: 155px;
+        transform: rotate(49deg) skewX(-13deg) skewY(-8deg);
+      }
+
+      .building-name {
+        bottom: -65px;
+        right: -114px;
+      }
+    }
+    &--6 {
+      top: 150px;
+      left: 250px;
+
+      .building-link {
+        top: 7px;
+        left: 8px;
+        width: 155px;
+        height: 150px;
+        transform: rotate(49deg) skewX(-13deg) skewY(-8deg);
+      }
+
+      .building-name {
+        bottom: -65px;
+        right: -114px;
+      }
+    }
+    &--7 {
+      top: 100px;
+      left: 300px;
+
+      .building-link {
+        top: 0;
+        left: 56px;
+        width: 109px;
+        height: 132px;
+        transform: rotate(49deg) skewX(-13deg) skewY(-8deg);
+
+        &:after {
+          position: absolute;
+          top: 113px;
+          left: 74px;
+          display: block;
+          content: '';
+          width: 135px;
+          height: 132px;
+          border: 1px solid red;
+        }
+      }
+
+      .building-name {
+        bottom: -65px;
+        right: -114px;
+      }
+    }
+    &--8 {
+      top: 100px;
+      left: 300px;
+
+      .building-link {
+        top: -42px;
+        left: 38px;
+        width: 107px;
+        height: 212px;
+        transform: rotate(49deg) skewX(-13deg) skewY(-8deg);
+
       }
 
       .building-name {

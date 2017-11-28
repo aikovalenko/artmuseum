@@ -1367,6 +1367,7 @@ ul {
       border: none;
       font-size: 0;
       transition: $transition;
+      border-radius: 0;
     }
 
     &.slick-active {
