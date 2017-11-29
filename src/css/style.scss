@@ -515,21 +515,20 @@ ul {
   }
 
   .main-menu-under {
-    //display: none;
     position: absolute;
     left: 0;
     width: 100%;
     height: 100px;
     padding-top: 14px;
     padding-bottom: 20px;
-    background-color: rgba(81, 81, 81, 0.8);
+    background-color: rgba(81, 81, 81, .9);
+
+    transition: height .3s ease;
     z-index: -1;
-    //opacity: 0;
     visibility: hidden;
 
     &.visible {
       z-index: 1;
-      //opacity: 0;
       visibility: visible;
     }
     .dropdown {
@@ -542,7 +541,8 @@ ul {
       top: 0;
       z-index: -1;
       line-height: 175%;
-      color: $warm-grey-two;
+      //color: $warm-grey-two;
+      color: $pale-grey;
 
       a {
         transition: color .2s ease;
@@ -566,7 +566,7 @@ ul {
 
       &--inner {
         position: absolute;
-        top: 14px;
+        top: 1px;
         left: 100%;
         min-width: 350px;
         padding-left: 72px;
@@ -575,9 +575,12 @@ ul {
 
         &.visible {
           z-index: 100;
-          //opacity: 0;
           visibility: visible;
         }
+      }
+
+      &--first {
+        top: 14px;
       }
 
 
@@ -920,7 +923,7 @@ ul {
 .language-block {
   left: -15px;
   width: calculateRem(82px);
-  //padding-right: calculateRem(35px);
+  padding-right: 0;
   padding-top: calculateRem(40px);
   padding-bottom: calculateRem(20px);
   padding-left: calculateRem(14px);
@@ -2184,6 +2187,14 @@ ul {
       align-self: flex-end;
     }
   }
+  &.building-closed {
+    .building-path {
+      transition: fill .2s;
+
+      fill: #f9f9fb;
+      opacity: 0.3;
+    }
+  }
   .building-path {
     fill: #fff;
     transition: fill .2s;
@@ -2215,11 +2226,6 @@ ul {
 
 
   }
-}
-
-.item-styles.building-closed .building-path {
-  fill: #f9f9fb;
-  opacity: 0.3;
 }
 
 .block-buildings {
@@ -2456,11 +2462,28 @@ ul {
   }
 
   .font-gmtext {
+    font-size: 24px;
+    line-height: 2.25rem;
+    margin-bottom: 3.125rem;
+
     p {
-      @include fontSize(24px);
-      line-height: calculateRem(36px);
-      margin-bottom: calculateRem(50px);
+      font-size: 1.5rem;
+      //line-height: calculateRem(36px);
+      //margin-bottom: calculateRem(50px);
     }
+    h4 {
+      font-size: 1.5rem;
+    }
+    h3 {
+      font-size: 1.75rem;
+    }
+    h2 {
+      font-size: 2.25rem;
+    }
+    h1 {
+      font-size: 3rem;
+    }
+
   }
   .btn-wrap {
     display: flex;
@@ -2505,7 +2528,15 @@ ul {
   }
 }
 
+.font-gmtext {
+  a {
+    color: $violet-blue;
 
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
 
 .columns-2-section {
 
