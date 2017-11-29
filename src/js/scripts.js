@@ -142,9 +142,6 @@ $(document).ready(function() {
     htmlTag.className += (' ' + platform.name.toLowerCase() + ' ' + platform.os.family.toLowerCase());
 
 
-
-
-
     //десктоп панель настроек
     var callControl = $('.js-call-control'),
         mainControlsSectionBlock = $('.main-controls-section-block');
@@ -176,34 +173,24 @@ $(document).ready(function() {
     });
 
 
+
+
     //меню-бургер
     var burger = $('.js-burger'),
         menu = $('.menu-mobile'),
         close = $('.js-notifs-close'),
-        overlay = $('.overlay'),
         notifsTop = $('.header__notifications__inner');
 
 
-    function menuToogle() {
-        notifsTop.toggleClass('hidden');
-        menu.toggleClass("opened");
-        overlay.toggleClass("overlay--on");
-        $('html').toggleClass('overflowHidden');
-        burger.toggleClass("active");
-    }
-
-
     burger.click(function () {
-        menuToogle();
+        notifsTop.toggleClass('hidden');
+        burger.toggleClass("active");
+        menu.toggleClass("opened");
     });
-
-    $(document).on('click', '.overlay--on', function () {
-        menuToogle();
-    });
-
     close.click(function() {
         notifsTop.addClass('closed');
     });
+
 
     //мобильная версия панели-настроек
     var mobileMenu = $('.js-mobile-menu');
@@ -278,6 +265,8 @@ $(document).ready(function() {
     у ссылки в слайдере на событие есть data-ticket, который тянется к кнопке Купить под слайдером
      */
     var mainSliderSets = {
+        autoplay: false,
+        autoplaySpeed: 8000,
         infinite: true,
         slidesToShow: 1,
         slidesToScroll: 1,
@@ -370,6 +359,7 @@ $(document).ready(function() {
         $('.js-slider-title').html(attr);
     }
     initSlider('.js-main-slider', mainSliderSets, 'ticket' );
+    //$('.js-main-slider').slick('slickGoTo',Math.ceil( ($('.js-main-slider .slick-track').children().length-4) / 2 )-1);
     initSlider('.js-slider-with-arrows', sliderWithArrowsSets, 'title' );
     initSlider('.js-slider-fotos', sliderFotos, 'title' );
 
@@ -681,8 +671,8 @@ $(document).ready(function() {
                 }
                 else {
                     if ($(this).hasClass('active')) {
-                         loadUrl = $(this).attr('href');
-                            target = $(this).attr('data-target');
+                        loadUrl = $(this).attr('href');
+                        target = $(this).attr('data-target');
                         callAjaxContent(loadUrl, target, preloader);
                     }
                 }
@@ -711,19 +701,20 @@ $(document).ready(function() {
             dropdown = $('.js-dropdown'),
             hoverInner = $('.hover--inner'),
             dropdownInner = $('.dropdown--inner'),
-            headerControls = $('.header__controls');
+            headerControls = $('.header__controls'),
+            h = 0;
 
         function reset() {
             under.removeClass('visible');
             dropdown.removeClass('visible');
             dropdownInner.removeClass('visible');
             menu.removeClass('active');
-
+            h = 0;
         }
 
         menu.on("mouseenter", function() {
             var $this = $(this),
-                 num  = $this.attr('data-dropdown');
+                num  = $this.attr('data-dropdown');
 
             if (num != undefined) {
                 var width = $this.offset(),
@@ -738,20 +729,34 @@ $(document).ready(function() {
 
                 $(".main-controls__button").removeClass('active');
                 $(".main-controls-section-block").removeClass('opened');
+
+                h = id.height();
+                console.log(h);
             } else {
                 reset();
             }
         });
+        // код скрипта изменен бэкендером!
+        //это также потребовало внесения изменений в верстку:
+        //класс hover--inner теперь присвоен не <a>, а <li>,
+        //зато теперь меню можно наращивать сколько угодно,
+        //хотя, возможно, фронтендер напишет это более грамотно
         hoverInner.on("mouseenter", function() {
-            $(this).next(dropdownInner).addClass('visible');
-            hoverInner.not(this).each(function () {
-                $(this).next(dropdownInner).removeClass('visible');
-            });
+            var thisHeight = 0;
+            $(this).children('ul').addClass('visible');
+
+
+            if ( $(this).children('ul').height() > h ) {
+                under.css('height', $(this).children('ul').height());
+            }
+
+        });
+        hoverInner.on("mouseleave", function() {
+            $(this).children('ul').removeClass('visible');
         });
         under.on("mouseleave", function() {
             reset();
         });
-
         headerControls.on("mouseenter", function() {
             reset();
         });
@@ -921,7 +926,7 @@ $(document).ready(function() {
     function setRandomBackground() {
         if (typeof pageNotFoundObj != "undefined") {
             var randomNum = getRandomInt(0, pageNotFoundObj.length - 1);
-
+            console.log(pageNotFoundObj[randomNum].pic);
             $('.js-full-page-background').css('background-image', 'url(' + pageNotFoundObj[randomNum].pic + ')');
             $('.js-full-page-background-title').html(pageNotFoundObj[randomNum].desc);
         }
@@ -1141,8 +1146,6 @@ $(document).ready(function() {
         burger.removeClass("active");
         menu.removeClass("opened");
 
-        overlay.toggleClass("overlay--on");
-
 
         console.log(val);
     });
@@ -1227,16 +1230,16 @@ $(document).ready(function() {
         }
     });
 
+    //текст кнопок для шеринга
     $('.ya-share2__item_service_facebook .ya-share2__title').html('Поделиться в Facebook');
     $('.ya-share2__item_service_vkontakte .ya-share2__title').html('Поделиться в Vk.com');
-    $('.ya-share2__item_service_twitter .ya-share2__title').html('Твитнуть в Twitter');
+    $('.ya-share2__item_service_twitter .ya-share2__title').html('Поделиться в Twitter');
 
     $('.js-btn-share').click(function (e) {
-        e.stopPropagation();
+        e.stopPropagation();console.log("share");
         $(this).next('.js-btn-share-block').toggleClass('open');
         $(this).toggleClass('color-greyish-brown');
     });
-
 
     //определяем размеры картинок лого партнеров
     $('.js-pics-count').each(function() {
@@ -1246,7 +1249,6 @@ $(document).ready(function() {
             $this.addClass('logo-partner--several');
         }
     });
-
 
     //правильный пересчет функций на ресайз
     var resizeFn = debounce(function() {
