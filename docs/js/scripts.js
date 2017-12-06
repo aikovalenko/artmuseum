@@ -782,7 +782,10 @@ $(document).ready(function() {
 
             if ($(window).width() < 1024) {
                 $gridDesktop.masonry('destroy');
-            } else $gridDesktop
+            } else  {
+                // $gridDesktop
+
+            }
         });
     }
     masonryForDesktop();
@@ -1249,6 +1252,92 @@ $(document).ready(function() {
             $this.addClass('logo-partner--several');
         }
     });
+
+    $(function(){
+        if ($(window).width() >= 1024) {
+            var item = $(".section--grid__wrapper--test").find(".grid-item"),
+                btn = $(".js-load-more"),
+                itemLength = item.length,
+                i = 3;
+            console.log(itemLength);
+            if (itemLength <= i) {
+                btn.hide();
+            }
+
+            item.slice(0, i).css('display', 'inline-block');
+
+
+            btn.click(function (e) {
+                e.preventDefault();
+                $(".section--grid__wrapper--test").removeClass("section--grid__wrapper--flex");
+                item.slice(i, i+3).css('display', 'inline-block').addClass("animated slideInUp");
+
+
+                i = i + 3;
+                if (i >= itemLength) {
+                    btn.hide();
+                }
+
+                console.log(i);
+            });
+        }
+    });
+
+    ( function( window, document )
+    {
+        'use strict';
+
+        var file     = 'images/symbol_sprite.html',
+            revision = 1;
+
+        if( !document.createElementNS || !document.createElementNS( 'http://www.w3.org/2000/svg', 'svg' ).createSVGRect )
+            return true;
+
+        var isLocalStorage = 'localStorage' in window && window[ 'localStorage' ] !== null,
+            request,
+            data,
+            insertIT = function()
+            {
+                document.body.insertAdjacentHTML( 'afterbegin', data );
+            },
+            insert = function()
+            {
+                if( document.body ) insertIT();
+                else document.addEventListener( 'DOMContentLoaded', insertIT );
+            };
+
+        if( isLocalStorage && localStorage.getItem( 'inlineSVGrev' ) === revision )
+        {
+            data = localStorage.getItem( 'inlineSVGdata' );
+            if( data )
+            {
+                insert();
+                return true;
+            }
+        }
+
+        try
+        {
+            request = new XMLHttpRequest();
+            request.open( 'GET', file, true );
+            request.onload = function()
+            {
+                if( request.status >= 200 && request.status < 400 )
+                {
+                    data = request.responseText;
+                    insert();
+                    if( isLocalStorage )
+                    {
+                        localStorage.setItem( 'inlineSVGdata',  data );
+                        localStorage.setItem( 'inlineSVGrev',   revision );
+                    }
+                }
+            }
+            request.send();
+        }
+        catch( e ){}
+
+    }( window, document ) );
 
     //правильный пересчет функций на ресайз
     var resizeFn = debounce(function() {

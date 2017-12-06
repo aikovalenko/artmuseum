@@ -1549,6 +1549,7 @@ ul {
       padding: 0 17px;
       @include fontSize(12px);
       font-weight: 500;
+      line-height: calculateRem(20px);
       letter-spacing: 0.1px;
 
       span {
@@ -2438,6 +2439,13 @@ ul {
     }
   }
 }
+.grid--desktop {
+  .grid-item {
+    //display: none;
+    //visibility: hidden;
+    //z-index: -1;
+  }
+}
 .grid--4-columns {
   .grid-item, .grid-sizer {
     width: 25%;
@@ -2638,16 +2646,38 @@ h1 {
 }
 .section--grid {
   &__wrapper {
-    display: flex;
+    //display: flex;
     margin: 0 -12px;
     margin-bottom: 45px;
 
-    .grid-item {
 
-      width: 33.33333%;
+    &--test {
+
+      column-gap: 0;
+      column-width: 19em;
+
+      margin-bottom: 45px;
+    }
+
+    &--flex {
+      display: flex;
+      .grid-item {
+        width:  33.3333%;
+      }
+    }
+
+    .grid-item {
+      display: inline-block;
+
+      width:  100%;
+      display: none;
+      transition: all .3s ease;
+
+      //width: 33.33333%;
       //padding: 0 12px;
     }
     .item {
+
       transition: $transition;
       box-sizing: border-box;
       margin-bottom: 24px;
@@ -3469,3 +3499,4 @@ h1 {
 @import "partials/ya-share";
 @import "partials/contrast";
 @import "partials/media";
+@import "partials/svg-sprite";

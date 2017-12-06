@@ -18,7 +18,11 @@ var gulp = require('gulp'),
     csscomb = require('gulp-csscomb'),
     uglify = require('gulp-uglify'),
 	cache = require('gulp-cache'),
-	svgSprite = require("gulp-svg-sprites");
+    svgSprite = require('gulp-svg-sprites'),
+    svgmin = require('gulp-svgmin'),
+    cheerio = require('gulp-cheerio'),
+    fs = require('fs'),
+    replace = require('gulp-replace');
    
 
 var path = {
@@ -86,6 +90,54 @@ gulp.task('sprites', function () {
         }))
         .pipe(gulp.dest("src/css/sprites"));
 });
+
+gulp.task('svgSpriteBuild', function () {
+    return gulp.src('src/images/svg/*.svg')
+    // minify svg
+        .pipe(svgmin({
+            js2svg: {
+                pretty: true
+            }
+        }))
+        // remove all fill and style declarations in out shapes
+        .pipe(cheerio({
+            run: function ($) {
+                $('[fill]').removeAttr('fill');
+                $('[style]').removeAttr('style');
+            },
+            parserOptions: { xmlMode: true }
+        }))
+        // cheerio plugin create unnecessary string '>', so replace it.
+        .pipe(replace('&gt;', '>'))
+        // build svg sprite
+        .pipe(svgSprite({
+                mode: "symbols",
+                preview: false,
+                selector: "icon-%f",
+                svg: {
+                    symbols: 'symbol_sprite.html'
+                }
+            }
+        ))
+        .pipe(gulp.dest('src/images'));
+});
+gulp.task('svgSpriteSass', function () {
+    return gulp.src('src/images/svg/*.svg')
+        .pipe(svgSprite({
+                preview: false,
+                selector: "icon-%f",
+                svg: {
+                    sprite: 'svg_sprite.html'
+                },
+                cssFile: '../css/partials/svg-sprite.scss',
+                templates: {
+                    css: require("fs").readFileSync('src/css/partials/sprite-template.scss', "utf-8")
+                }
+            }
+        ))
+        .pipe(gulp.dest('src/images'));
+});
+gulp.task('svgSprite', ['svgSpriteBuild', 'svgSpriteSass']);
 
 gulp.task('html:build', function () {
 	gulp.src(path.src.html)
